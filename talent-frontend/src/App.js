@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import About from './Components/About';
@@ -8,24 +8,31 @@ import Resources from './Components/Resources';
 import ClientPrograms from './Components/Client Programs';
 import ReferralProgram from './Components/Referral Program';
 import FresherRecruiting from './Components/Fresher Recruiting';
-import Login from './Components/Login';
-import Register from './Components/Register';
+import JobSeekerLogin from './Components/login/JobSeekerLogin';
+import RecruiterLogin from './Components/login/RecruiterLogin';
+import JobSeekerRegister from './Components/Register/JobSeekerRegister';
+import RecruiterRegister from './Components/Register/RecruiterRegister';
+
+
+
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/career" element={<Career />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/client-programs" element={<ClientPrograms />} />
         <Route path="/referral-program" element={<ReferralProgram />} />
         <Route path="/fresher-recruiting" element={<FresherRecruiting />} />
-        <Route path="/login" element={<Login />} />
-        <Route path ="/register" element={<Register/>}/>
-      </Routes>
-    </Router>
+        <Route path="/login-job-seeker" element={<JobSeekerLogin />} />
+        <Route path="/login-recruiter" element={<RecruiterLogin />} />
+        <Route path="/register-job-seeker" element={<JobSeekerRegister />} />
+        <Route path="/register-recruiter" element={<RecruiterRegister />} />
+       </Routes>
+    </BrowserRouter>
   );
 }
 

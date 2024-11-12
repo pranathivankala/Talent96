@@ -1,35 +1,52 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [authDropdownOpen, setAuthDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleAuthDropdown = () => {
+    setAuthDropdownOpen(!authDropdownOpen);
   };
 
   return (
     <header>
       <nav className="navbar">
         <div className="navbar-logo">
-          <a href="/">Talent96</a>
+          <Link to="/">Talent96</Link>
         </div>
         <ul className="navbar-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/career">Career</a></li>
-          <li><a href="/resources">Resources</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/career">Career</Link></li>
+          <li><Link to="/resources">Resources</Link></li>
+
           <li className="dropdown">
-            <a href="#" className="dropbtn" onClick={toggleDropdown}>Programs</a>
+            <button onClick={toggleDropdown} className="dropbtn">Programs</button>
             {dropdownOpen && (
               <div className="dropdown-content">
-                <a href="/client-programs">Client Programs</a>
-                <a href="/referral-program">Referral Program</a>
+                <Link to="/client-programs">Client Programs</Link>
+                <Link to="/referral-program">Referral Program</Link>
               </div>
             )}
           </li>
-          <li><a href="/fresher-recruiting">Fresher Recruiting</a></li>
-          <li><a href="/login">Login</a></li>
+
+          <li><Link to="/fresher-recruiting">Fresher Recruiting</Link></li>
+
+          <li className="dropdown">
+            <button onClick={toggleAuthDropdown} className="dropbtn">Login</button>
+            {authDropdownOpen && (
+              <div className="dropdown-content">
+                <Link to="/login-job-seeker">JobSeeker</Link>
+                <Link to="/login-recruiter">Recruiter</Link>
+              </div>
+            )}
+          </li>
         </ul>
       </nav>
     </header>
