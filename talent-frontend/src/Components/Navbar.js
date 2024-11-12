@@ -3,49 +3,48 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [authDropdownOpen, setAuthDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  const toggleAuthDropdown = () => {
-    setAuthDropdownOpen(!authDropdownOpen);
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
     <header>
       <nav className="navbar">
         <div className="navbar-logo">
-          <Link to="/">Talent96</Link>
+          <Link to="/" onClick={closeMenu}>Talent96</Link>
         </div>
-        <ul className="navbar-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/career">Career</Link></li>
-          <li><Link to="/resources">Resources</Link></li>
 
+        <div className={`hamburger-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+
+        <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li><Link to="/career" onClick={closeMenu}>Career</Link></li>
+          <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
           <li className="dropdown">
-            <button onClick={toggleDropdown} className="dropbtn">Programs</button>
-            {dropdownOpen && (
-              <div className="dropdown-content">
-                <Link to="/client-programs">Client Programs</Link>
-                <Link to="/referral-program">Referral Program</Link>
-              </div>
-            )}
+            <button className="dropbtn">Programs<span className="arrow">⮟</span></button>
+            <div className="dropdown-content">
+              <Link to="/client-programs" onClick={closeMenu}>Client Programs</Link>
+              <Link to="/referral-program" onClick={closeMenu}>Referral Program</Link>
+            </div>
           </li>
-
-          <li><Link to="/fresher-recruiting">Fresher Recruiting</Link></li>
-
+          <li><Link to="/fresher-recruiting" onClick={closeMenu}>Fresher Recruiting</Link></li>
           <li className="dropdown">
-            <button onClick={toggleAuthDropdown} className="dropbtn">Login</button>
-            {authDropdownOpen && (
-              <div className="dropdown-content">
-                <Link to="/login-job-seeker">JobSeeker</Link>
-                <Link to="/login-recruiter">Recruiter</Link>
-              </div>
-            )}
+            <button className="dropbtn">Login<span className="arrow">⮟</span></button>
+            <div className="dropdown-content">
+            <Link to="/login-job-seeker" onClick={closeMenu}>JobSeeker Login</Link>
+            <Link to="/login-recruiter" onClick={closeMenu}>Recruiter Login</Link>
+            </div>
           </li>
         </ul>
       </nav>

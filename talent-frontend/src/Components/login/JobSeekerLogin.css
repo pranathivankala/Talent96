@@ -1,132 +1,240 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  font-size: 16px; 
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 90vh;
+  overflow: hidden;
+  margin-top: 4.8rem;
   
-  body {
-    font-family: Arial, sans-serif;
-    background-color: rgba(0, 0, 0, 0.1); 
-    color: #333;
+}
+
+.login-left {
+  flex: 1 1 40%;
+  background-image: url('https://job-static.hirist.com/V8/static/media/login_bkg.993f4d3c.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.sub-left {
+  text-align: center;
+  max-width: 18.75rem;
+}
+
+.sub-left h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fcfcfc;
+  margin-bottom: 0.625rem;
+}
+
+.sub-left p {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.login-right {
+  flex: 1 1 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background-color: #f9f9f9;
+}
+
+form.login-right {
+  max-width: 56.25rem;
+  padding: 1.25rem;
+  height: 31.25rem;
+}
+
+.login-right h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.5625rem;
+  text-align: center;
+}
+
+.input-group label {
+  display: block;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: bolder;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.3rem;
+  font-family: 'Times New Roman', Times, serif;
+  border: 1.5px solid #111111;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+  max-width: 25rem;
+}
+
+.input-group input:focus {
+  border-color: #ff6600;
+}
+
+.input-group input::placeholder {
+  font-size: 1rem;
+  color: #666;
+  opacity: 1;
+}
+
+.Email-container,
+.password-container {
+  position: relative;
+}
+
+.Email-container input,
+.password-container input {
+  width: 100%;
+  padding-right: 6.25rem;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 0.625rem;
+  top: 30%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.125rem;
+  color: #666;
+}
+
+.forgot-password {
+  display: block;
+  font-size: 0.875rem;
+  color: #0073e6;
+  text-decoration: none;
+  text-align: right;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  padding: 0.625rem;
+  width: 24.375rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #ff6600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #ff4500;
+}
+
+.signup-link {
+  color: #ff6600;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #ff4500;
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* Adjust root font size for smaller screens */
   }
-  
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-left, .login-right {
+    flex: 1 1 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    background-image: url('https://t3.ftcdn.net/jpg/08/19/99/02/360_F_819990243_G7xPXzunu5vAwtkl4mde5aan09Y9IjTq.jpg'); 
-    background-size: cover;
-    background-position: center;
   }
-  
-  .login-form {
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .login-left {
+    min-height: 15.625rem;
+    padding: 1.25rem;
   }
-  
-  .login-form:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+
+  .login-right {
+    padding: 1.25rem;
   }
-  
-  .login-form h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    color: #333;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+  .login-right h1 {
+    font-size: 1.5rem;
   }
-  
-  .login-form label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #555;
-    font-weight: 500;
+
+  form.login-right {
+    max-width: 100%;
+    padding: 1.25rem;
   }
-  
-  .login-form input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #333;
-    background-color: rgba(249, 249, 249, 0.8); 
-    transition: all 0.3s ease;
+
+  .eye-icon {
+    font-size: 1.125rem;
   }
-  
-  .login-form input:focus {
-    border-color: #007bff;
-    outline: none;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px; /* Adjust root font size for very small screens */
   }
-  
-  .login-form .submit-btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+
+  .sub-left h2 {
+    font-size: 1.25rem;
   }
-  
-  .login-form .submit-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+
+  .sub-left p {
+    font-size: 0.875rem;
   }
-  
-  .login-form .submit-btn:active {
-    background-color: #00408b;
-    transform: translateY(0);
+
+  .login-right h1 {
+    font-size: 1.375rem;
   }
-  
-  .login-form .register-link {
-    text-align: center;
-    margin-top: 1rem;
+
+  .input-group input {
+    padding: 0.625rem;
+    font-size: 0.875rem;
   }
-  
-  .login-form .register-link a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+
+  .login-btn {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    width: 13rem;
   }
-  
-  .login-form .register-link a:hover {
-    color: #0056b3;
-    text-decoration: underline;
+
+  .forgot-password,
+  .signup-link {
+    font-size: 0.75rem;
   }
-  
-  .login-form .error-message {
-    color: #ff4d4d;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    background-color: rgba(255, 77, 77, 0.1);
-    padding: 0.5rem;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  .login-form input:focus {
-    border-color: #57595b;
-    background-color: #fff;
-  }
-  
-  .login-form:hover {
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-  }
-  
+}
