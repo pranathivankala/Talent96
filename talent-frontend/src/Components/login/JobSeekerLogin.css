@@ -6,20 +6,18 @@
 }
 
 html {
-  font-size: 16px; 
+  font-size: 16px;
 }
 
-.container {
+.job-seeker-login-container {
   display: flex;
   flex-direction: row;
   width: 100vw;
   height: 90vh;
-  overflow: hidden;
   margin-top: 4.8rem;
-  
 }
 
-.login-left {
+.welcome-section {
   flex: 1 1 40%;
   background-image: url('https://job-static.hirist.com/V8/static/media/login_bkg.993f4d3c.jpg');
   background-size: cover;
@@ -30,25 +28,25 @@ html {
   padding: 1.25rem;
 }
 
-.sub-left {
+.welcome-content {
   text-align: center;
   max-width: 18.75rem;
 }
 
-.sub-left h2 {
+.welcome-content h2 {
   font-size: 1.8rem;
   font-weight: bold;
   color: #fcfcfc;
   margin-bottom: 0.625rem;
 }
 
-.sub-left p {
+.welcome-content p {
   font-size: 1.2rem;
   color: #ffffff;
   margin-top: 1rem;
 }
 
-.login-right {
+.login-section {
   flex: 1 1 60%;
   display: flex;
   align-items: center;
@@ -57,13 +55,13 @@ html {
   background-color: #f9f9f9;
 }
 
-form.login-right {
+.login-form {
   max-width: 56.25rem;
   padding: 1.25rem;
-  height: 31.25rem;
+  height: auto;
 }
 
-.login-right h1 {
+.login-form h1 {
   font-size: 2rem;
   font-weight: 700;
   color: #000000;
@@ -71,71 +69,61 @@ form.login-right {
   text-align: center;
 }
 
-.input-group label {
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
   display: block;
   color: #333;
   margin-bottom: 0.5rem;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
-.input-group input {
+.form-input {
   width: 100%;
   padding: 0.5rem 1.25rem;
-  font-size: 1.3rem;
-  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.1rem;
   border: 1.5px solid #111111;
   border-radius: 4px;
   outline: none;
   transition: border-color 0.3s;
-  max-width: 25rem;
 }
 
-.input-group input:focus {
+.form-input:focus {
   border-color: #ff6600;
 }
 
-.input-group input::placeholder {
-  font-size: 1rem;
-  color: #666;
-  opacity: 1;
-}
-
-.Email-container,
-.password-container {
+.password-group {
   position: relative;
 }
 
-.Email-container input,
-.password-container input {
-  width: 100%;
-  padding-right: 6.25rem;
-}
-
-.eye-icon {
+.password-toggle {
   position: absolute;
   right: 0.625rem;
-  top: 30%;
+  top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.125rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
-.forgot-password {
+.forgot-password-link {
   display: block;
   font-size: 0.875rem;
   color: #0073e6;
   text-decoration: none;
   text-align: right;
+  margin-top: 0.5rem;
 }
 
-.forgot-password:hover {
+.forgot-password-link:hover {
   text-decoration: underline;
 }
 
-.login-btn {
+.login-button {
   padding: 0.625rem;
-  width: 24.375rem;
+  width: 100%;
   font-size: 1rem;
   color: white;
   background-color: #ff6600;
@@ -144,12 +132,16 @@ form.login-right {
   cursor: pointer;
   font-weight: bold;
   margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
   transition: background-color 0.3s;
 }
 
-.login-btn:hover {
+.login-button:hover {
   background-color: #ff4500;
+}
+
+.signup-text {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .signup-link {
@@ -170,71 +162,70 @@ form.login-right {
 
 @media (max-width: 768px) {
   html {
-    font-size: 14px; /* Adjust root font size for smaller screens */
+    font-size: 14px;
   }
 
-  .container {
+  .job-seeker-login-container {
     flex-direction: column;
     height: auto;
   }
 
-  .login-left, .login-right {
+  .welcome-section,
+  .login-section {
     flex: 1 1 100%;
     height: 100vh;
   }
 
-  .login-left {
-    min-height: 15.625rem;
+  .welcome-section {
+    min-height: 45rem;
     padding: 1.25rem;
   }
 
-  .login-right {
+  .login-section {
     padding: 1.25rem;
   }
 
-  .login-right h1 {
+  .login-form h1 {
     font-size: 1.5rem;
   }
 
-  form.login-right {
-    max-width: 100%;
-    padding: 1.25rem;
+  .form-input {
+    font-size: 1rem;
+    padding: 0.625rem;
   }
 
-  .eye-icon {
-    font-size: 1.125rem;
+  .password-toggle {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
   html {
-    font-size: 12px; /* Adjust root font size for very small screens */
+    font-size: 12px;
   }
 
-  .sub-left h2 {
+  .welcome-content h2 {
     font-size: 1.25rem;
   }
 
-  .sub-left p {
+  .welcome-content p {
     font-size: 0.875rem;
   }
 
-  .login-right h1 {
+  .login-form h1 {
     font-size: 1.375rem;
   }
 
-  .input-group input {
-    padding: 0.625rem;
+  .form-input {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .login-button {
     font-size: 0.875rem;
   }
 
-  .login-btn {
-    padding: 0.625rem;
-    font-size: 0.875rem;
-    width: 13rem;
-  }
-
-  .forgot-password,
+  .forgot-password-link,
   .signup-link {
     font-size: 0.75rem;
   }

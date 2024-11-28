@@ -1,133 +1,148 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './RecruiterRegister.css';
 
-const RecruiterRegister = () => {
+function RecruiterRegister() {
+  // State for form inputs
   const [formData, setFormData] = useState({
-    Name: '',
-    company: '',
-    role: '',
-    email: '',
+    fullName: '',
+    companyName: '',
+    companyEmail: '',
+    workEmail: '',
     password: '',
-    confirmPassword: '',
-    companyWebsite: '',
-    country: '',
-    phone: '',
-    gmail: '',
-    countryCode: '+1', 
+    contact: '',
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [companyLogo, setCompanyLogo] = useState(null); // State for file upload
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
+
+  const handleFileChange = (e) => {
+    setCompanyLogo(e.target.files[0]);
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Recruiter Registered:", formData);
+
+
+    console.log('Form Data Submitted:', {
+      ...formData,
+      companyLogo,
+    });
+
+    alert('Registration Successful!');
+
+
+    setFormData({
+      fullName: '',
+      companyName: '',
+      companyEmail: '',
+      workEmail: '',
+      password: '',
+      contact: '',
+    });
+    setCompanyLogo(null);
   };
 
   return (
-    <div className="recruiter-register">
-      <h2>Recruiter Registration</h2>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          name="Name" 
-          placeholder="Name" 
-          value={formData.Name} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="text" 
-          name="company" 
-          placeholder="Company" 
-          value={formData.company} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="text" 
-          name="role" 
-          placeholder="Role" 
-          value={formData.role} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Email" 
-          value={formData.email} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="password" 
-          name="password" 
-          placeholder="Password" 
-          value={formData.password} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="password" 
-          name="confirmPassword" 
-          placeholder="Confirm Password" 
-          value={formData.confirmPassword} 
-          onChange={handleChange} 
-          required 
-        />
-        <input 
-          type="text" 
-          name="companyWebsite" 
-          placeholder="Company Website" 
-          value={formData.companyWebsite} 
-          onChange={handleChange} 
-        />
-        
-        {/* Country Dropdown */}
-        <select 
-          name="country" 
-          value={formData.country} 
-          onChange={handleChange} 
-          required
-        >
-          <option value="">Select Country</option>
-          <option value="USA">USA</option>
-          <option value="India">India</option>
-          <option value="UK">UK</option>
-          <option value="Canada">Canada</option>
-          <option value="Australia">Australia</option>
-        </select>
+    <div className="bigcontainer">
+      <div className="reg-container">
+        <h2 className="name">Recruiter Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="sec">
+            <label htmlFor="fullName">
+              Full Name <span>*</span>
+            </label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              placeholder="Enter your Full Name"
+              required
+            />
+          </div>
 
-        <div className="phone-container">
-          <select 
-            name="countryCode" 
-            value={formData.countryCode} 
-            onChange={handleChange}
-            required
-          >
-            <option value="+1">+1 (USA)</option>
-            <option value="+91">+91 (India)</option>
-            <option value="+44">+44 (UK)</option>
-            <option value="+61">+61 (Australia)</option>
-            <option value="+1">+1 (Canada)</option>
-          </select>
-          <input 
-            type="text" 
-            name="phone" 
-            placeholder="Phone" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            required 
-          />
-        </div>
+          <div className="sec">
+            <label htmlFor="companyName">
+              Company Name <span>*</span>
+            </label>
+            <input
+              type="text"
+              id="companyName"
+              name="companyName"
+              value={formData.companyName}
+              onChange={handleInputChange}
+              placeholder="Enter your Company Name"
+              required
+            />
+          </div>
 
-       
-        <button type="submit">Register</button>
-      </form>
+          <div className="sec">
+            <label htmlFor="companyEmail">
+              Company Email Address <span>*</span>
+            </label>
+            <input
+              type="email"
+              id="companyEmail"
+              name="companyEmail"
+              value={formData.companyEmail}
+              onChange={handleInputChange}
+              placeholder="Enter your Company Email Address"
+              required
+            />
+          </div>
+
+          <div className="sec">
+            <label htmlFor="password">
+              Password <span>*</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              placeholder="Create a Password"
+              required
+            />
+          </div>
+          <div className="sec">
+            <label htmlFor="companyLogo">
+              Upload Company Logo <span>*</span>
+            </label>
+            <input
+              type="file"
+              id="companyLogo"
+              accept=".png,.jpg,.jpeg"
+              onChange={handleFileChange}
+              required
+            />
+          </div>
+
+          <button type="submit" className="submit-button">
+            Register
+          </button>
+          <div className="signin-link">
+            <p>
+              Already registered?{' '}
+              <Link to="/login-recruiter" className="signin-link-text">
+                Sign In
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
-};
+}
 
 export default RecruiterRegister;

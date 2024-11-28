@@ -1,95 +1,130 @@
-.job-seeker-register {
-    max-width: 400px;
-    margin: 0 auto;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.reg-container {
+  width: 600px;
+  max-width: 90%;
+  margin: 90px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.name {
+  text-align: center;
+  color: #000000;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.sec {
+  margin-bottom: 4px;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+label span {
+  color: red;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  padding: 9px;
+}
+
+button.submit-button {
+  width: 100%;
+  padding: 13px;
+  background-color: #ff6600;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.submit-button:hover {
+  background-color: #e65c00;
+  transform: translateY(-2px);
+}
+
+.file-info {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #555;
+  font-style: italic;
+}
+
+.signin-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.signin-link-text {
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signin-link-text:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .reg-container {
+    padding: 25px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  button.submit-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reg-container {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px); 
-    background-image: url('https://t3.ftcdn.net/jpg/08/19/99/02/360_F_819990243_G7xPXzunu5vAwtkl4mde5aan09Y9IjTq.jpg'); 
-    background-size: cover;
-    background-position: center;
-    color: #333;
   }
-  
-  .job-seeker-register h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
+
+  .name {
+    font-size: 22px;
   }
-  
-  .job-seeker-register form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+  input,
+  button.submit-button {
+    font-size: 14px;
+    padding: 10px;
   }
-  
-  .job-seeker-register input {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.9); 
-    font-size: 1rem;
-    color: #333;
-    transition: all 0.3s ease;
-  }
-  
-  .job-seeker-register input:focus {
-    border-color: #007bff;
-    outline: none;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  .job-seeker-register button {
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .job-seeker-register button:hover {
-    background-color: #45a049;
-  }
-  
-  .job-seeker-register button:active {
-    background-color: #388e3c;
-  }
-  
-  .job-seeker-register .error-message {
-    color: #ff4d4d;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    background-color: rgba(255, 77, 77, 0.1);
-    padding: 0.5rem;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 480px) {
-    .job-seeker-register {
-      padding: 15px;
-    }
-  
-    .job-seeker-register h2 {
-      font-size: 1.5rem;
-    }
-  
-    .job-seeker-register input {
-      font-size: 0.9rem;
-    }
-  
-    .job-seeker-register button {
-      font-size: 1rem;
-    }
-  }
-  
+}

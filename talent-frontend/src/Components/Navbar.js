@@ -28,24 +28,18 @@ const Navbar = () => {
 
         <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
           <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><Link to="/career" onClick={closeMenu}>Career</Link></li>
-          <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
           <li className="dropdown">
-            <button className="dropbtn">Programs<span className="arrow">⮟</span></button>
+            <button className="dropbtn">Our Programs<span className="arrow">⮟</span></button>
             <div className="dropdown-content">
               <Link to="/client-programs" onClick={closeMenu}>Client Programs</Link>
-              <Link to="/referral-program" onClick={closeMenu}>Referral Program</Link>
+              {/* <Link to="/referral-program" onClick={closeMenu}>Referral Program</Link> */}
             </div>
           </li>
+          <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
           <li><Link to="/fresher-recruiting" onClick={closeMenu}>Fresher Recruiting</Link></li>
-          <li className="dropdown">
-            <button className="dropbtn">Login<span className="arrow">⮟</span></button>
-            <div className="dropdown-content">
-            <Link to="/login-job-seeker" onClick={closeMenu}>JobSeeker Login</Link>
-            <Link to="/login-recruiter" onClick={closeMenu}>Recruiter Login</Link>
-            </div>
-          </li>
+          <li><Link to="/career" onClick={closeMenu}>Career</Link></li>
+          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li><Link to="/Choosing" onClick={closeMenu}>Login</Link></li>
         </ul>
       </nav>
     </header>

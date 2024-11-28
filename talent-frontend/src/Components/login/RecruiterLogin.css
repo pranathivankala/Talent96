@@ -39,17 +39,13 @@
     font-weight: bold;
     margin-bottom: 0.625rem;
     color: #000000;
-    background-color: #ffffff;
     padding: 0.5rem;
-    border-radius: 8px;
   }
   
   .s-left p {
     font-size: 1.2rem;
     color: #000000;
-    background-color: #ffffff;
     padding: 0.5rem;
-    border-radius: 8px;
   }
   
  
@@ -93,7 +89,7 @@
   
   .grp input {
     width: 100%;
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem 1rem;
     font-size: 1.3rem;
     font-family: 'Times New Roman', Times, serif;
     border: 1.5px solid #111111;
@@ -101,6 +97,7 @@
     outline: none;
     transition: border-color 0.3s;
     max-width: 25rem;
+    margin-bottom: 0.3rem;
   }
   
   .grp input:focus {
@@ -128,7 +125,7 @@
   .eye-ico {
     position: absolute;
     right: 0.625rem;
-    top: 70%;
+    top: 63%;
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 1.125rem;
@@ -208,7 +205,7 @@
     }
   
     .left {
-      min-height: 15.625rem;
+      min-height: 30rem;
       padding: 1.25rem;
     }
   

@@ -24,48 +24,61 @@ const JobSeekerLogin = () => {
   };
 
   return (
-    <div className="container">
-      <div className="login-left">
-        <div className="sub-left">
+    <div className="job-seeker-login-container">
+      {/* Left Section */}
+      <div className="welcome-section">
+        <div className="welcome-content">
           <h2>Welcome to Talent96</h2>
-          <p>Job searching is not about finding a job, it's about finding a match between what you offer and what the company needs..</p>
+          <p>Job searching is not about finding a job, it's about finding a match between what you offer and what the company needs.</p>
         </div>
       </div>
 
-      <div className="login-right">
-        <form onSubmit={handleLogin} className="login-right">
+      {/* Right Section */}
+      <div className="login-section">
+        <form onSubmit={handleLogin} className="login-form">
           <h1>Sign In</h1>
           {error && <div className="error-message">{error}</div>}
-          <div className="input-group">
-            <label>Email Address :</label>
-            <div className='Email-container'>
-              <input
-                type="email"
-                placeholder="Enter your registered email id"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email Address:</label>
+            <input
+              id="email"
+              type="email"
+              className="form-input"
+              placeholder="Enter your registered email id"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-          <div className="input-group">
-            <label>Password :</label>
-            <div className="password-container">
+
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <div className="password-group">
               <input
+                id="password"
                 type={showPassword ? 'text' : 'password'}
+                className="form-input"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <span className="eye-icon" onClick={togglePasswordVisibility}>
+              <span
+                className="password-toggle"
+                onClick={togglePasswordVisibility}
+                title="Toggle Password Visibility"
+              >
                 {showPassword ? '👁️' : '🙈'}
               </span>
             </div>
-            <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
+            <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
           </div>
-          <button type="submit" className="login-btn">Login →</button>
-          <p>Don’t have an account? <a href="/jobSeekerRegister" className="signup-link">Sign Up</a></p>
+
+          <button type="submit" className="login-button">Login →</button>
+          <p className="signup-text">
+            Don’t have an account? <a href="/job-seeker-register" className="signup-link">Sign Up</a>
+          </p>
         </form>
       </div>
     </div>

@@ -1,37 +1,79 @@
 import React, { useState } from 'react';
-import './JobSeekerRegister.css';
+import { Link } from 'react-router-dom';
+import './JobSeekerRegister.css'
 
-const JobSeekerRegister = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    skills: '',
-  });
+function JobSeekerRegister() {
+  const [setResumeFile] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleFileChange = (e) => {
+    setResumeFile(e.target.files[0]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Job Seeker Registered:", formData);
+
   };
 
   return (
-    <div className="job-seeker-register">
-      <h2>Job Seeker Registration</h2>
+    <div className='bigcontainer'>
+    <div className="reg-container">
+      <h2 className='name'>Create an Account.</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
-        <input type="text" name="skills" placeholder="Skills" value={formData.skills} onChange={handleChange} />
-        <button type="submit">Register</button>
+        <div className="sec">
+          <label htmlFor="fullname">
+            Full Name <span>*</span>
+          </label>
+          <input type="text" id="fullname" placeholder="Enter your Full name" required />
+        </div>
+
+        <div className="sec">
+          <label htmlFor="email">
+            Email Address <span>*</span>
+          </label>
+          <input type="email" id="email" placeholder="Enter your Email address" required />
+        </div>
+
+        <div className="sec">
+          <label htmlFor="password">
+            Password <span>*</span>
+          </label>
+          <input type="password" id="password" placeholder="Create your password" required />
+        </div>
+
+        <div className="sec">
+          <label htmlFor="mobile">
+            Mobile Number <span>*</span>
+          </label>
+          <input type="tel" id="mobile" placeholder="+91 Enter your mobile number" required />
+        </div>
+
+        <div className="sec">
+          <label htmlFor="resume">
+            Upload Resume <span>*</span>
+          </label>
+          <input
+            type="file"
+            id="resume"
+            accept=".pdf,.doc,.docx"
+            onChange={handleFileChange}
+            required
+          />
+        </div>
+        <button type="submit" className="submit-button">
+          Register
+        </button>
+        <div className="signin-link">
+          <p>
+            Already registered?{' '}
+            <Link to="/job-seeker-login" className="signin-link-text">
+              Sign In
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
+    </div>
   );
-};
+}
 
 export default JobSeekerRegister;

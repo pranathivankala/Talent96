@@ -41,7 +41,7 @@ const RecruiterLogin = () => {
           </div>
           <a href="#" className="fg-pass">Forgot Password?</a>
           <button className="btn">Login →</button>
-          <p>Don’t have an account? <a href="#" className="link-signup">Sign Up</a></p>
+          <p>Don’t have an account? <a href="register-recruiter" className="link-signup">Sign Up</a></p>
         </div>
       </div>
     </div>
