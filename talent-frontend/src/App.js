@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 // import Home from './Components/Home';
-import About from './Components/About';
+// import About from './Components/About';
 import Career from './Components/Career';
 import Resources from './Components/Resources';
 import ClientPrograms from './Components/Client Programs';
@@ -14,6 +14,7 @@ import RecruiterLogin from './Components/login/RecruiterLogin';
 import JobSeekerRegister from './Components/Register/JobSeekerRegister';
 import RecruiterRegister from './Components/Register/RecruiterRegister';
 import Page3 from './Components/Post A Job/Page3';
+import Page1 from './Components/Post A Job/Page1';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <Navbar />
       <Routes>
       <Route path="/" element={<Page3 />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Page1 />} />
         <Route path="/career" element={<Career />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/client-programs" element={<ClientPrograms />} />
