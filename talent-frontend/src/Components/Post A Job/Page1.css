@@ -1,0 +1,162 @@
+.full{
+    padding-top: 50px;
+}
+
+/* Container */
+.container {
+    max-width: 700px;
+    margin: 40px auto ;
+    padding: 40px;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form  Heading*/
+
+.heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #121111;
+    margin-bottom: 30px;
+}
+
+/* Input Group */
+.inputGroup {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.inputGroup label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #131313;
+    margin-bottom: 8px;
+}
+
+/* Input Fields */
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus,
+.inputGroup select:focus {
+    outline: none;
+    border-color: #0073b1;
+    background-color: #fff;
+}
+
+/* Suggestions Dropdown */
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #dcdcdc;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 6px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.suggestions li {
+    padding: 10px;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background-color: #f2f2f2;
+}
+
+/* Textarea */
+.inputGroup textarea {
+    resize: none;
+}
+
+/* Radio Buttons */
+.radioGroup {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radioGroup label {
+    font-size: 15px;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radioGroup input {
+    margin-right: 8px;
+    accent-color: #0073b1;
+}
+
+/* Submit Button */
+.submitButton {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #e25007;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+    background-color: #ff9900;
+    transform: translateY(-3px);
+}
+
+/* Error and Success States */
+.inputGroup input.error,
+.inputGroup textarea.error,
+.inputGroup select.error {
+    border-color: #ff4d4f;
+}
+
+.inputGroup input.success,
+.inputGroup textarea.success,
+.inputGroup select.success {
+    border-color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+
+    .heading {
+        font-size: 24px;
+    }
+
+    .submitButton {
+        font-size: 16px;
+    }
+}
