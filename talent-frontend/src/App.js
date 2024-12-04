@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 // import Home from './Components/Home';
 import About from './Components/About';
-import Career from './Components/Career';
+// import Career from './Components/Career';
 import Resources from './Components/Resources';
 import ClientPrograms from './Components/Client Programs';
 import ReferralProgram from './Components/Referral Program';
@@ -14,6 +14,7 @@ import RecruiterLogin from './Components/login/RecruiterLogin';
 import JobSeekerRegister from './Components/Register/JobSeekerRegister';
 import RecruiterRegister from './Components/Register/RecruiterRegister';
 import Page3 from './Components/Post A Job/Page3';
+import Page2 from './Components/Post A Job/Page2';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Page3 />} />
         <Route path="/about" element={<About />} />
-        <Route path="/career" element={<Career />} />
+        <Route path="/career" element={<Page2 />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/client-programs" element={<ClientPrograms />} />
         <Route path="/referral-program" element={<ReferralProgram />} />
