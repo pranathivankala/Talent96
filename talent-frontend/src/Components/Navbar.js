@@ -35,8 +35,8 @@ const Navbar = () => {
               {/* <Link to="/referral-program" onClick={closeMenu}>Referral Program</Link> */}
             </div>
           </li>
-          <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li>
-          <li><Link to="/fresher-recruiting" onClick={closeMenu}>Fresher Recruiting</Link></li>
+          {/* <li><Link to="/resources" onClick={closeMenu}>Resources</Link></li> */}
+          {/* <li><Link to="/fresher-recruiting" onClick={closeMenu}>Fresher Recruiting</Link></li> */}
           <li><Link to="/career" onClick={closeMenu}>Career</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
           <li><Link to="/Choosing" onClick={closeMenu}>Login</Link></li>

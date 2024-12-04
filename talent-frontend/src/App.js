@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
-import Home from './Components/Home';
+// import Home from './Components/Home';
 import About from './Components/About';
 import Career from './Components/Career';
 import Resources from './Components/Resources';
@@ -13,16 +13,14 @@ import JobSeekerLogin from './Components/login/JobSeekerLogin';
 import RecruiterLogin from './Components/login/RecruiterLogin';
 import JobSeekerRegister from './Components/Register/JobSeekerRegister';
 import RecruiterRegister from './Components/Register/RecruiterRegister';
-
-
-
+import Page3 from './Components/Post A Job/Page3';
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Page3 />} />
         <Route path="/about" element={<About />} />
         <Route path="/career" element={<Career />} />
         <Route path="/resources" element={<Resources />} />

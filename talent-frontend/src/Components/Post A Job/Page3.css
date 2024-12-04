@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .job-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 90px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .job-heading {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+  }
+  
+  .job--form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .job-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #090909;
+  }
+  
+  .job-input, 
+  .job-select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; 
+    box-sizing: border-box;
+  }
+  
+  .job-input:focus, 
+  .job-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+  }
+  
+  .job-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    margin-top: 2px; 
+  }
+
+  .job-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .job-skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .job-skill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #e9ecef;
+    border-radius: 20px;
+    color: #000000;
+  }
+  
+  .job-skill button {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .job-btn[type="submit"] {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
