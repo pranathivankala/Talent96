@@ -17,7 +17,7 @@ const Navbar = () => {
     <header>
       <nav className="navbar">
         <div className="navbar-logo">
-          <Link to="/" onClick={closeMenu}>Talent96</Link>
+          <Link to="/Home" onClick={closeMenu}>Talent96</Link>
         </div>
 
         <div className={`hamburger-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
 
         <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
-          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/Home" onClick={closeMenu}>Home</Link></li>
           <li className="dropdown">
             <button className="dropbtn">Our Programs<span className="arrow">⮟</span></button>
             <div className="dropdown-content">

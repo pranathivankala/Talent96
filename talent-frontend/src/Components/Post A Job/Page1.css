@@ -1,162 +1,127 @@
-.full{
-    padding-top: 50px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-/* Container */
-.container {
-    max-width: 700px;
-    margin: 40px auto ;
-    padding: 40px;
-    border: 1px solid #e2e2e2;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.full-container {
+  max-width: 37.5rem;
+  margin: 5rem auto;
+  padding: 1.25rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.625rem;
 }
 
-/* Form  Heading*/
-
-.heading {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 600;
-    color: #121111;
-    margin-bottom: 30px;
+.heading_1 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  color: #000;
+  font-weight: bold;
 }
 
-/* Input Group */
-.inputGroup {
-    margin-bottom: 20px;
-    position: relative;
+.form_field {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.inputGroup label {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #131313;
-    margin-bottom: 8px;
+.form_field label {
+  font-size: 0.875rem;
+  margin-bottom: 0.3125rem;
+  color: #000;
 }
 
-/* Input Fields */
-.inputGroup input,
-.inputGroup textarea,
-.inputGroup select {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 15px;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
+.form_field input[type="text"],
+.form_field select,
+.form_field textarea {
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3125rem;
+  outline: none;
+  width: 100%;
+  transition: border 0.3s ease;
 }
 
-.inputGroup input:focus,
-.inputGroup textarea:focus,
-.inputGroup select:focus {
-    outline: none;
-    border-color: #0073b1;
-    background-color: #fff;
+.radio-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.625rem;
 }
 
-/* Suggestions Dropdown */
-.suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    border: 1px solid #dcdcdc;
-    background-color: white;
-    max-height: 150px;
-    overflow-y: auto;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 6px;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.radio-buttons label {
+  font-size: 1rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
 }
 
-.suggestions li {
-    padding: 10px;
-    font-size: 15px;
-    color: #333;
-    cursor: pointer;
+.next_btn {
+  background-color: #dd5e0f;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  display: block;
 }
 
-.suggestions li:hover {
-    background-color: #f2f2f2;
+.next_btn:hover {
+  background-color: #c3540d;
 }
 
-/* Textarea */
-.inputGroup textarea {
-    resize: none;
-}
+/* @media (max-width: 48rem) {
+  .full-container {
+      padding: 1rem;
+  }
 
-/* Radio Buttons */
-.radioGroup {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
+  .heading_1 {
+      font-size: 1.375rem;
+  }
 
-.radioGroup label {
-    font-size: 15px;
-    color: #111111;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
+  .form_field label {
+      font-size: 0.8125rem;
+  }
 
-.radioGroup input {
-    margin-right: 8px;
-    accent-color: #0073b1;
-}
+  .form_field input[type="text"],
+  .form_field select,
+  .form_field textarea {
+      font-size: 0.875rem;
+      padding: 0.5rem;
+  }
 
-/* Submit Button */
-.submitButton {
-    display: block;
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    background-color: #e25007;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  .next_btn {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+  }
+} */
 
-.submitButton:hover {
-    background-color: #ff9900;
-    transform: translateY(-3px);
-}
+/* @media (max-width: 30rem) {
+  .full-container {
+      padding: 0.625rem;
+  }
 
-/* Error and Success States */
-.inputGroup input.error,
-.inputGroup textarea.error,
-.inputGroup select.error {
-    border-color: #ff4d4f;
-}
+  .heading_1 {
+      font-size: 1.25rem;
+  }
 
-.inputGroup input.success,
-.inputGroup textarea.success,
-.inputGroup select.success {
-    border-color: #28a745;
-}
+  .form_field label {
+      font-size: 0.75rem;
+  }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 30px;
-    }
+  .form_field input[type="text"],
+  .form_field select,
+  .form_field textarea {
+      font-size: 0.75rem;
+      padding: 0.375rem;
+  }
 
-    .heading {
-        font-size: 24px;
-    }
-
-    .submitButton {
-        font-size: 16px;
-    }
-}
+  .next_btn {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+  }
+} */

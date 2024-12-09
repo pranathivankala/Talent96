@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './Page2.css';  
-
-
+import './Page2.css';
+import { useNavigate } from 'react-router-dom';
 
 const Page2 = () => {
+  const navigate = useNavigate(); // Use navigate for routing
+
   const [formData, setFormData] = useState({
     companyName: '',
     companyWebsite: '',
@@ -22,8 +23,16 @@ const Page2 = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
     console.log('Form Data Submitted:', formData);
+
+  };
+
+  const handlePrevious = () => {
+    navigate('/Page1');
+  };
+
+  const handleNext = () => {
+    navigate('/Page3');
   };
 
   return (
@@ -32,54 +41,27 @@ const Page2 = () => {
       <form className="page2-form" onSubmit={handleSubmit}>
         <div className="page2-form-group">
           <label htmlFor="companyName">Company Name:</label>
-          <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            value={formData.companyName}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleInputChange} required />
         </div>
-
         <div className="page2-form-group">
           <label htmlFor="companyWebsite">Company Website:</label>
-          <input
-            type="text"
-            id="companyWebsite"
-            name="companyWebsite"
-            value={formData.companyWebsite}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="text" id="companyWebsite" name="companyWebsite" value={formData.companyWebsite} onChange={handleInputChange} required />
         </div>
 
         <div className="page2-form-group">
           <label htmlFor="companyLogo">Company Logo:</label>
-          <input
-            type="file"
-            id="companyLogo"
-            name="companyLogo"
-            onChange={handleFileChange}
-            required
-          />
+          <input type="file" id="companyLogo" name="companyLogo" onChange={handleFileChange} required />
         </div>
 
         <div className="page2-form-group">
           <label htmlFor="companyDescription">Company Description:</label>
-          <textarea
-            id="companyDescription"
-            name="companyDescription"
-            value={formData.companyDescription}
-            onChange={handleInputChange}
-            required
-            rows="5"
-          ></textarea>
+          <textarea id="companyDescription" name="companyDescription" value={formData.companyDescription} onChange={handleInputChange} required rows="5"></textarea>
         </div>
 
-        <button type="submit" className="page2-submit-button">
-          Submit
-        </button>
+        <div className="page2-navigation-buttons">
+          <button type="button" className="page2-previous-button" onClick={handlePrevious}>Previous</button>
+          <button type="button" className="page2-next-button" onClick={handleNext}>Next</button>
+        </div>
       </form>
     </div>
   );
