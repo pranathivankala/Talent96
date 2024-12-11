@@ -1,127 +1,167 @@
+/* Full Container Styling */
+.page2-full-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #e91edb, hsl(306, 61%, 32%), #a209c1);
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
+
+/* Main Container Styling */
+.page_no_2 {
+  background: linear-gradient(120deg, #e91edb, hsl(306, 61%, 32%), #a209c1);
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30px;
+  gap: 20px;
+  position: relative;
+  margin-top: 4rem;
+}
+
+.page_no_2 img {
+  width: 80%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Container for Form */
 .page2-container {
-    width: 100%;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(120deg, #e91edb, hsl(306, 61%, 32%), #a209c1);
+  border-radius: 10px;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0a0606;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.page2-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.page2-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.page2-form-group label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #070505;
+}
+
+.page2-form-group input,
+.page2-form-group textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.page2-form-group input:focus,
+.page2-form-group textarea:focus {
+  border-color: #6a11cb;
+}
+
+.page2-form-group input[type="file"] {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Navigation Buttons */
+.page2-navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.page2-previous-button,
+.page2-next-button {
+  background-color: #e70d97;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.page2-previous-button:hover,
+.page2-next-button:hover {
+  background-color: #e70d97;
+  transform: translateY(-2px);
+}
+
+.page2-previous-button:active,
+.page2-next-button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 939px){
+  .page_no_2 img{
+    display: none;
+  }
+  .page2-container{
     max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #fff;  
-    border: 2px solid #ddd;  
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
-    margin-top: 100px;  
-  }
-  
+margin-left: 55px;  }
+
+}
+@media (max-width: 768px) {
   h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.8rem;
   }
-  
-  .page2-form {
-    display: flex;
+
+  .page2-navigation-buttons {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
-  
-  .page2-form-group {
-    display: flex;
-    flex-direction: column;
+
+  .page2-previous-button,
+  .page2-next-button {
+    width: 100%;
   }
-  
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .page_no_2 {
+    padding: 15px;
+  }
+
   .page2-form-group label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    font-size: 1rem;
   }
-  
+
   .page2-form-group input,
   .page2-form-group textarea {
+    font-size: 0.9rem;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 100%;
   }
-  
-  .page2-form-group input[type="file"] {
-    padding: 5px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  .page2-submit-button {
-    padding: 10px;
-    background-color: #ff6600;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .page2-submit-button:hover {
-    background-color: #45a049;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .page2-container {
-      padding: 15px;
-    }
-  
-    h2 {
-      font-size: 20px;
-    }
-  
-    .page2-form {
-      gap: 10px;
-    }
-  
-    .page2-form-group label {
-      font-size: 13px;
-    }
-  
-    .page2-form-group input,
-    .page2-form-group textarea {
-      font-size: 12px;
-    }
-  
-    .page2-submit-button {
-      font-size: 14px;
-      padding: 8px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .page2-container {
-      padding: 10px;
-    }
-  
-    h2 {
-      font-size: 18px;
-    }
-  
-    .page2-form {
-      gap: 8px;
-    }
-  
-    .page2-form-group label {
-      font-size: 12px;
-    }
-  
-    .page2-form-group input,
-    .page2-form-group textarea {
-      font-size: 11px;
-    }
-  
-    .page2-submit-button {
-      font-size: 12px;
-      padding: 7px;
-    }
-  }
+}

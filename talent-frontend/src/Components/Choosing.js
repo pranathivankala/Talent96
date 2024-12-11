@@ -17,6 +17,7 @@ function ChooseCard({ setIsNavbarTwo }) {
   };
 
   return (
+    <div className='pedda-card'>
     <div className="bigcard">
       <h2>Your Ultimate Job Platform</h2>
       <p>Connecting job seekers with the right opportunities</p>
@@ -36,6 +37,7 @@ function ChooseCard({ setIsNavbarTwo }) {
           <button onClick={handleFindJobClick}>Find A Job</button>
         </div>
       </div>
+    </div>
     </div>
   );
 }

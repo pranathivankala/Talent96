@@ -25,6 +25,9 @@ header {
   position: fixed;
   z-index: 1000;
   background-color: black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
 }
 
 .navbar-logo a {
