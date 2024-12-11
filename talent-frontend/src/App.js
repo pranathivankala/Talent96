@@ -10,14 +10,11 @@ import ClientPrograms from './Components/Client Programs';
 import ReferralProgram from './Components/Referral Program';
 import FresherRecruiting from './Components/Fresher Recruiting';
 import Choosing from './Components/Choosing';
-import JobSeekerLogin from './Components/login/JobSeekerLogin';
-import RecruiterLogin from './Components/login/RecruiterLogin';
-import JobSeekerRegister from './Components/Register/JobSeekerRegister';
-import RecruiterRegister from './Components/Register/RecruiterRegister';
 import Signin_up from './Components/Signin_up';
 import Page1 from './Components/Post A Job/Page1';
 import Page2 from './Components/Post A Job/Page2';
 import Page3 from './Components/Post A Job/Page3';
+import Recruiter_signin_up  from './Components/Recruiter_signin_up'
 
 function App() {
   const [isNavbarTwo, setIsNavbarTwo] = useState(false); 
@@ -41,14 +38,12 @@ function App() {
           <Route path="/referral-program" element={<ReferralProgram />} />
           <Route path="/fresher-recruiting" element={<FresherRecruiting />} />
           <Route path="/Choosing" element={<Choosing setIsNavbarTwo={setIsNavbarTwo} />} />
-          <Route path="/job-seeker-login" element={<JobSeekerLogin />} />
-          <Route path="/login-recruiter" element={<RecruiterLogin />} />
-          <Route path="/job-seeker-Register" element={<JobSeekerRegister />} />
-          <Route path="/register-recruiter" element={<RecruiterRegister />} />
           <Route path="/Signin_up" element={<Signin_up />} />
           <Route path='/Page1' element={<Page1/>}/>
           <Route path='/Page2' element={<Page2/>}/>
           <Route path='/Page3' element={<Page3/>}/>
+          <Route path='/Recruiter_signin_up' element={<Recruiter_signin_up/>}/>
+          <Route path="/signin" element={<Signin_up />} />
         </Routes>
       </div>
     </Router>

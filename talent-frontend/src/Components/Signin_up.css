@@ -10,13 +10,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background:#444 ;
+    background:#b970a9 ;
 }
 .main-container{
     position: relative;
-    margin-top: 70px;
+    margin-top: 80px;
     width: 80vw;
-    height: 110vh;
+    height: 95vh;
     background:#fff ;
     border-radius: 15px;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3),0 6px 20px 0 rgba(0, 0, 0, 0.3) ;
@@ -46,7 +46,7 @@
     z-index: 5;
 }
 .signin_form,.signup_form{
-    display: flex;
+    display: flex !important;;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -59,11 +59,11 @@ form.signin_form{
     transition: 0.5s ease-in-out;
     transition-delay: 1s;
 }
-/* form.signup_form{
-    opacity: 0;
+form.signup_form{
+    opacity: 1;
     transition: 0.5s ease-in-out;
     transition-delay: 1s;
-} */
+}
 .heading {
     font-size: 35px;
     color: #df4adf;
@@ -175,7 +175,7 @@ form.signin_form{
     padding: 10px 0;
 }
 .pic1{
-    width: 100%;
+    width: 80%;
     transition: 1.1s ease-in-out;
     transition-delay: 0.4s;
 
@@ -188,9 +188,7 @@ form.signin_form{
 .right-panel .content1{
     transform: translateX(0);
 }
-.account-text{
-    display: none;
-}
+
 
 /*Animation*/
 .main-container.sign-up-mode::before{
@@ -219,6 +217,10 @@ form.signin_form{
     pointer-events: all;
 }
 
+.account-text{
+    display: none;
+}
+
 /*Responsive*/
 
 @media (max-width:779px){
@@ -229,32 +231,34 @@ form.signin_form{
     }
 }
 @media (max-width:635px){
+
     .main-container::before{
         display: none;
     }
-    form{
+    .signin_form,.signup_form{
         width: 80%;
     }
-    form.signup-form{
-        display: none;
+    .big_box .signup_form {
+        display: none !important;
     }
-    .main-container.sign-up-mode2 form.signup-form{
-        display: flex;
+    .main-container.sign-up-mode2  .signup_form{
+        display: flex !important;
         opacity: 1;
     }
-    .main-container.sign-up-mode2 form.signin-form{
-        display: none;
+    .main-container.sign-up-mode2 .signin_form{
+        display: none !important;
     }
     .panels-container{
         display: none;
     }
     .account-text{
-        display: none;
-        margin-top: 30px;
+        display:initial;
+        margin-top: 20px;
     }
+    
 }
 @media (max-width:320px){
-    .signin_form{
+    .signin_form,.signup_form{
         width: 90%;
     }
 }

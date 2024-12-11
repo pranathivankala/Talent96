@@ -29,7 +29,7 @@ const Navbar2 = () => {
         <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
           <li><Link to="/Home" onClick={closeMenu}>Home</Link></li>
           <li><Link to="/page1" onClick={closeMenu}>Post a Job</Link></li> 
-          <li><Link to="/Signin_up" onClick={closeMenu}>Recruiter Login</Link></li> 
+          <li><Link to="/Recruiter_signin_up" onClick={closeMenu}>Recruiter Login</Link></li> 
         </ul>
       </nav>
     </header>
