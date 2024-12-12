@@ -114,7 +114,6 @@ app.post("/Recruiters_Login", (req, res) => {
 
 // Recruiter Registration Logic
 app.post("/Recruiters_Register", (req, res) => {
-  console.log("Request body:", req.body);
   const { fullname, companyemail, companyname, password } = req.body;
 
   Recruiter.findOne({ companyemail })
