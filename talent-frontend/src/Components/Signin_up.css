@@ -10,14 +10,14 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background:#B970A9 ;
+    background-color: #b0b0b0;
 }
 .main-container{
     position: relative;
     margin-top: 85px;
     width: 80vw;
     height: 86vh;
-    background:#b970a9 ;
+
 }
 .main-container{
     position: relative;

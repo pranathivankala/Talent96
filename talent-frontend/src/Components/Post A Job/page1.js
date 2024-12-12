@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./Page1.module.css"; // Import CSS module
+import styles from "./Page1.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Page1 = () => {
@@ -8,10 +8,10 @@ const Page1 = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
     jobDescription: "",
-    jobType: "Full-time",
+    jobType: "",
     location: "",
-    workMode: "Remote",
-    numberOfPositions: 1,
+    workMode: "none",
+    numberOfPositions: "",
   });
 
   const [countries, setCountries] = useState([]);
@@ -53,41 +53,23 @@ const Page1 = () => {
     <div className={styles.forBackground}>
       <div className={styles.pageContainer}>
         <div className={styles.imageSection}>
-          <img src="post1.png" alt="Job Banner 1" />
+          <img src="post-1.png" alt="Job Banner 1" />
         </div>
         <div className={styles.formSection}>
           <h1 className={styles.formHeading}>Job Details</h1>
           <form>
             <div className={styles.formGroup}>
-              <label>Job Title</label>
-              <input
-                type="text"
-                name="jobTitle"
-                value={formData.jobTitle}
-                onChange={handleChange}
-                placeholder="Enter job title"
-                required
-              />
+              <label>Job Title <span className={styles.star}>*</span></label>
+              <input type="text" name="jobTitle" value={formData.jobTitle} onChange={handleChange} placeholder="Enter job title" required />
             </div>
             <div className={styles.formGroup}>
-              <label>Job Description</label>
-              <textarea
-                name="jobDescription"
-                value={formData.jobDescription}
-                onChange={handleChange}
-                rows="5"
-                placeholder="Describe the job responsibilities"
-                required
-              />
+              <label>Job Description <span className={styles.star}>*</span></label>
+              <textarea name="jobDescription" value={formData.jobDescription} onChange={handleChange} rows="5" placeholder="Describe the job responsibilities" required />
             </div>
             <div className={styles.formGroup}>
-              <label>Job Type</label>
-              <select
-                name="jobType"
-                value={formData.jobType}
-                onChange={handleChange}
-                required
-              >
+              <label>Job Type <span className={styles.star}>*</span></label>
+              <select name="jobType" value={formData.jobType} onChange={handleChange} required>
+                <option value="">Select job type</option>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
                 <option value="Contract">Contract</option>
@@ -95,19 +77,11 @@ const Page1 = () => {
               </select>
             </div>
             <div className={styles.formGroup}>
-              <label>Number of Positions</label>
-              <input
-                type="number"
-                name="numberOfPositions"
-                value={formData.numberOfPositions}
-                onChange={handleChange}
-                min="1"
-                placeholder="Enter number of positions"
-                required
-              />
+              <label>Number of Positions <span className={styles.star}>*</span></label>
+              <input type="number" name="numberOfPositions" value={formData.numberOfPositions} onChange={handleChange} min="1" placeholder="Enter number of positions" required />
             </div>
             <div className={styles.formGroup}>
-              <label>Country</label>
+              <label>Country <span className={styles.star}>*</span></label>
               <select onChange={handleCountryChange} required>
                 <option value="">Select a country</option>
                 {countries.map((country) => (
@@ -119,7 +93,7 @@ const Page1 = () => {
             </div>
             {cities.length > 0 && (
               <div className={styles.formGroup}>
-                <label>City</label>
+                <label>City <span className={styles.star}>*</span></label>
                 <select onChange={handleCityChange} required>
                   <option value="">Select a city</option>
                   {cities.map((city, index) => (
@@ -131,43 +105,14 @@ const Page1 = () => {
               </div>
             )}
             <div className={styles.formGroup}>
-              <label>Work Mode</label>
+              <label>Work Mode <span className={styles.star}>*</span></label>
               <div className={styles.radioGroup}>
-                <label>
-                  <input
-                    type="radio"
-                    name="workMode"
-                    value="Remote"
-                    checked={formData.workMode === "Remote"}
-                    onChange={handleChange}
-                  />
-                  Remote
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="workMode"
-                    value="On-site"
-                    checked={formData.workMode === "On-site"}
-                    onChange={handleChange}
-                  />
-                  On-site
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="workMode"
-                    value="Hybrid"
-                    checked={formData.workMode === "Hybrid"}
-                    onChange={handleChange}
-                  />
-                  Hybrid
-                </label>
+                <label><input type="radio" name="workMode" value="Remote" checked={formData.workMode === "Remote"} onChange={handleChange} /> Remote </label>
+                <label><input type="radio" name="workMode" value="On-site" checked={formData.workMode === "On-site"} onChange={handleChange} /> On-site</label>
+                <label><input type="radio" name="workMode" value="Hybrid" checked={formData.workMode === "Hybrid"} onChange={handleChange} />Hybrid </label>
               </div>
             </div>
-            <button type="button" className={styles.nextButton} onClick={handleNext}>
-              NEXT
-            </button>
+            <button type="button" className={styles.nextButton} onClick={handleNext}>NEXT</button>
           </form>
         </div>
       </div>

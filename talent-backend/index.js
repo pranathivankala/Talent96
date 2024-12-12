@@ -14,7 +14,6 @@ app.use(cors({
 }));
 
 mongoose.connect("mongodb://localhost:27017/Talent96", { useNewUrlParser: true, useUnifiedTopology: true })
-  
 
 const uploadDirectory = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDirectory)) {
@@ -86,6 +85,59 @@ app.post("/Users_Register", upload.single("resume"), (req, res) => {
     .catch((err) => res.status(500).json({ message: "Internal server error", error: err }));
 });
 
+// Recruiter Schema
+const RecruiterSchema = new mongoose.Schema({
+  fullname: String,
+  companyemail: { type: String, unique: true },
+  companyname: String,
+  password: String,
+});
+
+const Recruiter = mongoose.model("Recruiter", RecruiterSchema, "Recruiters_Register");
+
+// Recruiter Login Logic
+app.post("/Recruiters_Login", (req, res) => {
+  const { companyemail, password } = req.body;
+
+  Recruiter.findOne({ companyemail }).then((recruiter) => {
+    if (!recruiter) {
+      return res.status(400).json({ message: "Recruiter not found" });
+    }
+
+    if (recruiter.password !== password) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    return res.json({ message: "Login successful" });
+  }).catch((err) => res.status(500).json({ message: "Internal server error" }));
+});
+
+// Recruiter Registration Logic
+app.post("/Recruiters_Register", (req, res) => {
+  const { fullname, companyemail, companyname, password } = req.body;
+
+  Recruiter.findOne({ companyemail })
+    .then((existingRecruiter) => {
+      if (existingRecruiter) {
+        return res.status(400).json({ message: "Email is already registered" });
+      }
+
+      const newRecruiter = new Recruiter({
+        fullname,
+        companyemail,
+        companyname,
+        password,
+      });
+
+      newRecruiter
+        .save()
+        .then(() => res.json({ message: "Registration successful" }))
+        .catch((err) => res.status(400).json({ message: "Error registering recruiter", error: err }));
+    })
+    .catch((err) => res.status(500).json({ message: "Internal server error", error: err }));
+});
+
+// Server Listening
 app.listen(3001, () => {
   console.log("Server is running ....");
 });

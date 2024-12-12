@@ -30,72 +30,35 @@ const Page2 = () => {
   const handleNext = () => navigate('/Page3');
 
   return (
-    <div className={styles['page2-full-container']}>
-      <div className={styles['page_no_2']}>
-        <img src="Company.png" alt="Company" />
-        <div className={styles['page2-container']}>
-          <h2>Company Information</h2>
-          <form className={styles['page2-form']} onSubmit={handleSubmit}>
-            <div className={styles['page2-form-group']}>
-              <label htmlFor="companyName">Company Name:</label>
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleInputChange}
-                required
-              />
+    <div className={styles.forBackground}>
+      <div className={styles.pageContainer}>
+        <div className={styles.rightpanel}>
+          <h2 className={styles.formHeading}>Company Information</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label htmlFor="companyName">Company Name<span className={styles.star}>*</span></label>
+              <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleInputChange} required />
             </div>
-            <div className={styles['page2-form-group']}>
-              <label htmlFor="companyWebsite">Company Website:</label>
-              <input
-                type="text"
-                id="companyWebsite"
-                name="companyWebsite"
-                value={formData.companyWebsite}
-                onChange={handleInputChange}
-                required
-              />
+            <div  className={styles.formGroup}>
+              <label htmlFor="companyWebsite">Company Website<span className={styles.star}>*</span></label>
+              <input type="text" id="companyWebsite" name="companyWebsite" value={formData.companyWebsite} onChange={handleInputChange} required />
             </div>
-            <div className={styles['page2-form-group']}>
-              <label htmlFor="companyLogo">Company Logo:</label>
-              <input
-                type="file"
-                id="companyLogo"
-                name="companyLogo"
-                onChange={handleFileChange}
-                required
-              />
+            <div  className={styles.formGroup}>
+              <label htmlFor="companyLogo">Company Logo<span className={styles.star}>*</span></label>
+              <input type="file" id="companyLogo" name="companyLogo" onChange={handleFileChange} required />
             </div>
-            <div className={styles['page2-form-group']}>
-              <label htmlFor="companyDescription">Company Description:</label>
-              <textarea
-                id="companyDescription"
-                name="companyDescription"
-                value={formData.companyDescription}
-                onChange={handleInputChange}
-                required
-                rows="5"
-              ></textarea>
+            <div  className={styles.formGroup}>
+              <label htmlFor="companyDescription">Company Description<span className={styles.star}>*</span></label>
+              <textarea id="companyDescription" name="companyDescription" value={formData.companyDescription} onChange={handleInputChange} required rows="5"></textarea>
             </div>
-            <div className={styles['page2-navigation-buttons']}>
-              <button
-                type="button"
-                className={styles['page2-previous-button']}
-                onClick={handlePrevious}
-              >
-                Previous
-              </button>
-              <button
-                type="button"
-                className={styles['page2-next-button']}
-                onClick={handleNext}
-              >
-                Next
-              </button>
+            <div className={styles.btns}>
+              <button type="button" className={styles.previousButton} onClick={handlePrevious}>Previous</button>
+              <button type="button" className={styles.nextButton} onClick={handleNext}>Next</button>
             </div>
           </form>
+        </div>
+        <div className={styles.imageSection}>
+          <img src="company1.png" alt="Company" />
         </div>
       </div>
     </div>
