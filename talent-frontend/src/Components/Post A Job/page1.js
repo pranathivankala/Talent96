@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Page1.css";
+import styles from "./Page1.module.css"; // Import CSS module
 import { useNavigate } from "react-router-dom";
 
 const Page1 = () => {
@@ -50,21 +50,15 @@ const Page1 = () => {
   };
 
   return (
-    <div className="for-background">
-      <div className="page-container">
-        <div className="image-section">
-          <img src='post1.png' alt="Job Banner 1" />
-          
+    <div className={styles.forBackground}>
+      <div className={styles.pageContainer}>
+        <div className={styles.imageSection}>
+          <img src="post1.png" alt="Job Banner 1" />
         </div>
-        {/* <div className="matter">
-
-<h1>Find the Perfect Candidate for Your Team – Post Your Job and Let Talent Discover You Connect with Top Talent, and Build Your Dream Team! </h1>
-
-        </div> */}
-        <div className="form-section">
-          <h1 className="form-heading">Job Details</h1>
+        <div className={styles.formSection}>
+          <h1 className={styles.formHeading}>Job Details</h1>
           <form>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Job Title</label>
               <input
                 type="text"
@@ -75,7 +69,7 @@ const Page1 = () => {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Job Description</label>
               <textarea
                 name="jobDescription"
@@ -86,7 +80,7 @@ const Page1 = () => {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Job Type</label>
               <select
                 name="jobType"
@@ -100,7 +94,7 @@ const Page1 = () => {
                 <option value="Internship">Internship</option>
               </select>
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Number of Positions</label>
               <input
                 type="number"
@@ -112,7 +106,7 @@ const Page1 = () => {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Country</label>
               <select onChange={handleCountryChange} required>
                 <option value="">Select a country</option>
@@ -124,7 +118,7 @@ const Page1 = () => {
               </select>
             </div>
             {cities.length > 0 && (
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label>City</label>
                 <select onChange={handleCityChange} required>
                   <option value="">Select a city</option>
@@ -136,9 +130,9 @@ const Page1 = () => {
                 </select>
               </div>
             )}
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label>Work Mode</label>
-              <div className="radio-group">
+              <div className={styles.radioGroup}>
                 <label>
                   <input
                     type="radio"
@@ -171,7 +165,7 @@ const Page1 = () => {
                 </label>
               </div>
             </div>
-            <button type="button" className="next-button" onClick={handleNext}>
+            <button type="button" className={styles.nextButton} onClick={handleNext}>
               NEXT
             </button>
           </form>
