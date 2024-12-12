@@ -1,62 +1,110 @@
 /* Profile.module.css */
 
+/* General Container Styling */
 .bigbox {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  background-color: #f5f7fa;
   padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  min-height: 100vh;
+  margin-top: 4rem;
+
 }
 
 .container {
   display: flex;
-  width: 100%;
+  width: 90%;
   max-width: 1200px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
+/* Quick Links Styling */
 .quickLinks {
-  flex: 1;
-  margin-right: 20px;
-  padding: 10px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
+  width: 25%;
+  background-color: #f4f6f8;
+  border-right: 1px solid #ddd;
+  padding: 20px;
 }
 
 .quickLinks h2 {
-  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #0056b3;
+  font-weight: bold;
 }
 
 .quickLinks ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
-.quickLinks li {
+.linkWrapper {
   margin-bottom: 10px;
 }
 
-.quickLinks a {
+.linkWrapper a {
   text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
+  color: #333;
+  font-size: 14px;
+  transition: color 0.3s;
 }
 
-.quickLinks a:hover {
-  text-decoration: underline;
+.linkWrapper a:hover {
+  color: #0056b3;
 }
 
+/* Profile Information Styling */
 .profileInfo {
-  flex: 3;
-  padding: 10px;
+  width: 75%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .profileInfo h1 {
-  text-align: center;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #0056b3;
+  font-weight: bold;
 }
 
 .section {
-  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
+.sectionWrapper {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.profilePhotoSection {
+  display: flex;
+  align-items: center;
+}
+
+.profilePhoto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  margin-right: 20px;
+}
+
+/* Form Group Styling */
 .formGroup {
   display: flex;
   justify-content: space-between;
@@ -65,38 +113,71 @@
 }
 
 .formGroup label {
+  font-size: 14px;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 .formGroup span {
   flex: 1;
+  font-size: 14px;
+  color: #555;
+  text-align: left;
 }
 
-.editButton, .downloadButton {
-  padding: 5px 10px;
-  background-color: #007bff;
+/* Button Styling */
+button {
+  background-color: #0056b3;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.editButton:hover, .downloadButton:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: #004494;
 }
 
-.profilePhotoSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.downloadButton {
+  margin-left: 10px;
+  background-color: #28a745;
 }
 
-.profilePhoto {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
+.downloadButton:hover {
+  background-color: #218838;
+}
+
+/* Additional Styling for a Polished Look */
+.quickLinks ul li {
+  margin: 10px 0;
+}
+
+.quickLinks ul li a {
+  padding: 8px 12px;
+  display: block;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.quickLinks ul li a:hover {
+  background-color: #e8f4ff;
+  color: #0056b3;
+}
+
+.sectionWrapper .formGroup span {
+  font-size: 16px;
+  color: #333;
+}
+
+.sectionWrapper .formGroup button {
+  margin-left: 15px;
 }
 
 .profilePhotoSection button {
-  margin-left: 10px;
+  padding: 8px 12px;
 }
