@@ -15,6 +15,8 @@ import Page1 from './Components/Post A Job/Page1';
 import Page2 from './Components/Post A Job/Page2';
 import Page3 from './Components/Post A Job/Page3';
 import Recruiter_signin_up  from './Components/Recruiter_signin_up'
+import Profile from './Components/Profile';
+
 
 function App() {
   const [isNavbarTwo, setIsNavbarTwo] = useState(false); 
@@ -44,6 +46,8 @@ function App() {
           <Route path='/Page3' element={<Page3/>}/>
           <Route path='/Recruiter_signin_up' element={<Recruiter_signin_up/>}/>
           <Route path="/signin" element={<Signin_up />} />
+          <Route path="/profile" element={<Profile />} />
+
         </Routes>
       </div>
     </Router>

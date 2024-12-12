@@ -1,0 +1,172 @@
+/* Page1.module.css */
+.forBackground {
+  background: linear-gradient(120deg, #0fe484, hsl(180, 61%, 32%), #0984c1);
+  animation: gradientAnimation 5s ease infinite;
+
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: top left;
+  }
+  50% {
+    background-position: bottom right;
+  }
+  100% {
+    background-position: top left;
+  }
+}
+
+.pageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 1.2rem;
+  background: linear-gradient(120deg, #0fe0e4, hsl(189, 97%, 49%), #8c5fd6);
+  animation: gradientAnimation 5s ease infinite;  border-radius: 12px;
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.imageSection {
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageSection img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 6.5rem;
+}
+
+.formSection {
+  flex: 1;
+  max-width: 50%;
+  background: linear-gradient(120deg, #7be8cd, hsl(145, 80%, 75%), #7cdfdd);
+  animation: gradientAnimation 5s ease infinite;  padding: 2rem;
+  border-radius: 12px;
+}
+
+.formHeading {
+  font-size: 1.8rem;
+  color: #0f0909;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  font-size: 1.1rem;
+  color: #0e0303;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.radioGroup label {
+  font-size: 1rem;
+  color: #0b0a0a;
+}
+
+.nextButton {
+  display: block;
+  margin-left: 210px;
+  width: 30%;
+  padding: 0.75rem;
+  background-color: #e70d97;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nextButton:hover {
+  background-color: #e70d97;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pageContainer {
+    flex-direction: column;
+    padding: 1.5rem;
+    align-items: center;
+  }
+
+  .imageSection {
+    display: none;
+  }
+
+  .formSection {
+    max-width: 100%;
+  }
+
+  .nextButton {
+    margin-left: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formSection {
+    padding: 1.5rem;
+  }
+
+  .formHeading {
+    font-size: 1.5rem;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .nextButton {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
