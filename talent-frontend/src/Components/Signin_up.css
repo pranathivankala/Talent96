@@ -10,6 +10,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background:#B970A9 ;
+}
+.main-container{
+    position: relative;
+    margin-top: 85px;
+    width: 80vw;
+    height: 86vh;
     background:#b970a9 ;
 }
 .main-container{
@@ -96,7 +103,6 @@ form.signup_form{
     font-size: 15px;
     font-weight: 600;
     color: #444;
-    margin-top: 20px;
 
 }
 .signin-button,.signup-button{
@@ -156,6 +162,7 @@ form.signup_form{
     padding: 0 10px;
     text-align: center;
     z-index: 6;
+    margin-top: 1rem;
 }
 .left-panel{
     pointer-events: none;
@@ -175,9 +182,12 @@ form.signup_form{
     padding: 10px 0;
 }
 .pic1{
+    width: 100%;
+    height: 50%;
     width: 80%;
     transition: 1.1s ease-in-out;
     transition-delay: 0.4s;
+    
 
 }
 .left-panel .pic1,
