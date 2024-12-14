@@ -24,12 +24,7 @@ function App() {
   return (
     <Router>
       <div>
-        {isNavbarTwo ? (
-          <Navbar2 /> 
-        ) : (
-          <Navbar isNavbarTwo={isNavbarTwo} setIsNavbarTwo={setIsNavbarTwo} /> 
-        )}
-
+        {isNavbarTwo ? (<Navbar2 /> ) : (<Navbar isNavbarTwo={isNavbarTwo} setIsNavbarTwo={setIsNavbarTwo} /> )}
         <Routes>
           <Route path='/Home' element={<Home/>}/>
           <Route path='/' element={<Home/>}/>

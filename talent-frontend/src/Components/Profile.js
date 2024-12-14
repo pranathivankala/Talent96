@@ -5,8 +5,6 @@ const Profile = () => {
   return (
     <div className={styles.bigbox}>
       <div className={styles.container}>
-        
-        {/* Quick Links Section */}
         <div className={styles.quickLinks}>
           <h2>Quick Links</h2>
           <ul>
@@ -20,12 +18,8 @@ const Profile = () => {
             <li><a href="#personalDetails">Personal Details</a></li>
           </ul>
         </div>
-
-        {/* Profile Information Section */}
         <div className={styles.profileInfo}>
           <h1>Your Profile</h1>
-
-          {/* Profile Photo Section */}
           <div id="profilePhoto" className={styles.section}>
             <h2>Profile Photo</h2>
             <div className={styles.profilePhotoSection}>
@@ -37,8 +31,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit Photo</button>
             </div>
           </div>
-
-          {/* Personal Information */}
           <div id="personalInfo" className={styles.section}>
             <h2>Personal Information</h2>
             <div className={styles.formGroup}>
@@ -51,10 +43,7 @@ const Profile = () => {
               <span>johndoe@example.com</span>
               <button className={styles.editButton}>Edit</button>
             </div>
-            {/* Add more fields here */}
           </div>
-
-          {/* Resume Information */}
           <div id="resumeInfo" className={styles.section}>
             <h2>Resume Information</h2>
             <div className={styles.formGroup}>
@@ -64,8 +53,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit</button>
             </div>
           </div>
-
-          {/* Key Skills */}
           <div id="keySkills" className={styles.section}>
             <h2>Key Skills</h2>
             <div className={styles.formGroup}>
@@ -73,8 +60,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit</button>
             </div>
           </div>
-
-          {/* Education */}
           <div id="education" className={styles.section}>
             <h2>Education</h2>
             <div className={styles.formGroup}>
@@ -82,8 +67,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit</button>
             </div>
           </div>
-
-          {/* Projects */}
           <div id="projects" className={styles.section}>
             <h2>Projects</h2>
             <div className={styles.formGroup}>
@@ -91,8 +74,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit</button>
             </div>
           </div>
-
-          {/* Career Profile */}
           <div id="careerProfile" className={styles.section}>
             <h2>Career Profile</h2>
             <div className={styles.formGroup}>
@@ -106,8 +87,6 @@ const Profile = () => {
               <button className={styles.editButton}>Edit</button>
             </div>
           </div>
-
-          {/* Personal Details */}
           <div id="personalDetails" className={styles.section}>
             <h2>Personal Details</h2>
             <div className={styles.formGroup}>
