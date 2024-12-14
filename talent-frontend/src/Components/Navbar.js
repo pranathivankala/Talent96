@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const handleLogin = () => {
     setUser({
-      name: 'John Doe',
+      // name: 'John Doe',
       profilePhoto:
         'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
     });

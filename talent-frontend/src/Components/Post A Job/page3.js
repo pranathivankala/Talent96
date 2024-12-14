@@ -46,7 +46,7 @@ function Page3() {
         <div className={styles.formSection}>
           <h2 className={styles.formHeading}>Job Requirements</h2>
           <form onSubmit={handleSubmit}>
-            <div className={styles.formGroup}>
+            <div className={styles.formGroup}>Year
               <label  htmlFor="skillInput">Required Skills</label>
               <div>
                 <input type="text" id="skillInput" className={styles['job-input']} value={skillInput} onChange={(e) => setSkillInput(e.target.value)} placeholder="Enter a skill" />
