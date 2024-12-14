@@ -1,183 +1,184 @@
 /* Profile.module.css */
 
-/* General Container Styling */
+/* Root styles for isolation */
 .bigbox {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: #f5f7fa;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  min-height: 100vh;
-  margin-top: 4rem;
-
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-  display: flex;
-  width: 90%;
-  max-width: 1200px;
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Quick Links Styling */
-.quickLinks {
-  width: 25%;
-  background-color: #f4f6f8;
-  border-right: 1px solid #ddd;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-}
-
-.quickLinks h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: #0056b3;
-  font-weight: bold;
-}
-
-.quickLinks ul {
-  list-style: none;
-  padding: 0;
-}
-
-.linkWrapper {
-  margin-bottom: 10px;
-}
-
-.linkWrapper a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-
-.linkWrapper a:hover {
-  color: #0056b3;
-}
-
-/* Profile Information Styling */
-.profileInfo {
-  width: 75%;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  margin-top: 4rem;
 }
 
 .profileInfo h1 {
+  text-align: center;
   font-size: 24px;
+  color: #333;
   margin-bottom: 20px;
-  color: #0056b3;
-  font-weight: bold;
 }
 
+/* Section Wrapper */
 .section {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
 }
 
 .sectionWrapper {
-  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
 }
 
 .section h2 {
-  font-size: 18px;
+  font-size: 20px;
+  color: #555;
   margin-bottom: 15px;
-  color: #333;
-  font-weight: bold;
 }
 
+/* Profile Photo */
 .profilePhotoSection {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .profilePhoto {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  object-fit: cover;
   border: 2px solid #ddd;
-  margin-right: 20px;
 }
 
-/* Form Group Styling */
+.editButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #ff00d4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #e30ed5;
+}
+
+/* Form Group */
 .formGroup {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 15px;
 }
 
 .formGroup label {
   font-size: 14px;
-  font-weight: bold;
-  margin-right: 10px;
+  color: #0b0b0b;
+  margin-bottom: 5px;
 }
 
-.formGroup span {
-  flex: 1;
+.formGroup input, 
+.formGroup select, 
+.formGroup textarea {
+  padding: 10px;
   font-size: 14px;
-  color: #555;
-  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 
-/* Button Styling */
-button {
-  background-color: #0056b3;
+.formGroup input:focus, 
+.formGroup select:focus, 
+.formGroup textarea:focus {
+  border-color: #ff00ee;
+  box-shadow: 0 0 5px rgba(209, 16, 171, 0.5);
+}
+
+.formGroup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formGroup ul li {
+  font-size: 14px;
+  background-color: #f1f1f1;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.formGroup button {
+  background-color: #bc289e;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #004494;
+.formGroup button:hover {
+  background-color: #e119af;
 }
 
-.downloadButton {
-  margin-left: 10px;
-  background-color: #28a745;
-}
-
-.downloadButton:hover {
-  background-color: #218838;
-}
-
-/* Additional Styling for a Polished Look */
-.quickLinks ul li {
-  margin: 10px 0;
-}
-
-.quickLinks ul li a {
-  padding: 8px 12px;
-  display: block;
-  background-color: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-}
-
-.quickLinks ul li a:hover {
-  background-color: #e8f4ff;
-  color: #0056b3;
-}
-
-.sectionWrapper .formGroup span {
-  font-size: 16px;
+/* Buttons */
+.ex,
+.pro {
+  background-color: #d713c0;
   color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.sectionWrapper .formGroup button {
-  margin-left: 15px;
+.ex:hover, 
+.pro:hover {
+  background-color: #f113bd;
 }
 
-.profilePhotoSection button {
-  padding: 8px 12px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profilePhotoSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .formGroup {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
+.removeSkillButton {
+  margin-left: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.removeSkillButton:hover {
+  background-color: #d93838;
 }

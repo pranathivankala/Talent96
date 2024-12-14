@@ -19,7 +19,7 @@ function Signin_up() {
         axios.post('http://localhost:3001/Users_Login',loginData)
         .then(result =>{
             console.log(result);
-            navigate('/Home');
+            navigate('/create-profile');
         })
         .catch(err => {
             if(err.response && err.respond.status == 400){
