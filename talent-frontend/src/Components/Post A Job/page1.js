@@ -21,6 +21,7 @@ const Page1 = ({ formData, handleChange, nextStep }) => {
         console.error("Error fetching countries:", error);
       });
   }, []);
+  
 
   const handleCountryChange = (e) => {
     const selectedCountry = e.target.value;

@@ -40,6 +40,9 @@ function App() {
           <Route path='/Recruiter_signin_up' element={<Recruiter_signin_up />} />
           <Route path="/signin" element={<Signin_up />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-profile" element={<CreateProfile />} /> 
+          <Route path="*" element={<Home />} />
+
           <Route path="/create-profile" element={<CreateProfile />} />
           <Route path="/post-a-job" element={<StepperForm />} />
           <Route path="/Page2" element={<Page2 />} />
