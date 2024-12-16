@@ -28,6 +28,7 @@ const Page1 = () => {
         setCountries(countryData);
       });
   }, []);
+  
 
   const handleCountryChange = (e) => {
     const selectedCountry = e.target.value;

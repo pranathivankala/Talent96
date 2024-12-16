@@ -48,7 +48,7 @@ function App() {
           <Route path="/signin" element={<Signin_up />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-profile" element={<CreateProfile />} /> 
-
+          <Route path="*" element={<Home />} />
 
         </Routes>
       </div>
