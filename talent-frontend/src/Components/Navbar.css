@@ -270,7 +270,7 @@ header {
   text-align: left; /* Align text to the left */
 }
 
-/* .profile-dropdown a:hover,
+.profile-dropdown a:hover,
 .profile-dropdown button:hover {
   background-color: #f9f9f9;
   color: #0073e6; 
@@ -283,9 +283,9 @@ header {
   color: #005bb5;
 } */
 
-.profile-dropdown a:last-child,
+/* .profile-dropdown a:last-child,
 .profile-dropdown button:last-child {
-  border-bottom: none; /* Avoid border on the last element */
+  border-bottom: none;
 }
 
 /* Profile Image Styling */

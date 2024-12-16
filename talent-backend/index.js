@@ -2,29 +2,27 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
+const axios = require('axios');
+
 
 const app = express();
 
-// Middleware configuration
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3001",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
-// MongoDB connection
 mongoose.connect("mongodb://localhost:27017/Talent96", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-
 
 const UserSchema = new mongoose.Schema({
   username: String,
@@ -36,47 +34,46 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema, "Users_Register");
 
-// Recruiter schema and model
 const RecruiterSchema = new mongoose.Schema({
   fullname: String,
   companyemail: { type: String, unique: true },
   companyname: String,
   password: String,
+  companyLogo: String,  
 });
 
 const Recruiter = mongoose.model("Recruiter", RecruiterSchema, "Recruiters_Register");
 
-// Job schema and model
 const JobSchema = new mongoose.Schema(
   {
     jobTitle: { type: String, required: true },
-    jobDescription: { type: String, required: true },
+    jobDescription: { type: String, required: false },
     jobType: { type: String, required: true },
     location: { type: String, required: true },
     workMode: { type: String, required: true },
     numberOfPositions: { type: Number, required: true },
-    companyName: { type: String, required: true },
-    companyWebsite: {
-      type: String,
-      required: true,
+    companyName: { type: String, required: false },
+    companyWebsite: { 
+      type: String, 
+      required: false, 
       validate: {
-        validator: function (v) {
-          return /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/.test(v);
+        validator: function(v) {
+          return /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(v);
         },
-        message: (props) => `${props.value} is not a valid URL!`,
-      },
+        message: props => `${props.value} is not a valid URL!`
+      }
     },
-    companyLogo: {
-      type: String,
-      required: true,
+    companyLogo: { 
+      type: String, 
+      required: false, 
       validate: {
-        validator: function (v) {
-          return /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/.test(v);
+        validator: function(v) {
+          return /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(v);
         },
-        message: (props) => `${props.value} is not a valid URL!`,
-      },
-    },
-    companyDescription: { type: String, required: true },
+        message: props => `${props.value} is not a valid URL!`
+      }
+    },    
+    companyDescription: { type: String, required: false },
     requiredSkills: { type: [String], required: true },
     experienceLevel: { type: String, required: true },
     salaryRange: { type: String, required: true },
@@ -96,7 +93,20 @@ const JobSchema = new mongoose.Schema(
 
 const Job = mongoose.model("Job", JobSchema, "Job_Posts");
 
-// User routes
+// Job Application Schema
+const ApplicationSchema = new mongoose.Schema(
+  {
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    jobId: { type: mongoose.Schema.Types.ObjectId, ref: "Job", required: true },
+    resume: { type: String, required: true },
+    coverLetter: String, 
+  },
+  { timestamps: true }
+);
+
+const Application = mongoose.model("Application", ApplicationSchema, "Job_Applications");
+
+// User Login
 app.post("/Users_Login", (req, res) => {
   const { email, password } = req.body;
 
@@ -115,9 +125,10 @@ app.post("/Users_Login", (req, res) => {
     .catch((err) => res.status(500).json({ message: "Internal server error" }));
 });
 
+// User Registration
 app.post("/Users_Register", upload.single("resume"), (req, res) => {
   const { username, email, password, mobile } = req.body;
-  const resume = req.file ? req.file.buffer.toString('base64') : null; // Convert resume to base64
+  const resume = req.file ? req.file.buffer.toString('base64') : null;
 
   User.findOne({ email })
     .then((existingUser) => {
@@ -137,7 +148,7 @@ app.post("/Users_Register", upload.single("resume"), (req, res) => {
     .catch((err) => res.status(500).json({ message: "Internal server error", error: err }));
 });
 
-// Recruiter routes
+// Recruiter Login
 app.post("/Recruiters_Login", (req, res) => {
   const { companyemail, password } = req.body;
 
@@ -156,6 +167,7 @@ app.post("/Recruiters_Login", (req, res) => {
     .catch((err) => res.status(500).json({ message: "Internal server error" }));
 });
 
+// Recruiter Registration
 app.post("/Recruiters_Register", (req, res) => {
   const { fullname, companyemail, companyname, password } = req.body;
 
@@ -185,22 +197,37 @@ app.post("/Recruiters_Register", (req, res) => {
     .catch((err) => res.status(500).json({ message: "Internal server error", error: err }));
 });
 
-// Job routes
-app.post("/job_posts", (req, res) => {
-  const newJob = new Job(req.body);
-
-  newJob
-    .save()
-    .then(() => res.status(201).json({ message: "Job post added successfully" }))
-    .catch((err) => res.status(500).json({ error: err.message }));
+// Job Posting
+app.post('/job_posts', async (req, res) => {
+  try {
+    const newJob = new Job(req.body);
+    await newJob.save();
+    res.status(201).json({ message: 'Job post added successfully' });
+  } catch (err) {
+    console.error('Error posting job:', err);  // Log the error to server console
+    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+  }
 });
 
+
+
+
+// Get All Job Posts with Filtering
 app.get("/job_posts", (req, res) => {
-  Job.find()
+  const { location, jobType, salaryRange } = req.query;
+
+  let query = {};
+
+  if (location) query.location = location;
+  if (jobType) query.jobType = jobType;
+  if (salaryRange) query.salaryRange = { $gte: salaryRange };
+
+  Job.find(query)
     .then((jobs) => res.status(200).json(jobs))
     .catch((err) => res.status(500).json({ error: err.message }));
 });
 
+// Get Specific Job Post by ID
 app.get("/job_posts/:id", (req, res) => {
   Job.findById(req.params.id)
     .then((job) => {
@@ -210,6 +237,7 @@ app.get("/job_posts/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err.message }));
 });
 
+// Update Job Post
 app.put("/job_posts/:id", (req, res) => {
   Job.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
     .then((updatedJob) => {
@@ -219,6 +247,7 @@ app.put("/job_posts/:id", (req, res) => {
     .catch((err) => res.status(400).json({ error: err.message }));
 });
 
+// Delete Job Post
 app.delete("/job_posts/:id", (req, res) => {
   Job.findByIdAndDelete(req.params.id)
     .then((deletedJob) => {
@@ -228,7 +257,20 @@ app.delete("/job_posts/:id", (req, res) => {
     .catch((err) => res.status(500).json({ error: err.message }));
 });
 
-// Start the server
-app.listen(3001, () => {
-  console.log("Server is running ....");
+// Job Application
+app.post("/apply_for_job/:jobId", upload.single("resume"), (req, res) => {
+  const { userId, coverLetter } = req.body;
+  const resume = req.file ? req.file.buffer.toString('base64') : null;
+  const { jobId } = req.params;
+
+  const application = new Application({ userId, jobId, resume, coverLetter });
+
+  application
+    .save()
+    .then(() => res.status(201).json({ message: "Application submitted successfully" }))
+    .catch((err) => res.status(500).json({ message: "Error submitting application", error: err }));
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });

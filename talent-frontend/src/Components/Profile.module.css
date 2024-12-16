@@ -1,102 +1,182 @@
-/* Profile.module.css */
 
 .bigbox {
-  display: flex;
-  justify-content: center;
   padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.quickLinks {
-  flex: 1;
-  margin-right: 20px;
-  padding: 10px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-}
-
-.quickLinks h2 {
-  text-align: center;
-}
-
-.quickLinks ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.quickLinks li {
-  margin-bottom: 10px;
-}
-
-.quickLinks a {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
-}
-
-.quickLinks a:hover {
-  text-decoration: underline;
-}
-
-.profileInfo {
-  flex: 3;
-  padding: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 4rem;
 }
 
 .profileInfo h1 {
   text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Section Wrapper */
+.section {
   margin-bottom: 30px;
 }
 
-.section {
-  margin-bottom: 40px;
+.sectionWrapper {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
 }
 
+.section h2 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Profile Photo */
+.profilePhotoSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profilePhoto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.editButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #ff00d4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #e30ed5;
+}
+
+/* Form Group */
 .formGroup {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 15px;
 }
 
 .formGroup label {
-  font-weight: bold;
+  font-size: 14px;
+  color: #0b0b0b;
+  margin-bottom: 5px;
 }
 
-.formGroup span {
-  flex: 1;
+.formGroup input, 
+.formGroup select, 
+.formGroup textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 
-.editButton, .downloadButton {
-  padding: 5px 10px;
-  background-color: #007bff;
+.formGroup input:focus, 
+.formGroup select:focus, 
+.formGroup textarea:focus {
+  border-color: #ff00ee;
+  box-shadow: 0 0 5px rgba(209, 16, 171, 0.5);
+}
+
+.formGroup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formGroup ul li {
+  font-size: 14px;
+  background-color: #f1f1f1;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.formGroup button {
+  background-color: #bc289e;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.formGroup button:hover {
+  background-color: #e119af;
+}
+
+/* Buttons */
+.ex,
+.pro {
+  background-color: #d713c0;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ex:hover, 
+.pro:hover {
+  background-color: #f113bd;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profilePhotoSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .formGroup {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
+.removeSkillButton {
+  margin-left: 10px;
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.editButton:hover, .downloadButton:hover {
-  background-color: #0056b3;
-}
-
-.profilePhotoSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.profilePhoto {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-}
-
-.profilePhotoSection button {
-  margin-left: 10px;
+.removeSkillButton:hover {
+  background-color: #d93838;
 }

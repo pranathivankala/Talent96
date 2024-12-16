@@ -8,7 +8,7 @@ function ChooseCard({ setIsNavbarTwo }) {
 
   const handlePostJobClick = () => {
     setIsNavbarTwo(true);  
-    navigate('/Home');  
+    navigate('/Recruiter_signin_up');  
   };
 
 
