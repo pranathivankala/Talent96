@@ -3,51 +3,47 @@ import axios from "axios";
 import styles from "./Page1.module.css";
 import { useNavigate } from "react-router-dom";
 
-const Page1 = () => {
+const Page1 = ({ formData, handleChange, nextStep }) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    jobTitle: "",
-    jobDescription: "",
-    jobType: "",
-    location: "",
-    workMode: "none",
-    numberOfPositions: "",
-  });
-
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://countriesnow.space/api/v0.1/countries")
+    axios.get('https://countriesnow.space/api/v0.1/countries')
       .then((response) => {
         const countryData = response.data.data.map((country) => ({
           name: country.country,
           cities: country.cities,
         }));
         setCountries(countryData);
+      })
+      .catch(error => {
+        console.error("Error fetching countries:", error);
       });
   }, []);
   
 
   const handleCountryChange = (e) => {
     const selectedCountry = e.target.value;
-    const country = countries.find((country) => country.name === selectedCountry);
+    const country = countries.find(country => country.name === selectedCountry);
     setCities(country ? country.cities : []);
-    setFormData({ ...formData, location: "" });
+    handleChange({ target: { name: "location", value: "" } }); // Reset location on country change
   };
 
   const handleCityChange = (e) => {
-    setFormData({ ...formData, location: e.target.value });
+    handleChange(e); 
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const handleNextClick = () => {
+    const { jobTitle, jobDescription, jobType, location, workMode, numberOfPositions } = formData;
 
-  const handleNext = () => {
-    navigate("/Page2");
+    if (!jobTitle || !jobDescription || !jobType || !location || !workMode || !numberOfPositions) {
+      alert("Please fill in all required fields before proceeding.");
+      return;
+    }
+    console.log('Page 1 Data:', formData);
+    localStorage.setItem('page1Data', JSON.stringify(formData));    
+    nextStep(); 
   };
 
   return (
@@ -95,7 +91,7 @@ const Page1 = () => {
             {cities.length > 0 && (
               <div className={styles.formGroup}>
                 <label>City <span className={styles.star}>*</span></label>
-                <select onChange={handleCityChange} required>
+                <select name="location" value={formData.location} onChange={handleCityChange} required>
                   <option value="">Select a city</option>
                   {cities.map((city, index) => (
                     <option key={index} value={city}>
@@ -113,7 +109,7 @@ const Page1 = () => {
                 <label><input type="radio" name="workMode" value="Hybrid" checked={formData.workMode === "Hybrid"} onChange={handleChange} />Hybrid </label>
               </div>
             </div>
-            <button type="button" className={styles.nextButton} onClick={handleNext}>NEXT</button>
+            <button type="button" className={styles.nextButton} onClick={handleNextClick}>NEXT</button>
           </form>
         </div>
       </div>

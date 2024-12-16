@@ -3,8 +3,7 @@ import styles from './Profile.module.css';
 
 const Profile = () => {
   const [profilePhoto, setProfilePhoto] = useState("https://via.placeholder.com/150");
-  // const [experiences, setExperiences] = useState([]);
-  // const [projects, setProjects] = useState([]);
+
   const [resumeUrl, setResumeUrl] = useState(null); 
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
@@ -286,33 +285,15 @@ const Profile = () => {
                 onChange={(e) => handleExperienceChange(index, 'company', e.target.value)}
                 required
               />
-              <input
-                type="date"
-                value={exp.startDate}
-                onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)}
-                required
-              />
-              <input
-                type="date"
-                value={exp.endDate}
-                onChange={(e) => handleExperienceChange(index, 'endDate', e.target.value)}
-              />
-              <textarea
-                placeholder="Description"
-                value={exp.description}
-                onChange={(e) => handleExperienceChange(index, 'description', e.target.value)}
-                required
-              />
+              <input type="date"value={exp.startDate} onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)} required />
+              <input type="date"  value={exp.endDate}  onChange={(e) => handleExperienceChange(index, 'endDate', e.target.value)}/>
+              <textarea  placeholder="Description"  value={exp.description} onChange={(e) => handleExperienceChange(index, 'description', e.target.value)} required/>
               {experiences.length > 1 && (
-                <button type="button" onClick={() => handleRemoveExperience(index)}>
-                  Remove Experience
-                </button>
+                <button type="button" onClick={() => handleRemoveExperience(index)}> Remove Experience </button>
               )}
             </div>
           ))}
-          <button className={styles.ex} type="button" onClick={handleAddExperience}>
-            Add Experience
-          </button>
+          <button className={styles.ex} type="button" onClick={handleAddExperience}> Add Experience</button>
         </div>
 
         {/* Projects Section */}
@@ -320,36 +301,15 @@ const Profile = () => {
           <h2>Projects</h2>
           {projects.map((project, index) => (
             <div key={index} className={styles.formGroup}>
-              <input
-                type="text"
-                placeholder="Title"
-                value={project.title}
-                onChange={(e) => handleProjectChange(index, 'title', e.target.value)}
-                required
-              />
-              <textarea
-                placeholder="Description"
-                value={project.description}
-                onChange={(e) => handleProjectChange(index, 'description', e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Technologies"
-                value={project.technologies}
-                onChange={(e) => handleProjectChange(index, 'technologies', e.target.value)}
-                required
-              />
+              <input type="text" placeholder="Title"  value={project.title} onChange={(e) => handleProjectChange(index, 'title', e.target.value)} required/>
+              <textarea placeholder="Description" value={project.description} onChange={(e) => handleProjectChange(index, 'description', e.target.value)} required/>
+              <input type="text"placeholder="Technologies"value={project.technologies}onChange={(e) => handleProjectChange(index, 'technologies', e.target.value)}required/>
               {projects.length > 1 && (
-                <button type="button" onClick={() => handleRemoveProject(index)}>
-                  Remove Project
-                </button>
+                <button type="button" onClick={() => handleRemoveProject(index)}>Remove Project </button>
               )}
             </div>
           ))}
-          <button className={styles.pro} type="button" onClick={handleAddProject}>
-            Add Project
-          </button>
+          <button className={styles.pro} type="button" onClick={handleAddProject}>Add Project</button>
         </div>
       </div>
     </div>

@@ -93,6 +93,7 @@ const CreateProfile = () => {
               <div className={styles.formGroup}>
                 <label>Gender:</label>
                 <select required>
+                  <option value="select">select your Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -178,7 +179,7 @@ const CreateProfile = () => {
               <h2>Education</h2>
 
               <div className={styles.formGroup}>
-                <label>Institution UG:</label>
+                <label>UG College Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
                 <input type="number" required />
@@ -187,7 +188,7 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label>Institution College:</label>
+                <label>College Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
                 <input type="number" required />
@@ -196,7 +197,7 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label>Institution School:</label>
+                <label> School Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
                 <input type="number" required />
@@ -221,6 +222,7 @@ const CreateProfile = () => {
               <div className={styles.formGroup}>
                 <label>Industry:</label>
                 <select required>
+                <option value='select'>Select your Industry....</option>
                   <option value="IT">IT</option>
                   <option value="Healthcare">Healthcare</option>
                   <option value="Finance">Finance</option>
@@ -229,6 +231,7 @@ const CreateProfile = () => {
               <div className={styles.formGroup}>
                 <label>Role:</label>
                 <select required>
+                  <option value='select'>Select your Role....</option>
                   <option value="Developer">Developer</option>
                   <option value="Manager">Manager</option>
                   <option value="Designer">Designer</option>

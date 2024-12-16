@@ -68,9 +68,9 @@ const jobPostings = [
 export const Job = () => {
   const [selectedJob, setSelectedJob] = useState(null);
 
-  useEffect(() => {
-    setSelectedJob(jobPostings[0]);
-  }, []);
+//   useEffect(() => {
+//     setSelectedJob(jobPostings[0]);
+//   }, []);
 
   const handleApplyClick = (job) => {
     setSelectedJob(job);

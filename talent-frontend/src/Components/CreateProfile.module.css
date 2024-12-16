@@ -7,7 +7,6 @@
 .container {
   width: 100%;
   max-width: 800px;
-  /* border: 1px solid #ec4ca1; */
   border-radius: 20px;
   margin-top: 4rem;
 }
@@ -17,17 +16,17 @@
 }
 
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .sectionWrapper {
   padding: 15px;
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 25px;
 }
 
 h1, h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #0d0d0d;
 }
 
@@ -42,7 +41,7 @@ h1, h2 {
 .formGroup input, .formGroup select {
   width: 100%;
   padding: 8px;
-  margin-top: 5px;
+  margin-top: 10px;
   border: 1px solid #ec4ca1;
   border-radius: 14px;
 }
@@ -79,7 +78,7 @@ input[type="date"], input[type="email"], input[type="number"], input[type="text"
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
 }
@@ -91,7 +90,7 @@ input[type="date"], input[type="email"], input[type="number"], input[type="text"
   background-color: #ec4ca1;
   color: #fff;
   border: 1px solid;
-  border-radius: 12px;
+  border-radius: 25px;
   width: 60px;
   height: 30px;
   cursor: pointer;
@@ -102,23 +101,22 @@ input[type="date"], input[type="email"], input[type="number"], input[type="text"
   background-color: #ec4ca1;
   color: #fff;
   border: 1px solid;
-  border-radius: 12px;
-  width: 80px;
-  height: 50px;
+  border-radius: 25px;
+  width: 120px;
   cursor: pointer;
-  padding: 2px;
-  margin-top: 9px;
+  padding: 10px;
+  margin: 8px;
 }
 .project_button{
   background-color: #ec4ca1;
   color: #fff;
   border: 1px solid;
-  border-radius: 12px;
-  width: 80px;
-margin-left: 5px;
+  border-radius: 25px;
+  width: 100px;
+  margin: 5px;
+  padding: 10px;
 }
 .description_to{
-  height: 130px;
   margin-top: 10px;
   width: 70%;
 }
