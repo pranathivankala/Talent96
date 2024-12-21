@@ -4,35 +4,23 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Controls login state
+  const [userName, setUserName] = useState('User'); 
+  const [profileImage, setProfileImage] = useState('path_to_default_profile_image');
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
-  const closeMenus = () => {
-    setMenuOpen(false);
-    setProfileMenuOpen(false);
-  };
-
-  const handleLogin = () => {
-    setUser({
-      // name: 'John Doe',
-      profilePhoto:
-        'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
-    });
-    closeMenus();
-  };
+  const closeMenus = () => setMenuOpen(false);
 
   const handleLogout = () => {
-    setUser(null);
-    closeMenus();
+    setIsLoggedIn(false); 
+    window.location.reload();
+    setMenuOpen(false); 
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         !event.target.closest('.navbar') &&
-        !event.target.closest('.profile-dropdown') &&
         !event.target.closest('.dropdown-content')
       ) {
         closeMenus();
@@ -92,31 +80,34 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          {user ? (
-            <li className="profile-menu">
-              <div className="profile">
+          {isLoggedIn ? (
+            <li className="dropdown">
+              <button
+                className="profile-btn"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent menu closure
+                  toggleMenu();
+                }}
+              >
                 <img
-                  src={user.profilePhoto}
-                  alt={`${user.name}'s profile`}
-                  className="profile-photo"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleProfileMenu();
-                  }}
+                  src={profileImage}
+                  alt="Profile"
+                  className="profile-image"
                 />
-                <div
-                  className={`profile-dropdown ${profileMenuOpen ? 'show' : ''}`}
-                >
-                  <Link to="/profile" onClick={closeMenus}>
-                    Your Profile
-                  </Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
+                {userName}
+              </button>
+              <div className="dropdown-content">
+                <Link to="/profile" onClick={closeMenus}>
+                  Profile
+                </Link>
+                <button onClick={handleLogout} className="logout-btn">
+                  Logout
+                </button>
               </div>
             </li>
           ) : (
             <li>
-              <Link to="/Choosing" onClick={handleLogin}>
+              <Link to="/Choosing" onClick={closeMenus}>
                 Login
               </Link>
             </li>

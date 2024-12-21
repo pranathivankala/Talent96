@@ -1,26 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import styles from './Page2.module.css';
+import { useEffect, useState } from "react";
+import styles from "./Page2.module.css";
 
 const Page2 = ({ formData, handleChange, nextStep, prevStep }) => {
   const [localData, setLocalData] = useState({
-    companyName: formData.companyName || '',
-    companyWebsite: formData.companyWebsite || '',
-    companyLogo: formData.companyLogo || '', // Store URL of company logo
-    companyDescription: formData.companyDescription || '',
+    companyName: "",
+    companyWebsite: "",
+    companyLogo: "",
+    companyDescription: "",
   });
 
   useEffect(() => {
-    setLocalData({
-      companyName: formData.companyName || '',
-      companyWebsite: formData.companyWebsite || '',
-      companyLogo: formData.companyLogo || '', // Store URL of company logo
-      companyDescription: formData.companyDescription || '',
-    });
+    if (formData) {
+      setLocalData({
+        companyName: formData.companyName || "",
+        companyWebsite: formData.companyWebsite || "",
+        companyLogo: formData.companyLogo || "",
+        companyDescription: formData.companyDescription || "",
+      });
+    }
   }, [formData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setLocalData((prevData) => ({ ...prevData, [name]: value }));
+    setLocalData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
     handleChange(e); 
   };
 
@@ -29,23 +34,15 @@ const Page2 = ({ formData, handleChange, nextStep, prevStep }) => {
   };
 
   const handleNext = () => {
-    console.log('Page 2 Data:', localData);
-    // Set localData in formData before calling nextStep
-    handleChange({
-      target: { name: 'companyName', value: localData.companyName }
-    });
-    handleChange({
-      target: { name: 'companyWebsite', value: localData.companyWebsite }
-    });
-    handleChange({
-      target: { name: 'companyLogo', value: localData.companyLogo }
-    });
-    handleChange({
-      target: { name: 'companyDescription', value: localData.companyDescription }
-    });
-
-    localStorage.setItem('page2Data', JSON.stringify(localData));
-    nextStep(); 
+    const { companyName, companyWebsite, companyLogo, companyDescription } = localData;
+    if (!companyName || !companyWebsite || !companyLogo || !companyDescription) {
+      alert("Please fill in all required fields before proceeding.");
+      return;
+    }
+    const combinedData = { ...formData, ...localData };
+    console.log("Combined Data from Page 1 and Page 2:", JSON.stringify(combinedData, null, 2));
+    localStorage.setItem("combinedData", JSON.stringify(combinedData));
+    nextStep();
   };
 
   return (
@@ -56,63 +53,28 @@ const Page2 = ({ formData, handleChange, nextStep, prevStep }) => {
           <form>
             <div className={styles.formGroup}>
               <label htmlFor="companyName">Company Name<span className={styles.star}>*</span></label>
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={localData.companyName}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="text" id="companyName" name="companyName" value={localData.companyName} onChange={handleInputChange} required/>
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="companyWebsite">Company Website<span className={styles.star}>*</span></label>
-              <input
-                type="text"
-                id="companyWebsite"
-                name="companyWebsite"
-                value={localData.companyWebsite}
-                onChange={handleInputChange}
-                required
-              />
+              <input type="text" id="companyWebsite" name="companyWebsite" value={localData.companyWebsite} onChange={handleInputChange} required/>
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="companyLogo">Company Logo (URL)<span className={styles.star}>*</span></label>
-              <input
-                type="text"
-                id="companyLogo"
-                name="companyLogo"
-                value={localData.companyLogo}
-                onChange={handleInputChange}
-                required
-                placeholder="Enter a URL (e.g., https://example.com/logo.jpg)"
-              />
+              <input type="text" id="companyLogo" name="companyLogo" value={localData.companyLogo} onChange={handleInputChange} required placeholder="Enter a URL (e.g., https://example.com/logo.jpg)"/>
               {localData.companyLogo && (
                 <div className={styles.logoPreview}>
-                  <a href={localData.companyLogo} target="_blank" rel="noopener noreferrer">
-                    View Logo
-                  </a>
+                  <a href={localData.companyLogo} target="_blank" rel="noopener noreferrer">View Logo</a>
                 </div>
               )}
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="companyDescription">Company Description<span className={styles.star}>*</span></label>
-              <textarea
-                id="companyDescription"
-                name="companyDescription"
-                value={localData.companyDescription}
-                onChange={handleInputChange}
-                required
-                rows="5"
-              ></textarea>
+              <textarea id="companyDescription" name="companyDescription" value={localData.companyDescription} onChange={handleInputChange} required rows="5"></textarea>
             </div>
             <div className={styles.btns}>
-              <button type="button" className={styles.previousButton} onClick={handlePrevious}>
-                Previous
-              </button>
-              <button type="button" className={styles.nextButton} onClick={handleNext}>
-                Next
-              </button>
+              <button type="button" className={styles.previousButton} onClick={handlePrevious}> Previous </button>
+              <button type="button" className={styles.nextButton} onClick={handleNext}> Next </button>
             </div>
           </form>
         </div>
