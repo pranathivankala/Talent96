@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
@@ -200,12 +200,69 @@ app.post("/Recruiters_Register", (req, res) => {
 // Job Posting
 app.post('/job_posts', async (req, res) => {
   try {
-    const newJob = new Job(req.body);
+    // Validate incoming request data
+    const {
+      jobTitle,
+      jobDescription,
+      jobType,
+      location,
+      workMode,
+      numberOfPositions,
+      companyName,
+      companyWebsite,
+      companyLogo,
+      companyDescription,
+      requiredSkills,
+      experienceLevel,
+      salaryRange,
+      applicationLink,
+    } = req.body;
+
+    // Validate mandatory fields
+    if (!jobTitle || !jobDescription || !companyName || !requiredSkills?.length) {
+      return res.status(400).json({
+        error: 'Validation Error',
+        message: 'Job title, description, company name, and required skills are mandatory.',
+      });
+    }
+
+    // Validate application link format
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if (applicationLink && !urlRegex.test(applicationLink)) {
+      return res.status(400).json({
+        error: 'Validation Error',
+        message: 'Invalid application link format.',
+      });
+    }
+
+    // Create new job instance
+    const newJob = new Job({
+      jobTitle,
+      jobDescription,
+      jobType,
+      location,
+      workMode,
+      numberOfPositions,
+      companyName,
+      companyWebsite,
+      companyLogo,
+      companyDescription,
+      requiredSkills,
+      experienceLevel,
+      salaryRange,
+      applicationLink,
+    });
+
+    // Save the job to the database
     await newJob.save();
-    res.status(201).json({ message: 'Job post added successfully' });
+
+    res.status(201).json({ message: 'Job post added successfully', jobId: newJob._id });
   } catch (err) {
-    console.error('Error posting job:', err);  // Log the error to server console
-    res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    console.error('Error posting job:', err); // Log detailed error to console
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: 'An error occurred while posting the job. Please try again later.',
+    });
   }
 });
 
@@ -271,6 +328,6 @@ app.post("/apply_for_job/:jobId", upload.single("resume"), (req, res) => {
     .catch((err) => res.status(500).json({ message: "Error submitting application", error: err }));
 });
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(3001, () => {
+  console.log("Server is running on port 3001");
 });

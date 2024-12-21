@@ -70,7 +70,7 @@ function Page3() {
 
     try {
       // POST request to backend API to create a new job post
-      const response = await axios.post('http://localhost:3000/job_posts', jobPostDetails);
+      const response = await axios.post('http://localhost:3001/job_posts', jobPostDetails);
       console.log('Job post added successfully', response.data);
 
       // Navigate to the 'career' page after successful submission

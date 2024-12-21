@@ -17,6 +17,7 @@ import CreateProfile from './Components/CreateProfile';
 import StepperForm from './Components/Post A Job/StepperForm';
 import Page2 from './Components/Post A Job/Page2';
 import Page3 from './Components/Post A Job/Page3';
+import {Footer} from './Components/Footer';  
 
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
           <Route path="/Page2" element={<Page2 />} />
         <Route path="/Page3" element={<Page3 />} />
         </Routes>
+        <Footer />
+
       </div>
     </Router>
   );

@@ -1,0 +1,136 @@
+/* Footer.module.css */
+
+.footer {
+    background-color: #232323;
+    color: #fff;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: left;
+  }
+  
+  .footerSection {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+  }
+  
+  .footerSection h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #f1c40f;
+  }
+  
+  .footerSection p,
+  .footerSection a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b0b0b0;
+    text-decoration: none;
+  }
+  
+  .footerSection a:hover {
+    color: #f1c40f;
+  }
+  
+  /* Social Icons */
+  .socialIcons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .socialIcons a {
+    font-size: 20px;
+    color: #b0b0b0;
+    transition: color 0.3s ease;
+  }
+  
+  .socialIcons a:hover {
+    color: #f1c40f;
+  }
+  
+  /* Newsletter Form */
+  .newsletterForm {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .newsletterForm h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f1c40f;
+  }
+  
+  .newsletterForm input {
+    padding: 12px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .newsletterForm input:focus {
+    outline: none;
+    border-color: #f1c40f;
+  }
+  
+  .newsletterForm button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #f1c40f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newsletterForm button:hover {
+    background-color: #e67e22;
+  }
+  
+  /* Footer Bottom */
+  .footerBottom {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #1d1d1d;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #b0b0b0;
+  }
+  
+  .footerBottom a {
+    color: #f1c40f;
+    text-decoration: none;
+  }
+  
+  .footerBottom a:hover {
+    color: #e67e22;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footerSection {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  
+    .socialIcons {
+      justify-content: center;
+    }
+  }
+  
