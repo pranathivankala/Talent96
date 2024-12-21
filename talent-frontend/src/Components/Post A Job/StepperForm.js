@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
+import PreviewPage from './PreviewPage'; 
 
-const MultiStepForm = () => {
+const StepperForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     jobTitle: '',
@@ -47,10 +48,13 @@ const MultiStepForm = () => {
         <Page2 formData={formData} handleChange={handleChange} nextStep={handleNext} prevStep={handlePrevious} />
       )}
       {step === 3 && (
-        <Page3 formData={formData} handleChange={handleChange} prevStep={handlePrevious} />
+        <Page3 formData={formData} handleChange={handleChange} prevStep={handlePrevious} nextStep={handleNext} />
+      )}
+      {step === 4 && (
+        <PreviewPage formData={formData} prevStep={handlePrevious} /> 
       )}
     </div>
   );
 };
 
-export default MultiStepForm;
+export default StepperForm;

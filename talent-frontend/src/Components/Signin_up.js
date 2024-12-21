@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate } from 'react-router-dom';
 import './Signin_up.css';
 
-function Signin_up() {
+function Signin_up({ setUser }) { // Accept setUser as a prop
 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-    
-    const handleLogin = (e) =>{
+    const navigate = useNavigate();  
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        const loginData ={
-            email: loginEmail,
-            password: loginPassword,
-        };
-
-        axios.post('http://localhost:3001/Users_Login',loginData)
-        .then(result =>{
-            console.log(result);
-            navigate('/create-profile');
-        })
-        .catch(err => {
-            if(err.response && err.respond.status == 400){
-                alert('Invalid email or password');
-            } else {
-                console.log(err);
-            }
-        })
-        
-    }
+        try {
+            const loginData = { email: loginEmail, password: loginPassword };
+            setTimeout(() => {
+                const mockUser = {
+                    name: 'John Doe',
+                    profilePhoto: 'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
+                };
+                setUser(mockUser); 
+                navigate('/Home'); 
+            }, 1000);
+        } catch (err) {
+            console.error('Login error:', err);
+        }
+    };
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [Mobile, setMobile] = useState('');
     const [resume, setResume] = useState(null);
-    const navigate = useNavigate();  
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -64,9 +58,7 @@ function Signin_up() {
               console.log(err);
             }
           });
-      
     };
-
 
     useEffect(() => {
         const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -104,9 +96,9 @@ function Signin_up() {
                         </div>
                         <div className="enter_field">
                             <i className="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" name="password"  value={loginPassword}onChange={(e) => setLoginPassword(e.target.value)}required />
+                            <input type="password" placeholder="Password" name="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required />
                         </div>
-                        <input type="Submit" value="Login" className="signin-button" />
+                        <input type="submit" value="Login" className="signin-button" />
                         <p className="para">Or sign in with Google</p>
                         <div className="social-media">
                             <a href="#" className="social-icon"><i className="fab fa-google"></i></a>
@@ -135,7 +127,7 @@ function Signin_up() {
                             <i className="fas fa-file-upload"></i>
                             <input type="file" name="resume" accept=".pdf,.doc,.docx" onChange={(e) => setResume(e.target.files[0])} required />
                         </div>
-                        <input type="submit" value="Sign Up" className="signup-button"  />
+                        <input type="submit" value="Sign Up" className="signup-button" />
                         <p className="para">Or sign up with Google</p>
                         <div className="social-media">
                             <a href="#" className="social-icon"><i className="fab fa-google"></i></a>
