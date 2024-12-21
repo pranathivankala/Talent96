@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
 
 const Profile = () => {
@@ -7,6 +7,30 @@ const Profile = () => {
   const [resumeUrl, setResumeUrl] = useState(null); 
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
+  const [experiences, setExperiences] = useState([ { role: '', company: '', startDate: '', endDate: '', description: '' } ]);
+  const [projects, setProjects] = useState([ { title: '', description: '', technologies: '' } ]);
+
+   // eslint-disable-next-line no-unused-vars
+   const [profileData, setProfileData] = useState(null);
+
+    // Fetching data from backend (replace the URL with your actual endpoint)
+    useEffect(() => {
+      fetch('http://localhost:3001/profiles/your-email@example.com')  // Adjust the URL to your backend endpoint
+        .then((response) => response.json())
+        .then((data) => {
+          // Set the state with the data from the backend
+          setProfileData(data);
+          
+          // Populate states with fetched data
+          setProfilePhoto(data.profilePhoto || "https://via.placeholder.com/150");
+          setResumeUrl(data.resumeUrl);
+          setSkills(data.skills || []);
+          setExperiences(data.experiences || [{ role: '', company: '', startDate: '', endDate: '', description: '' }]);
+          setProjects(data.projects || [{ title: '', description: '', technologies: '' }]);
+        })
+        .catch((error) => console.error('Error fetching profile data:', error));
+    }, []);
+
   const handleRemoveSkill = (indexToRemove) => {
     setSkills(skills.filter((_, index) => index !== indexToRemove));
   };
@@ -45,12 +69,12 @@ const Profile = () => {
     }
   };
 
-  const [experiences, setExperiences] = useState([
-    { role: '', company: '', startDate: '', endDate: '', description: '' },
-  ]);
-  const [projects, setProjects] = useState([
-    { title: '', description: '', technologies: '' },
-  ]);
+  // const [experiences, setExperiences] = useState([
+  //   { role: '', company: '', startDate: '', endDate: '', description: '' },
+  // ]);
+  // const [projects, setProjects] = useState([
+  //   { title: '', description: '', technologies: '' },
+  // ]);
 
   // Handle experience changes
   const handleExperienceChange = (index, field, value) => {
@@ -184,7 +208,8 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className={styles.formGroup}>
+  {/* skills section */}
+  <div className={styles.formGroup}>
   <label>Skills</label>
   <ul>
     {skills.map((skill, index) => (

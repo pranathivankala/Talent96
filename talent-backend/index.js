@@ -114,6 +114,100 @@ app.post("/Users_Login", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+// Profile Schema
+const profileSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  gender: String,
+  dob: String,
+  languages: String,
+  skills: [String],
+  experience: [
+    {
+      company: String,
+      role: String,
+      duration: String,
+      salary: Number
+    }
+  ],
+  projects: [
+    {
+      title: String,
+      description: String
+    }
+  ],
+  education: {
+    ug: { institution: String, year: String, cgpa: String },
+    college: { institution: String, year: String, cgpa: String },
+    school: { institution: String, year: String, cgpa: String },
+    pg: { institution: String, year: String, cgpa: String }
+  },
+  industry: String,
+  role: String,
+  profilePhoto: String,
+  resume: String
+});
+
+const Profile = mongoose.model('Profile', profileSchema, 'Profiles');
+
+// Route for creating a profile
+app.post('/profiles', upload.fields([{ name: 'profilePhoto', maxCount: 1 }, { name: 'resume', maxCount: 1 }]), async (req, res) => {
+  try {
+    const { name, email, phone, gender, dob, languages, skills, experience, projects, education, industry, role } = req.body;
+    
+    const profilePhoto = req.files['profilePhoto'] ? req.files['profilePhoto'][0].path : '';
+    const resume = req.files['resume'] ? req.files['resume'][0].path : '';
+    
+    const newProfile = new Profile({
+      name,
+      email,
+      phone,
+      gender,
+      dob,
+      languages,
+      skills: JSON.parse(skills), // Convert stringified skills to array
+      experience: JSON.parse(experience),
+      projects: JSON.parse(projects),
+      education: JSON.parse(education),
+      industry,
+      role,
+      profilePhoto,
+      resume
+    });
+    
+    await newProfile.save();
+    res.status(200).json({ message: 'Profile created successfully!' });
+  } catch (err) {
+    console.error('Error saving profile:', err);
+    res.status(500).json({ message: 'Failed to create profile.' });
+  }
+});
+
+// Endpoint to get profile data
+app.get('/profiles/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+
+    // Find profile by email
+    const profile = await Profile.findOne({ email });
+    
+    if (!profile) {
+      return res.status(404).json({ message: 'Profile not found' });
+    }
+    
+    res.json(profile);  
+  } catch (err) {
+    console.error('Error fetching profile:', err);
+    res.status(500).json({ message: 'Error fetching profile' });
+  }
+});
+ 
+// Server Listening
+app.listen(3001, () => {
+  console.log("Server is running ....");
+=======
 // Job Posting (Recruiters)
 app.post("/job_posts", async (req, res) => {
   console.log("Request Body:", req.body);
@@ -125,6 +219,7 @@ app.post("/job_posts", async (req, res) => {
     console.error("Error:", err.message); 
     res.status(400).json({ message: "Error posting job", error: err.message });
   }
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
 });
 
 
