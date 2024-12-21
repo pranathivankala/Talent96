@@ -1,8 +1,8 @@
 /* Footer.module.css */
 
 .footer {
-    background-color: #232323;
-    color: #fff;
+  background: linear-gradient(135deg, #ec72d2, #f13abe, #6b064e);
+  color: #fff;
     padding: 40px 20px;
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +27,7 @@
   .footerSection a {
     font-size: 14px;
     line-height: 1.6;
-    color: #b0b0b0;
+    color:  #fff;
     text-decoration: none;
   }
   
@@ -44,7 +44,7 @@
   
   .socialIcons a {
     font-size: 20px;
-    color: #b0b0b0;
+    color: #fff;
     transition: color 0.3s ease;
   }
   
@@ -54,9 +54,9 @@
   
   /* Newsletter Form */
   .newsletterForm {
-    background-color: #333;
+    background-color: #a032a0;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
   }
   
   .newsletterForm h4 {
@@ -73,7 +73,7 @@
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    background-color: #444;
+    background-color: #504e4f;
     color: #fff;
   }
   
@@ -85,7 +85,7 @@
   .newsletterForm button {
     padding: 12px;
     font-size: 16px;
-    background-color: #f1c40f;
+    background-color: #f10fb1;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -102,10 +102,11 @@
     width: 100%;
     text-align: center;
     padding: 20px;
-    background-color: #1d1d1d;
+    background-color: #5c144a;
     margin-top: 40px;
     font-size: 14px;
     color: #b0b0b0;
+    border-radius: 20px;
   }
   
   .footerBottom a {

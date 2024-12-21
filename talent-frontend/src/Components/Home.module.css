@@ -3,6 +3,8 @@
     font-family: 'Arial', sans-serif;
     color: #070707;
     line-height: 1.6;
+    background: linear-gradient(135deg, #e70e0e, #e158b1, #e206ba);
+
 }
 
 .sectionTitle {
@@ -22,7 +24,7 @@
     justify-content: center;
     align-items: center;
     padding: 5rem 2rem;
-    background: linear-gradient(135deg, #f0f8ff, #b3e5e6);
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
     text-align: center;
     height: auto;
 }
@@ -54,6 +56,8 @@
     flex-direction: column;
     margin: 2rem 0;
     padding: 0 1rem;
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
+
 }
 
 .rowContent {
@@ -83,7 +87,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .servicesSection {
-    background: linear-gradient(135deg, #d0e5f7, #97debe);
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
     padding: 60px 20px;
     text-align: center;
     color: #fff;
@@ -117,7 +121,7 @@
 }
 
 .service {
-    background: linear-gradient(135deg, #8cbfeb, #68f2b4);
+    background: linear-gradient(135deg, #d72ea7, #e79bd6);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 20px;
@@ -179,7 +183,7 @@
 /* Why Choose Us Section */
 .whyChooseUsSection {
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, #d0e5f7, #97debe);
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
     color: white;
     text-align: center;
 }
@@ -253,7 +257,7 @@
 .contactUsSection {
     padding: 2rem 1rem;
     text-align: center;
-    background: linear-gradient(135deg, #d0e5f7, #97debe);
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
     color: white;
 }
 
@@ -277,7 +281,7 @@
     margin: 4rem 0;
     text-align: center;
     padding: 1rem;
-    background: linear-gradient(135deg, #d0e5f7, #97debe);
+    background: linear-gradient(135deg, #e70eb8, #f0d0e7, #e79bd6);
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
@@ -291,7 +295,7 @@
 }
 
 .solutionCard {
-    background: linear-gradient(135deg, #8cbfeb, #68f2b4);
+    background: linear-gradient(135deg,  #f0d0e7, #e79bd6);
     border: none;
     border-radius: 12px;
     padding: 2rem;
