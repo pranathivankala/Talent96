@@ -166,7 +166,12 @@ const CreateProfile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label>Gender:</label>
+<<<<<<< HEAD
                 <select name="gender" value={formData.gender} onChange={handleInputChange} required>
+=======
+                <select required>
+                  <option value="select">select your Gender</option>
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -252,8 +257,13 @@ const CreateProfile = () => {
               <h2>Education</h2>
 
               <div className={styles.formGroup}>
+<<<<<<< HEAD
                 <label>Institution UG:</label>
                 <input type="text" name="ugInstitution" value={formData.education.ug.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, institution: e.target.value},},})}required />
+=======
+                <label>UG College Name:</label>
+                <input type="text" required />
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                 <label>Passout Year:</label>
                 <input type="number" name="ugpassoutyear" value={formData.education.ug.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -261,8 +271,13 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
+<<<<<<< HEAD
                 <label>Institution College:</label>
                 <input type="text" name="collegeInstitution" value={formData.education.college.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, institution: e.target.value},},})}required />
+=======
+                <label>College Name:</label>
+                <input type="text" required />
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                 <label>Passout Year:</label>
                 <input type="number" name="collegepassoutyear" value={formData.education.college.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -270,8 +285,13 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
+<<<<<<< HEAD
                 <label>Institution School:</label>
                 <input type="text" name="schoolInstitution" value={formData.education.school.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, institution: e.target.value},},})}required />
+=======
+                <label> School Name:</label>
+                <input type="text" required />
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                 <label>Passout Year:</label>
                 <input type="number" name="schoolpassoutyear" value={formData.education.school.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -295,7 +315,12 @@ const CreateProfile = () => {
               <h2>Career Profile</h2>
               <div className={styles.formGroup}>
                 <label>Industry:</label>
+<<<<<<< HEAD
                 <select name="Industry" value={formData.industry} onChange={handleInputChange} required>
+=======
+                <select required>
+                <option value='select'>Select your Industry....</option>
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                   <option value="IT">IT</option>
                   <option value="Healthcare">Healthcare</option>
                   <option value="Finance">Finance</option>
@@ -303,7 +328,12 @@ const CreateProfile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label>Role:</label>
+<<<<<<< HEAD
                 <select name="role" value={formData.role} onChange={handleInputChange} required>
+=======
+                <select required>
+                  <option value='select'>Select your Role....</option>
+>>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
                   <option value="Developer">Developer</option>
                   <option value="Manager">Manager</option>
                   <option value="Designer">Designer</option>
