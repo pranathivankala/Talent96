@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
 
 const Profile = () => {
   const [profilePhoto, setProfilePhoto] = useState("https://via.placeholder.com/150");
-  // const [experiences, setExperiences] = useState([]);
-  // const [projects, setProjects] = useState([]);
+
   const [resumeUrl, setResumeUrl] = useState(null); 
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
+  const [experiences, setExperiences] = useState([ { role: '', company: '', startDate: '', endDate: '', description: '' } ]);
+  const [projects, setProjects] = useState([ { title: '', description: '', technologies: '' } ]);
+
+   // eslint-disable-next-line no-unused-vars
+   const [profileData, setProfileData] = useState(null);
+
+    // Fetching data from backend (replace the URL with your actual endpoint)
+    useEffect(() => {
+      fetch('http://localhost:3001/profiles/your-email@example.com')  // Adjust the URL to your backend endpoint
+        .then((response) => response.json())
+        .then((data) => {
+          // Set the state with the data from the backend
+          setProfileData(data);
+          
+          // Populate states with fetched data
+          setProfilePhoto(data.profilePhoto || "https://via.placeholder.com/150");
+          setResumeUrl(data.resumeUrl);
+          setSkills(data.skills || []);
+          setExperiences(data.experiences || [{ role: '', company: '', startDate: '', endDate: '', description: '' }]);
+          setProjects(data.projects || [{ title: '', description: '', technologies: '' }]);
+        })
+        .catch((error) => console.error('Error fetching profile data:', error));
+    }, []);
+
   const handleRemoveSkill = (indexToRemove) => {
     setSkills(skills.filter((_, index) => index !== indexToRemove));
   };
@@ -46,12 +69,12 @@ const Profile = () => {
     }
   };
 
-  const [experiences, setExperiences] = useState([
-    { role: '', company: '', startDate: '', endDate: '', description: '' },
-  ]);
-  const [projects, setProjects] = useState([
-    { title: '', description: '', technologies: '' },
-  ]);
+  // const [experiences, setExperiences] = useState([
+  //   { role: '', company: '', startDate: '', endDate: '', description: '' },
+  // ]);
+  // const [projects, setProjects] = useState([
+  //   { title: '', description: '', technologies: '' },
+  // ]);
 
   // Handle experience changes
   const handleExperienceChange = (index, field, value) => {
@@ -185,7 +208,8 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className={styles.formGroup}>
+  {/* skills section */}
+  <div className={styles.formGroup}>
   <label>Skills</label>
   <ul>
     {skills.map((skill, index) => (
@@ -286,33 +310,15 @@ const Profile = () => {
                 onChange={(e) => handleExperienceChange(index, 'company', e.target.value)}
                 required
               />
-              <input
-                type="date"
-                value={exp.startDate}
-                onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)}
-                required
-              />
-              <input
-                type="date"
-                value={exp.endDate}
-                onChange={(e) => handleExperienceChange(index, 'endDate', e.target.value)}
-              />
-              <textarea
-                placeholder="Description"
-                value={exp.description}
-                onChange={(e) => handleExperienceChange(index, 'description', e.target.value)}
-                required
-              />
+              <input type="date"value={exp.startDate} onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)} required />
+              <input type="date"  value={exp.endDate}  onChange={(e) => handleExperienceChange(index, 'endDate', e.target.value)}/>
+              <textarea  placeholder="Description"  value={exp.description} onChange={(e) => handleExperienceChange(index, 'description', e.target.value)} required/>
               {experiences.length > 1 && (
-                <button type="button" onClick={() => handleRemoveExperience(index)}>
-                  Remove Experience
-                </button>
+                <button type="button" onClick={() => handleRemoveExperience(index)}> Remove Experience </button>
               )}
             </div>
           ))}
-          <button className={styles.ex} type="button" onClick={handleAddExperience}>
-            Add Experience
-          </button>
+          <button className={styles.ex} type="button" onClick={handleAddExperience}> Add Experience</button>
         </div>
 
         {/* Projects Section */}
@@ -320,36 +326,15 @@ const Profile = () => {
           <h2>Projects</h2>
           {projects.map((project, index) => (
             <div key={index} className={styles.formGroup}>
-              <input
-                type="text"
-                placeholder="Title"
-                value={project.title}
-                onChange={(e) => handleProjectChange(index, 'title', e.target.value)}
-                required
-              />
-              <textarea
-                placeholder="Description"
-                value={project.description}
-                onChange={(e) => handleProjectChange(index, 'description', e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Technologies"
-                value={project.technologies}
-                onChange={(e) => handleProjectChange(index, 'technologies', e.target.value)}
-                required
-              />
+              <input type="text" placeholder="Title"  value={project.title} onChange={(e) => handleProjectChange(index, 'title', e.target.value)} required/>
+              <textarea placeholder="Description" value={project.description} onChange={(e) => handleProjectChange(index, 'description', e.target.value)} required/>
+              <input type="text"placeholder="Technologies"value={project.technologies}onChange={(e) => handleProjectChange(index, 'technologies', e.target.value)}required/>
               {projects.length > 1 && (
-                <button type="button" onClick={() => handleRemoveProject(index)}>
-                  Remove Project
-                </button>
+                <button type="button" onClick={() => handleRemoveProject(index)}>Remove Project </button>
               )}
             </div>
           ))}
-          <button className={styles.pro} type="button" onClick={handleAddProject}>
-            Add Project
-          </button>
+          <button className={styles.pro} type="button" onClick={handleAddProject}>Add Project</button>
         </div>
       </div>
     </div>
