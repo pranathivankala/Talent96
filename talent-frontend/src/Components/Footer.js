@@ -37,7 +37,7 @@ export const Footer = () => {
         </form>
       </div>
       <div className={styles.footerBottom}>
-        © 2024 Talent96. All rights reserved.
+        © 2025 Talent96. All rights reserved.
       </div>
     </div>
   );
