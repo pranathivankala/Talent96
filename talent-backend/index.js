@@ -114,7 +114,6 @@ app.post("/Users_Login", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // Profile Schema
 const profileSchema = new mongoose.Schema({
   name: String,
@@ -204,10 +203,6 @@ app.get('/profiles/:email', async (req, res) => {
   }
 });
  
-// Server Listening
-app.listen(3001, () => {
-  console.log("Server is running ....");
-=======
 // Job Posting (Recruiters)
 app.post("/job_posts", async (req, res) => {
   console.log("Request Body:", req.body);
@@ -219,7 +214,6 @@ app.post("/job_posts", async (req, res) => {
     console.error("Error:", err.message); 
     res.status(400).json({ message: "Error posting job", error: err.message });
   }
->>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
 });
 
 

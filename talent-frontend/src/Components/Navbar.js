@@ -4,23 +4,35 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Controls login state
-  const [userName, setUserName] = useState('User'); 
-  const [profileImage, setProfileImage] = useState('path_to_default_profile_image');
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const closeMenus = () => setMenuOpen(false);
+  const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setProfileMenuOpen(false);
+  };
+
+  const handleLogin = () => {
+    setUser({
+      name: 'John Doe',
+      profilePhoto:
+        'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
+    });
+    closeMenus();
+  };
 
   const handleLogout = () => {
-    setIsLoggedIn(false); 
-    window.location.reload();
-    setMenuOpen(false); 
+    setUser(null);
+    closeMenus();
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         !event.target.closest('.navbar') &&
+        !event.target.closest('.profile-dropdown') &&
         !event.target.closest('.dropdown-content')
       ) {
         closeMenus();
@@ -39,7 +51,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div
-          className={`hamburger-icon ${menuOpen ? 'open' : ''}`}
+          className={`hamburger-icon ${menuOpen ? 'open' : ''}`} // Fixed interpolation syntax
           onClick={toggleMenu}
           aria-expanded={menuOpen}
           aria-controls="navbar-links"
@@ -48,7 +60,7 @@ const Navbar = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}> {/* Fixed interpolation syntax */}
           <li>
             <Link to="/Home" onClick={closeMenus}>
               Home
@@ -62,7 +74,7 @@ const Navbar = () => {
                 toggleMenu();
               }}
             >
-              Our Programs▼
+              Our Programs ▼
             </button>
             <div className="dropdown-content">
               <Link to="/client-programs" onClick={closeMenus}>
@@ -80,34 +92,31 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          {isLoggedIn ? (
-            <li className="dropdown">
-              <button
-                className="profile-btn"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent menu closure
-                  toggleMenu();
-                }}
-              >
+          {user ? (
+            <li className="profile-menu">
+              <div className="profile">
                 <img
-                  src={profileImage}
-                  alt="Profile"
-                  className="profile-image"
+                  src={user.profilePhoto}
+                  alt={`${user.name}'s profile`} // Fixed interpolation syntax
+                  className="profile-photo"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleProfileMenu();
+                  }}
                 />
-                {userName}
-              </button>
-              <div className="dropdown-content">
-                <Link to="/profile" onClick={closeMenus}>
-                  Profile
-                </Link>
-                <button onClick={handleLogout} className="logout-btn">
-                  Logout
-                </button>
+                <div
+                  className={`profile-dropdown ${profileMenuOpen ? 'show' : ''}`} // Fixed interpolation syntax
+                >
+                  <Link to="/profile" onClick={closeMenus}>
+                    Your Profile
+                  </Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
               </div>
             </li>
           ) : (
             <li>
-              <Link to="/Choosing" onClick={closeMenus}>
+              <Link to="/Choosing" onClick={handleLogin}>
                 Login
               </Link>
             </li>

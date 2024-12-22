@@ -19,7 +19,7 @@ function Signin_up({ setUser }) { // Accept setUser as a prop
                     profilePhoto: 'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
                 };
                 setUser(mockUser); 
-                navigate('/Home'); 
+                navigate('/create-profile'); 
             }, 1000);
         } catch (err) {
             console.error('Login error:', err);
