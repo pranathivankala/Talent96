@@ -16,18 +16,18 @@ const Home = () => {
                 </div>
                 <div className={styles.heroContent}>
                     <p className={styles.heroSubtitle}>
-                        Gyde Solutions offers a comprehensive suite of Recruitment, talent management, and operations optimization solutions to help organizations achieve sustainable growth and success. Our team of seasoned experts brings a wealth of knowledge and experience across a wide range of industries, enabling us to offer tailored solutions that are both practical and impactful.
+                        "Talent96" is your gateway to discovering and nurturing exceptional talent. We specialize in innovative recruitment, skill development, and career opportunities that empower individuals and organizations to thrive in a competitive world.
                     </p>
                 </div>
             </div>
 
-           {/* Our Vision Section */}
-           <div className={styles.rowSection}>
+            {/* Our Vision Section */}
+            <div className={styles.rowSection}>
                 <div className={styles.rowContent}>
                     <div className={styles.textSection}>
                         <h2 className={styles.sectionTitle}>Our Vision</h2>
                         <p className={styles.sectionContent}>
-                            To become a global leader in providing innovative and tailored solutions that empower businesses to achieve their goals, driving excellence and long-term success in every industry we serve.
+                            To become a leading global platform connecting talent with opportunities, fostering growth and excellence in every industry we serve.
                         </p>
                     </div>
                     <div className={styles.imageSection}>
@@ -53,7 +53,7 @@ const Home = () => {
                     <div className={styles.textSection}>
                         <h2 className={styles.sectionTitle}>Our Mission</h2>
                         <p className={styles.sectionContent}>
-                            To deliver exceptional value to our clients by offering cutting-edge recruitment, talent management, and operations optimization services that align with their unique needs, fostering a culture of growth, collaboration, and sustainability.
+                            To empower individuals and organizations by bridging the gap between talent and opportunities, delivering impactful and sustainable growth solutions.
                         </p>
                     </div>
                 </div>
@@ -64,21 +64,21 @@ const Home = () => {
                 <h2 className={styles.sectionTitle}>Our Services</h2>
                 <div className={styles.servicesContainer}>
                     <div className={styles.service}>
-                        <h3 className={styles.serviceTitle}>Recruitment</h3>
+                        <h3 className={styles.serviceTitle}>Talent Acquisition</h3>
                         <p className={styles.serviceDescription}>
                             We specialize in identifying top talent and matching them with the right opportunities across various industries.
                         </p>
                     </div>
                     <div className={styles.service}>
-                        <h3 className={styles.serviceTitle}>Talent Management</h3>
+                        <h3 className={styles.serviceTitle}>Skill Development</h3>
                         <p className={styles.serviceDescription}>
-                            Our talent management services focus on developing employees' skills, retention strategies, and performance optimization.
+                            Offering tailored programs to upskill and reskill individuals, preparing them for the future of work.
                         </p>
                     </div>
                     <div className={styles.service}>
-                        <h3 className={styles.serviceTitle}>Operations Optimization</h3>
+                        <h3 className={styles.serviceTitle}>Career Advancement</h3>
                         <p className={styles.serviceDescription}>
-                            We help businesses streamline their operations, improve efficiency, and reduce costs through innovative solutions.
+                            Helping professionals advance in their careers through guidance, training, and mentorship programs.
                         </p>
                     </div>
                 </div>
@@ -89,15 +89,14 @@ const Home = () => {
                 <h2 className={styles.sectionTitle}>Why Choose Us?</h2>
                 <div className={styles.whyChooseUsContainer}>
                     <div className={styles.whyChooseUsContent}>
-                        <h3>Our Commitment to Excellence</h3>
                         <p>
-                            At Gyde Solutions, we believe in providing value-driven services. Our unique blend of expertise, collaboration, and technology sets us apart in the industry. Here are a few reasons why businesses choose us:
+                            At Talent96, we believe in transforming potential into performance. Here’s why you should partner with us:
                         </p>
                         <ul>
-                            <li>Proven track record of success</li>
-                            <li>Customized solutions tailored to your business needs</li>
-                            <li>Expert consultants with extensive industry experience</li>
-                            <li>Commitment to long-term relationships and client success</li>
+                            <li>Proven expertise in talent identification and management</li>
+                            <li>Tailored solutions for businesses and individuals</li>
+                            <li>Dedicated team of consultants and coaches</li>
+                            <li>Long-term commitment to client success</li>
                         </ul>
                     </div>
                     <div className={styles.whyChooseUsImage}>
@@ -108,51 +107,6 @@ const Home = () => {
                         />
                     </div>
                 </div>
-            </div>
-
-           {/* Our Solutions Section */}
-<div className={styles.solutionsSection}>
-    <h2 className={styles.sectionTitle}>Our Solutions</h2>
-    <div className={styles.solutionsContainer}>
-        <div className={styles.solutionCard}>
-            <h3 className={styles.solutionTitle}>Talent Gyde</h3>
-            <p className={styles.solutionDescription}>
-                Connecting Right Talent to Right Opportunity
-            </p>
-            <button className={styles.learnMoreButton}>Learn More</button>
-        </div>
-        <div className={styles.solutionCard}>
-            <h3 className={styles.solutionTitle}>Human Resource</h3>
-            <p className={styles.solutionDescription}>
-                Unlocking the Power of HR to Fuel Your Success
-            </p>
-            <button className={styles.learnMoreButton}>Learn More</button>
-        </div>
-        <div className={styles.solutionCard}>
-            <h3 className={styles.solutionTitle}>Launch Pad</h3>
-            <p className={styles.solutionDescription}>
-                Train and Deploy - Nurturing Talent, Amplifying Impact
-            </p>
-            <button className={styles.learnMoreButton}>Learn More</button>
-        </div>
-        <div className={styles.solutionCard}>
-            <h3 className={styles.solutionTitle}>Operations Excellence</h3>
-            <p className={styles.solutionDescription}>
-                Empowering Organizations to Reach New Heights
-            </p>
-            <button className={styles.learnMoreButton}>Learn More</button>
-        </div>
-    </div>
-</div>
-
-
-            {/* Contact Us Section */}
-            <div className={styles.contactUsSection}>
-                <h2 className={styles.sectionTitle}>Get In touch</h2>
-                <p>
-                    Interested in learning more about our services or discussing how we can help your business? Get in touch with us today!
-                </p>
-                <button className={styles.contactButton}>Contact Us</button>
             </div>
 
         </div>
