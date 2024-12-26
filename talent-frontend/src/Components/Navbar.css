@@ -109,6 +109,9 @@ header {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  width: 30px;
+  height: 24px;
+  justify-content: space-between; /* Ensure proper spacing between bars */
 }
 
 .hamburger-icon .bar {
@@ -119,17 +122,19 @@ header {
   transition: all 0.3s ease;
 }
 
-.hamburger-icon .bar:nth-child(1) {
-  transform-origin: top left;
+.hamburger-icon.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
 }
 
-.hamburger-icon .bar:nth-child(2) {
-  transform-origin: center;
+.hamburger-icon.open .bar:nth-child(2) {
+  opacity: 0;
 }
 
-.hamburger-icon .bar:nth-child(3) {
-  transform-origin: bottom left;
+.hamburger-icon.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
+
+
 
 .hamburger-icon .close-icon {
   font-size: 30px;
@@ -265,7 +270,6 @@ header {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: #f0f0f0;
   }
 
   .navbar-logo {
