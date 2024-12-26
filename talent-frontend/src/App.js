@@ -17,43 +17,46 @@ import CreateProfile from './Components/CreateProfile';
 import StepperForm from './Components/Post A Job/StepperForm';
 import Page2 from './Components/Post A Job/Page2';
 import Page3 from './Components/Post A Job/Page3';
-import {Footer} from './Components/Footer';  
+import { Footer } from './Components/Footer';
+import { UserProvider } from './Components/UserContext';
 
 function App() {
-  const [user, setUser] = useState(null); 
-  const [isNavbarTwo, setIsNavbarTwo] = useState(false); 
+  const [user, setUser] = useState(null);
+  const [isNavbarTwo, setIsNavbarTwo] = useState(false);
 
   return (
     <Router>
-      <div>
-        {isNavbarTwo ? (
-          <Navbar2 />
-        ) : (
-          <Navbar user={user} setUser={setUser} setIsNavbarTwo={setIsNavbarTwo} />
-        )}
+      <UserProvider>
+        <div>
+          {isNavbarTwo ? (
+            <Navbar2 />
+          ) : (
+            <Navbar key={user ? user.id : null} user={user} setUser={setUser} setIsNavbarTwo={setIsNavbarTwo} />
+          )}
 
-        <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/client-programs" element={<ClientPrograms />} />
-          <Route path="/referral-program" element={<ReferralProgram />} />
-          <Route path="/fresher-recruiting" element={<FresherRecruiting />} />
-          <Route path="/Choosing" element={<Choosing setIsNavbarTwo={setIsNavbarTwo} />} />
-          <Route path="/Signin_up" element={<Signin_up setUser={setUser} />} />
-          <Route path="/Recruiter_signin_up" element={<Recruiter_signin_up />} />
-          <Route path="/signin" element={<Signin_up setUser={setUser} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-profile" element={<CreateProfile />} />
-          <Route path="/post-a-job" element={<StepperForm />} />
-          <Route path="/Page2" element={<Page2 />} />
-          <Route path="/Page3" element={<Page3 />} />
-          <Route path="*" element={<Home />} /> 
-        </Routes>
-        <Footer />
+          <Routes>
+            <Route path="/Home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/client-programs" element={<ClientPrograms />} />
+            <Route path="/referral-program" element={<ReferralProgram />} />
+            <Route path="/fresher-recruiting" element={<FresherRecruiting />} />
+            <Route path="/Choosing" element={<Choosing setIsNavbarTwo={setIsNavbarTwo} />} />
+            <Route path="/Signin_up" element={<Signin_up setUser={setUser} />} />
+            <Route path="/Recruiter_signin_up" element={<Recruiter_signin_up setUser={setUser} />} />
+            <Route path="/signin" element={<Signin_up setUser={setUser} />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/create-profile" element={<CreateProfile />} />
+            <Route path="/post-a-job" element={<StepperForm />} />
+            <Route path="/Page2" element={<Page2 />} />
+            <Route path="/Page3" element={<Page3 />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+          <Footer />
 
-      </div>
+        </div>
+      </UserProvider>
     </Router>
   );
 }

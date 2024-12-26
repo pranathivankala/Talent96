@@ -1,33 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect,useContext  } from 'react';
+import { Link ,useNavigate} from 'react-router-dom';
 import './Navbar.css';
+import UserContext from './UserContext';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
+  const { user, setUser } = useContext(UserContext); 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const navigate = useNavigate();
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
   const closeMenus = () => {
     setMenuOpen(false);
     setProfileMenuOpen(false);
   };
 
-  const handleLogin = () => {
-    setUser({
-      name: 'John Doe',
-      profilePhoto:
-        'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
-    });
-    closeMenus();
-  };
-
   const handleLogout = () => {
     setUser(null);
     closeMenus();
+    navigate('/signin_up');
   };
 
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -51,7 +45,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div
-          className={`hamburger-icon ${menuOpen ? 'open' : ''}`} // Fixed interpolation syntax
+          className={`hamburger-icon ${menuOpen ? 'open' : ''}`} 
           onClick={toggleMenu}
           aria-expanded={menuOpen}
           aria-controls="navbar-links"
@@ -60,7 +54,7 @@ const Navbar = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}> {/* Fixed interpolation syntax */}
+        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}> 
           <li>
             <Link to="/Home" onClick={closeMenus}>
               Home
@@ -70,7 +64,7 @@ const Navbar = () => {
             <button
               className="dropbtn"
               onClick={(e) => {
-                e.stopPropagation(); // Prevent menu closure
+                e.stopPropagation(); 
                 toggleMenu();
               }}
             >
@@ -97,7 +91,7 @@ const Navbar = () => {
               <div className="profile">
                 <img
                   src={user.profilePhoto}
-                  alt={`${user.name}'s profile`} // Fixed interpolation syntax
+                  alt={`${user.name}'s profile`} 
                   className="profile-photo"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -105,7 +99,7 @@ const Navbar = () => {
                   }}
                 />
                 <div
-                  className={`profile-dropdown ${profileMenuOpen ? 'show' : ''}`} // Fixed interpolation syntax
+                  className={`profile-dropdown ${profileMenuOpen ? 'show' : ''}`} 
                 >
                   <Link to="/profile" onClick={closeMenus}>
                     Your Profile
@@ -116,7 +110,7 @@ const Navbar = () => {
             </li>
           ) : (
             <li>
-              <Link to="/Choosing" onClick={handleLogin}>
+              <Link to="/Choosing" >
                 Login
               </Link>
             </li>

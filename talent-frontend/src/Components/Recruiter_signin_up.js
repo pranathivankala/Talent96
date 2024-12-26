@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  
+import UserContext from './UserContext';  
 import './Signin_up.css';
 
 function Recruiter_signin_up() {
+    const { setUser } = useContext(UserContext);  
     const [logincompanyemail, setLogincompanyemail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-
+    
         const loginData = {
             companyemail: logincompanyemail,
             password: loginPassword,
         };
-
+    
         axios.post('http://localhost:3001/Recruiters_Login', loginData)
             .then(result => {
                 console.log("Login successful:", result);
+                setUser(result.data.recruiter); 
                 navigate('/Home');
             })
             .catch(err => {
@@ -29,7 +32,7 @@ function Recruiter_signin_up() {
                 }
             });
     };
-
+    
     const [fullname, setfullname] = useState('');
     const [companyemail, setcompanyemail] = useState('');
     const [companyname, setcompanyname] = useState('');
