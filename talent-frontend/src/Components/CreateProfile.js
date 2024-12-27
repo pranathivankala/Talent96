@@ -15,7 +15,7 @@ const CreateProfile = () => {
     name: '',
     email: '',
     phone: '',
-    gender: 'Male',
+    gender: '',
     dob: '',
     languages: '',
     education: {
@@ -24,8 +24,8 @@ const CreateProfile = () => {
       school: { institution: '', year: '', cgpa: '' },
       pg: { institution: '', year: '', cgpa: '' }
     },
-    industry: 'IT',
-    role: 'Developer',
+    industry: '',
+    role: '',
     resume: null
   });
 
@@ -166,7 +166,7 @@ const CreateProfile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label>Gender:</label>
-                <select required>
+                <select name="gender" value={formData.gender} onChange={handleInputChange} required>
                   <option value="select">select your Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -253,6 +253,9 @@ const CreateProfile = () => {
               <h2>Education</h2>
 
               <div className={styles.formGroup}>
+
+                <label>Institution UG:</label>
+                <input type="text" name="ugInstitution" value={formData.education.ug.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, institution: e.target.value},},})}required />
                 <label>UG College Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
@@ -262,6 +265,8 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
+                <label>Institution College:</label>
+                <input type="text" name="collegeInstitution" value={formData.education.college.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, institution: e.target.value},},})}required />
                 <label>College Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
@@ -271,6 +276,8 @@ const CreateProfile = () => {
               </div>
 
               <div className={styles.formGroup}>
+                <label>Institution School:</label>
+                <input type="text" name="schoolInstitution" value={formData.education.school.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, institution: e.target.value},},})}required />
                 <label> School Name:</label>
                 <input type="text" required />
                 <label>Passout Year:</label>
@@ -296,7 +303,7 @@ const CreateProfile = () => {
               <h2>Career Profile</h2>
               <div className={styles.formGroup}>
                 <label>Industry:</label>
-                <select required>
+                <select name="Industry" value={formData.industry} onChange={handleInputChange} required>
                 <option value='select'>Select your Industry....</option>
                   <option value="IT">IT</option>
                   <option value="Healthcare">Healthcare</option>
@@ -305,7 +312,7 @@ const CreateProfile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label>Role:</label>
-                <select required>
+                <select name="role" value={formData.role} onChange={handleInputChange} required>
                   <option value='select'>Select your Role....</option>
                   <option value="Developer">Developer</option>
                   <option value="Manager">Manager</option>

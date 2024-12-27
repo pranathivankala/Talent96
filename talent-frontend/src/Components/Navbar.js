@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect,useContext  } from 'react';
+import { Link ,useNavigate} from 'react-router-dom';
 import './Navbar.css';
+import UserContext from './UserContext';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Controls login state
-  const [userName, setUserName] = useState('User'); 
-  const [profileImage, setProfileImage] = useState('path_to_default_profile_image');
-
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const { user, setUser } = useContext(UserContext); 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const closeMenus = () => setMenuOpen(false);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false); 
-    window.location.reload();
-    setMenuOpen(false); 
+  const navigate = useNavigate();
+  const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setProfileMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    closeMenus();
+    navigate('/signin_up');
+  };
+
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         !event.target.closest('.navbar') &&
+        !event.target.closest('.profile-dropdown') &&
         !event.target.closest('.dropdown-content')
       ) {
         closeMenus();
@@ -39,7 +45,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div
-          className={`hamburger-icon ${menuOpen ? 'open' : ''}`}
+          className={`hamburger-icon ${menuOpen ? 'open' : ''}`} 
           onClick={toggleMenu}
           aria-expanded={menuOpen}
           aria-controls="navbar-links"
@@ -48,7 +54,7 @@ const Navbar = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        <ul id="navbar-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}> 
           <li>
             <Link to="/Home" onClick={closeMenus}>
               Home
@@ -58,11 +64,11 @@ const Navbar = () => {
             <button
               className="dropbtn"
               onClick={(e) => {
-                e.stopPropagation(); // Prevent menu closure
+                e.stopPropagation(); 
                 toggleMenu();
               }}
             >
-              Our Programs▼
+              Our Programs ▼
             </button>
             <div className="dropdown-content">
               <Link to="/client-programs" onClick={closeMenus}>
@@ -80,34 +86,31 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          {isLoggedIn ? (
-            <li className="dropdown">
-              <button
-                className="profile-btn"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent menu closure
-                  toggleMenu();
-                }}
-              >
+          {user ? (
+            <li className="profile-menu">
+              <div className="profile">
                 <img
-                  src={profileImage}
-                  alt="Profile"
-                  className="profile-image"
+                  src={user.profilePhoto}
+                  alt={`${user.name}'s profile`} 
+                  className="profile-photo"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleProfileMenu();
+                  }}
                 />
-                {userName}
-              </button>
-              <div className="dropdown-content">
-                <Link to="/profile" onClick={closeMenus}>
-                  Profile
-                </Link>
-                <button onClick={handleLogout} className="logout-btn">
-                  Logout
-                </button>
+                <div
+                  className={`profile-dropdown ${profileMenuOpen ? 'show' : ''}`} 
+                >
+                  <Link to="/profile" onClick={closeMenus}>
+                    Your Profile
+                  </Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
               </div>
             </li>
           ) : (
             <li>
-              <Link to="/Choosing" onClick={closeMenus}>
+              <Link to="/Choosing" >
                 Login
               </Link>
             </li>

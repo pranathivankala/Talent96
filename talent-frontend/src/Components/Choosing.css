@@ -65,7 +65,7 @@
   }
   
   .card1 button, .card2 button {
-    background-color: #3e4aec;
+    background-color:  #FFA500; ;
     color: white;
     border: none;
     padding: 10px 50px;
@@ -77,10 +77,13 @@
   }
   
   .card1 button:hover, .card2 button:hover {
-    background-color: #3b3da8;
+    background-color:  #FFA500; ;
   }
   
   @media (max-width: 768px) {
+    .bigcard{
+      margin-bottom: 1rem;
+    }
     .card-container {
       flex-direction: column;
       align-items: center;

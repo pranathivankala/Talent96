@@ -40,8 +40,7 @@ const RecruiterSchema = new mongoose.Schema({
   fullname: { type: String, required: true },
   companyemail: { type: String, required: true, unique: true, match: /\S+@\S+\.\S+/ },
   companyname: { type: String, required: true },
-  password: { type: String, required: true, minlength: 6 },
-  companyLogo: { type: String },
+  password: { type: String, required: true, minlength: 6 }
 });
 
 const Recruiter = mongoose.model("Recruiter", RecruiterSchema, "Recruiters_Register");
@@ -113,8 +112,47 @@ app.post("/Users_Login", async (req, res) => {
     res.status(500).json({ message: "Login failed", error: err.message });
   }
 });
+// Recruiter Registration
+app.post("/Recruiters_Register", async (req, res) => {
+  const { fullname, companyemail, companyname, password } = req.body;
 
-<<<<<<< HEAD
+  try {
+    const existingRecruiter = await Recruiter.findOne({ companyemail });
+    if (existingRecruiter)
+      return res.status(400).json({ message: "Email already registered" });
+
+    const newRecruiter = new Recruiter({
+      fullname,
+      companyemail,
+      companyname,
+      password,
+    });
+
+    await newRecruiter.save();
+    res.status(201).json({ message: "Recruiter registered successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Registration failed", error: err.message });
+  }
+});
+// Recruiter Login
+app.post("/Recruiters_Login", async (req, res) => {
+  const { companyemail, password } = req.body;
+
+  try {
+    const recruiter = await Recruiter.findOne({ companyemail });
+    if (!recruiter)
+      return res.status(404).json({ message: "Recruiter not found" });
+
+    if (recruiter.password !== password)
+      return res.status(400).json({ message: "Invalid password" });
+
+    res.status(200).json({ message: "Login successful", recruiter });
+  } catch (err) {
+    res.status(500).json({ message: "Login failed", error: err.message });
+  }
+});
+
+
 // Profile Schema
 const profileSchema = new mongoose.Schema({
   name: String,
@@ -204,10 +242,6 @@ app.get('/profiles/:email', async (req, res) => {
   }
 });
  
-// Server Listening
-app.listen(3001, () => {
-  console.log("Server is running ....");
-=======
 // Job Posting (Recruiters)
 app.post("/job_posts", async (req, res) => {
   console.log("Request Body:", req.body);
@@ -219,7 +253,6 @@ app.post("/job_posts", async (req, res) => {
     console.error("Error:", err.message); 
     res.status(400).json({ message: "Error posting job", error: err.message });
   }
->>>>>>> eb3b0aaf99385e131d5652e29f97db8e25349cab
 });
 
 
