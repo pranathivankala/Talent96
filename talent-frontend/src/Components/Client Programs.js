@@ -2,62 +2,118 @@ import React from 'react';
 import './ClientPrograms.css'; // Import the CSS file for styling
 
 const ClientPrograms = () => {
+  const skills = [
+    {
+      src: '/mobile.mp4',
+      type: 'video',
+      alt: 'Mobile Applications',
+      name: 'Mobile Applications',
+      description: [
+        'Learn to build cutting-edge mobile apps.',
+        'Master platforms like iOS and Android.',
+      ],
+    },
+    {
+      src: '/newfrontend.mp4',
+      type: 'video',
+      alt: 'Frontend Developer',
+      name: 'Frontend Developer',
+      description: [
+        'Create stunning user interfaces.',
+        'Master HTML, CSS, and JavaScript frameworks.',
+      ],
+    },
+    {
+      src: '/backend.mp4',
+      type: 'video',
+      alt: 'Backend Developer',
+      name: 'Backend Developer',
+      description: [
+        'Develop robust server-side applications.',
+        'Work with databases and APIs effectively.',
+      ],
+    },
+    {
+      src: '/newdevops.mp4',
+      type: 'video',
+      alt: 'DevOps',
+      name: 'DevOps',
+      description: [
+        'Streamline development and deployment processes.',
+        'Implement CI/CD pipelines and automation.',
+      ],
+    },
+    {
+      src: '/data.mp4',
+      type: 'video',
+      alt: 'Analytics & Data Science',
+      name: 'Analytics & Data Science',
+      description: [
+        'Analyze and interpret complex datasets.',
+        'Use tools like Python, R, and machine learning.',
+      ],
+    },
+    {
+      src: '/tech.mp4',
+      type: 'video',
+      alt: 'Emerging Technologies',
+      name: 'Emerging Technologies',
+      description: [
+        'Stay ahead with the latest tech trends.',
+        'Explore AI, blockchain, and IoT solutions.',
+      ],
+    },
+    {
+      src: '/newcloud.mp4',
+      type: 'video',
+      alt: 'Cloud Computing',
+      name: 'Cloud Computing',
+      description: [
+        'Master cloud platforms like AWS and Azure.',
+        'Learn to deploy scalable applications.',
+      ],
+    },
+    {
+      src: '/newuiux.mp4',
+      type: 'video',
+      alt: 'UI/UX Designer',
+      name: 'UI/UX Designer',
+      description: [
+        'Design intuitive and engaging user experiences.',
+        'Learn tools like Figma and Adobe XD.',
+      ],
+    },
+    {
+      src: '/cyber.mp4',
+      type: 'video',
+      alt: 'Cyber Security',
+      name: 'Cyber Security',
+      description: [
+        'Protect systems from cyber threats.',
+        'Learn ethical hacking and network security.',
+      ],
+    },
+  ];
+
   return (
     <div className="skill-container">
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://w7.pngwing.com/pngs/603/457/png-transparent-mobile-marketing-mobile-app-development-smartphone-computer-icons-smartphone-electronics-search-engine-optimization-mobile-phone-case.png" alt="Mobile Applications" />
-        </span>
-        <span className="skill-name">Mobile Applications</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://static.vecteezy.com/system/resources/previews/012/854/443/original/frontend-development-icon-style-vector.jpg" alt="Frontend Developer" />
-        </span>
-        <span className="skill-name">Frontend Developer</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://static.vecteezy.com/system/resources/previews/012/854/182/large_2x/backend-development-icon-style-vector.jpg" alt="Backend Developer" />
-        </span>
-        <span className="skill-name">Backend Developer</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://static.vecteezy.com/system/resources/previews/035/371/295/non_2x/devops-icon-illustration-free-vector.jpg" alt="DevOps" />
-        </span>
-        <span className="skill-name">DevOps</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://tse3.mm.bing.net/th?id=OIP.PVjKFY3NjjWuN-sxW80DmAHaHa&pid=Api&P=0&h=180" alt="Analytics & Data Science" />
-        </span>
-        <span className="skill-name">Analytics & Data Science</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://static.vecteezy.com/system/resources/previews/006/298/276/non_2x/gear-smart-eps-icon-digital-tech-business-logo-free-vector.jpg" alt="Emerging Technologies" />
-        </span>
-        <span className="skill-name">Emerging Technologies</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://thumbs.dreamstime.com/b/cloud-computing-icon-vector-isolated-white-background-your-web-mobile-app-design-cloud-computing-logo-concept-cloud-134561517.jpg" alt="Cloud Computing" />
-        </span>
-        <span className="skill-name">Cloud Computing</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="https://cdn1.iconfinder.com/data/icons/digital-marketing-76/64/UX-UI-Design-interface-512.png" alt="UI/UX Designer" />
-        </span>
-        <span className="skill-name">UI/UX Designer</span>
-      </div>
-      <div className="skill-item">
-        <span className="skill-icon">
-          <img src="http://getdrawings.com/free-icon-bw/cyber-security-icon-3.png" alt="Cyber Security" />
-        </span>
-        <span className="skill-name">Cyber Security</span>
-      </div>
+      {skills.map((skill, index) => (
+        <div className="skill-item" key={index}>
+          <span className="skill-icon">
+            {skill.type === 'video' ? (
+              <video src={skill.src} alt={skill.alt} autoPlay loop muted />
+            ) : (
+              <img src={skill.src} alt={skill.alt} />
+            )}
+          </span>
+          <span className="skill-name">{skill.name}</span>
+          <span className="skill-description">
+            {skill.description.map((line, idx) => (
+              <p key={idx}>{line}</p>
+            ))}
+          </span>
+        </div>
+      ))}
     </div>
   );
 };
