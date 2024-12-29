@@ -164,11 +164,11 @@ const CreateProfile = () => {
                 <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
               </div>
               <div className={styles.formGroup}>
-                <label>Email:</label>
+                <label>Email: <span className={styles.required}>*</span></label>
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} required /> 
               </div>
               <div className={styles.formGroup}>
-                <label>Phone:</label>
+                <label>Phone: <span className={styles.required}>*</span></label>
                 <input type="number" name="phone" value={formData.phone} onChange={handleInputChange} required />
               </div>
               <div className={styles.formGroup}>
@@ -194,7 +194,7 @@ const CreateProfile = () => {
           {/* Resume Information */}
           <div id="resumeInfo" className={styles.section}>
             <div className={styles.sectionWrapper}>
-              <h2>Resume Information</h2>
+              <h2>Resume Information <span className={styles.required}>*</span></h2>
               <div className={styles.formGroup}>
                 <label htmlFor="resumeUpload" className={styles.label}>Upload Resume:</label>
                 <input
@@ -219,7 +219,7 @@ const CreateProfile = () => {
           {/* Key Skills */}
           <div id="keySkills" className={styles.section}>
             <div className={styles.sectionWrapper}>
-              <h2>Key Skills</h2>
+              <h2>Key Skills <span className={styles.required}>*</span></h2>
               <div className={styles.formGroup}>
                 <label htmlFor="skillInput">Required Skills</label>
                 <div>
@@ -402,7 +402,7 @@ const CreateProfile = () => {
           {/* Projects Section */}
           <div id="projects" className={styles.section}>
             <div className={styles.sectionWrapper}>
-              <h2>Projects</h2>
+              <h2>Projects <span className={styles.required}>*</span></h2>
               <div className={styles.formGroup}>
                 <label>Project Title:</label>
                 <input

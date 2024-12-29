@@ -67,6 +67,11 @@ input[type="date"], input[type="email"], input[type="number"], input[type="text"
   background-color: #fff;
 }
 
+.required {
+  color: rgb(209, 14, 14);
+}
+
+
 .saveButtonSection {
   display: flex;
   justify-content: center;
