@@ -19,10 +19,10 @@ const CreateProfile = () => {
     dob: '',
     languages: '',
     education: {
-      ug: { institution: '', year: '', cgpa: '' },
-      college: { institution: '', year: '', cgpa: '' },
-      school: { institution: '', year: '', cgpa: '' },
-      pg: { institution: '', year: '', cgpa: '' }
+      ug: { institution: '',collegeName:'', year: '', cgpa: '' },
+      college: { institution: '',collegeName:'', year: '', cgpa: '' },
+      school: { institution: '',schoolName:'' ,year: '', cgpa: '' },
+      pg: { institution: '',collegeName:'', year: '', cgpa: '' }
     },
     industry: '',
     role: '',
@@ -94,7 +94,14 @@ const CreateProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append('profilePhoto', profilePhoto);
+
+    const photo = profilePhoto.includes('data:image') ? profilePhoto : null; // Check if profile photo is base64, otherwise set to null.
+
+    if (photo) {
+      data.append('profilePhoto', photo);
+    }
+    
+    // data.append('profilePhoto', profilePhoto);
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('phone', formData.phone);
@@ -114,14 +121,14 @@ const CreateProfile = () => {
     try {
     await axios.post('http://localhost:3001/profiles', data, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         }
       });
-       alert('Profile created successfully!');
+       alert('Profile created successfully!'); 
     } catch (error) {
       console.error('Error creating profile:', error);
       alert('Failed to create profile.');
-    }
+    } 
   };
 
   return (
@@ -153,7 +160,7 @@ const CreateProfile = () => {
             <div className={styles.sectionWrapper}>
               <h2>Personal Information</h2>
               <div className={styles.formGroup}>
-                <label>Name:</label>
+                <label>Name: <span className={styles.required}>*</span></label>
                 <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
               </div>
               <div className={styles.formGroup}>
@@ -257,7 +264,7 @@ const CreateProfile = () => {
                 <label>Institution UG:</label>
                 <input type="text" name="ugInstitution" value={formData.education.ug.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, institution: e.target.value},},})}required />
                 <label>UG College Name:</label>
-                <input type="text" required />
+                <input type="text" name="ugCollegeName" value={formData.education.ug.collegeName} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, collegeName: e.target.value},},})}required />
                 <label>Passout Year:</label>
                 <input type="number" name="ugpassoutyear" value={formData.education.ug.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -268,7 +275,7 @@ const CreateProfile = () => {
                 <label>Institution College:</label>
                 <input type="text" name="collegeInstitution" value={formData.education.college.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, institution: e.target.value},},})}required />
                 <label>College Name:</label>
-                <input type="text" required />
+                <input type="text" name="collegeCollegeName" value={formData.education.college.collegeName} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, collegeName: e.target.value},},})}required />
                 <label>Passout Year:</label>
                 <input type="number" name="collegepassoutyear" value={formData.education.college.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -279,7 +286,7 @@ const CreateProfile = () => {
                 <label>Institution School:</label>
                 <input type="text" name="schoolInstitution" value={formData.education.school.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, institution: e.target.value},},})}required />
                 <label> School Name:</label>
-                <input type="text" required />
+                <input type="text" name="schoolSchoolName" value={formData.education.school.schoolName} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, schoolName: e.target.value},},})}required />
                 <label>Passout Year:</label>
                 <input type="number" name="schoolpassoutyear" value={formData.education.school.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -289,6 +296,8 @@ const CreateProfile = () => {
               <div className={styles.formGroup}>
                 <label>Institution PG(optional):</label>
                 <input type="text" name="pgInstitution" value={formData.education.pg.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,pg: {...formData.education.pg, institution: e.target.value},},})}required />
+                <label> College Name:</label>
+                <input type="text" name="pgCollegeName" value={formData.education.pg.collegeName} onChange={(e)=> setFormData({...formData,education:{...formData.education,pg: {...formData.education.pg, collegeName: e.target.value},},})}required />
                 <label>Passout Year:</label>
                 <input type="number" name="pgpassoutyear" value={formData.education.pg.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,pg: {...formData.education.pg, passoutyear: e.target.value},},})} required />
                 <label>CGPA:</label>
@@ -303,7 +312,7 @@ const CreateProfile = () => {
               <h2>Career Profile</h2>
               <div className={styles.formGroup}>
                 <label>Industry:</label>
-                <select name="Industry" value={formData.industry} onChange={handleInputChange} required>
+                <select name="industry" value={formData.industry} onChange={handleInputChange} required>
                 <option value='select'>Select your Industry....</option>
                   <option value="IT">IT</option>
                   <option value="Healthcare">Healthcare</option>
