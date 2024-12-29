@@ -15,7 +15,7 @@ const Profile = () => {
 
     // Fetching data from backend (replace the URL with your actual endpoint)
     useEffect(() => {
-      fetch('http://localhost:3001/profiles/your-email@example.com')  // Adjust the URL to your backend endpoint
+      fetch('http://localhost:3001/profiles/:email')  // Adjust the URL to your backend endpoint
         .then((response) => response.json())
         .then((data) => {
           // Set the state with the data from the backend

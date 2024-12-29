@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
+const path = require("path");
 
 const app = express();
 
@@ -21,8 +22,16 @@ mongoose.connect("mongodb://localhost:27017/Talent96", {
 mongoose.connection.on("connected", () => console.log("MongoDB connected"));
 mongoose.connection.on("error", (err) => console.error("MongoDB connection error:", err));
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "uploads"));
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+const upload = multer({ storage: storage });
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -40,7 +49,8 @@ const RecruiterSchema = new mongoose.Schema({
   fullname: { type: String, required: true },
   companyemail: { type: String, required: true, unique: true, match: /\S+@\S+\.\S+/ },
   companyname: { type: String, required: true },
-  password: { type: String, required: true, minlength: 6 }
+  password: { type: String, required: true, minlength: 6 },
+  companyLogo: { type: String },
 });
 
 const Recruiter = mongoose.model("Recruiter", RecruiterSchema, "Recruiters_Register");
@@ -112,51 +122,11 @@ app.post("/Users_Login", async (req, res) => {
     res.status(500).json({ message: "Login failed", error: err.message });
   }
 });
-// Recruiter Registration
-app.post("/Recruiters_Register", async (req, res) => {
-  const { fullname, companyemail, companyname, password } = req.body;
-
-  try {
-    const existingRecruiter = await Recruiter.findOne({ companyemail });
-    if (existingRecruiter)
-      return res.status(400).json({ message: "Email already registered" });
-
-    const newRecruiter = new Recruiter({
-      fullname,
-      companyemail,
-      companyname,
-      password,
-    });
-
-    await newRecruiter.save();
-    res.status(201).json({ message: "Recruiter registered successfully" });
-  } catch (err) {
-    res.status(500).json({ message: "Registration failed", error: err.message });
-  }
-});
-// Recruiter Login
-app.post("/Recruiters_Login", async (req, res) => {
-  const { companyemail, password } = req.body;
-
-  try {
-    const recruiter = await Recruiter.findOne({ companyemail });
-    if (!recruiter)
-      return res.status(404).json({ message: "Recruiter not found" });
-
-    if (recruiter.password !== password)
-      return res.status(400).json({ message: "Invalid password" });
-
-    res.status(200).json({ message: "Login successful", recruiter });
-  } catch (err) {
-    res.status(500).json({ message: "Login failed", error: err.message });
-  }
-});
-
 
 // Profile Schema
 const profileSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: { type: String, required: true, unique: true },
   phone: String,
   gender: String,
   dob: String,
@@ -177,10 +147,10 @@ const profileSchema = new mongoose.Schema({
     }
   ],
   education: {
-    ug: { institution: String, year: String, cgpa: String },
-    college: { institution: String, year: String, cgpa: String },
-    school: { institution: String, year: String, cgpa: String },
-    pg: { institution: String, year: String, cgpa: String }
+    ug: {institution: String, collegeName: String, passoutyear: String, cgpa: String },
+    college: {institution: String, collegeName: String, passoutyear: String, cgpa: String },
+    school: { institution: String,schoolName: String, passoutyear: String, cgpa: String },
+    pg: { institution: String,collegeName: String, passoutyear: String, cgpa: String },
   },
   industry: String,
   role: String,
@@ -205,7 +175,7 @@ app.post('/profiles', upload.fields([{ name: 'profilePhoto', maxCount: 1 }, { na
       gender,
       dob,
       languages,
-      skills: JSON.parse(skills), // Convert stringified skills to array
+      skills: JSON.parse(skills), 
       experience: JSON.parse(experience),
       projects: JSON.parse(projects),
       education: JSON.parse(education),
@@ -235,7 +205,7 @@ app.get('/profiles/:email', async (req, res) => {
       return res.status(404).json({ message: 'Profile not found' });
     }
     
-    res.json(profile);  
+    res.json(Profile);  
   } catch (err) {
     console.error('Error fetching profile:', err);
     res.status(500).json({ message: 'Error fetching profile' });
