@@ -175,7 +175,7 @@ app.post('/profiles', upload.fields([{ name: 'profilePhoto', maxCount: 1 }, { na
       gender,
       dob,
       languages,
-      skills: JSON.parse(skills), // Convert stringified skills to array
+      skills: JSON.parse(skills), 
       experience: JSON.parse(experience),
       projects: JSON.parse(projects),
       education: JSON.parse(education),
@@ -192,52 +192,6 @@ app.post('/profiles', upload.fields([{ name: 'profilePhoto', maxCount: 1 }, { na
     res.status(500).json({ message: 'Failed to create profile.' });
   }
 });
-
-// Check if profile already exists
-// const existingProfile = await Profile.findOne({ email });
-// if (existingProfile) {
-//   return res.status(400).json({ message: 'Profile already exists' });
-// }
-
-// // Parse fields safely
-// const parsedSkills = skills ? JSON.parse(skills) : [];
-// const parsedExperience = experience ? JSON.parse(experience) : [];
-// const parsedProjects = projects ? JSON.parse(projects) : [];
-// const parsedEducation = education ? JSON.parse(education) : {};
-
-// const parsedSkills = Array.isArray(skills) ? skills : skills ? JSON.parse(skills) : [];
-// const parsedExperience = Array.isArray(experience) ? experience : experience ? JSON.parse(experience) : [];
-// const parsedProjects = Array.isArray(projects) ? projects : projects ? JSON.parse(projects) : [];
-// const parsedEducation = typeof education === "object" ? education : education ? JSON.parse(education) : {};
-
-// // Handle file uploads
-// const profilePhoto = req.files['profilePhoto'] ? req.files['profilePhoto'][0].path : '';
-// const resume = req.files['resume'] ? req.files['resume'][0].path : '';
-
-// const newProfile = new Profile({
-//   name,
-//   email,
-//   phone,
-//   gender,
-//   dob,
-//   languages,
-//   skills: parsedSkills,
-//   experience: parsedExperience,
-//   projects: parsedProjects,
-//   education: parsedEducation,
-//   industry,
-//   role,
-//   profilePhoto,
-//   resume,
-// });
-
-// await newProfile.save();
-// res.status(200).json({ message: 'Profile created successfully!' });
-// } catch (err) {
-// console.error('Error saving profile:', err);
-// res.status(500).json({ message: 'Failed to create profile.', error: err.message });
-// }
-// });
 
 // Endpoint to get profile data
 app.get('/profiles/:email', async (req, res) => {
