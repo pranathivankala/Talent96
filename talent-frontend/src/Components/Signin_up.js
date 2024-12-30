@@ -5,7 +5,8 @@ import './Signin_up.css';
 import UserContext from './UserContext';
 
 function Signin_up() {
-    const { setUser } = useContext(UserContext); 
+    const { setUser } = useContext(UserContext);
+    const { setUserData } = useContext(UserContext); 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [isSignUpMode, setIsSignUpMode] = useState(false);
@@ -38,6 +39,7 @@ function Signin_up() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
             const formData = new FormData();
             formData.append('username', username);
@@ -46,16 +48,39 @@ function Signin_up() {
             formData.append('mobile', Mobile);
             formData.append('resume', resume);
 
-            await axios.post('http://localhost:3001/Users_Register', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+            const response = await axios.post('http://localhost:3001/Users_Register', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
 
-            navigate('/Home');
-        } catch (err) {
-            if (err.response && err.response.status === 400) {
-                alert(err.response.data.message);
+            if (response.status === 201) {
+                const userData = response.data.user;
+                localStorage.setItem(
+                    'userRegistrationData',
+                    JSON.stringify({
+                        name: userData.username,
+                        email: userData.email,
+                        phone: userData.mobile || '',
+                    })
+                );
+
+                setUserData(userData);
+                setIsSignUpMode(false);
+                setIsSignUpMode2(false);
+                setTimeout(() => {
+                    navigate('/career');
+                }, 1000);
+            } else if (response.status === 409) {
+                alert('User already exists! Redirecting to your profile.');
+
+                navigate('/career');
             } else {
-                console.error(err);
+                alert('Registration failed. Please try again.');
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                alert(error.response.data.message);
+            } else {
+                console.error(error);
             }
         }
     };
@@ -90,23 +115,23 @@ function Signin_up() {
                         </div>
                         <p className="account-text">Don't have an account? <a href="#" onClick={() => setIsSignUpMode2(true)}>Sign up</a></p>
                     </form>
-                    <form className="signup_form" onSubmit={handleSubmit}>
+                    <form className="signup_form" action="/upload" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
                         <h2 className="heading">Sign Up</h2>
                         <div className="enter_field">
                             <i className="fas fa-user"></i>
-                            <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required />
+                            <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} Placeholder="Username" required />
                         </div>
                         <div className="enter_field">
                             <i className="fas fa-envelope"></i>
-                            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+                            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} Placeholder="Email" required />
                         </div>
                         <div className="enter_field">
                             <i className="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} Placeholder="Password" required />
                         </div>
                         <div className="enter_field">
                             <i className="fas fa-phone"></i>
-                            <input type="tel" placeholder="Mobile No." pattern="[0-9]{10}" onChange={(e) => setMobile(e.target.value)} required />
+                            <input type="tel" placeholder="Mobile No." pattern="[0-9]{10}" onChange={(e) => setMobile(e.target.value)} Placeholder="Mobile" required />
                         </div>
                         <div className="enter_field">
                             <i className="fas fa-file-upload"></i>

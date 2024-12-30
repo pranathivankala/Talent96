@@ -46,7 +46,7 @@ function App() {
             <Route path="/Signin_up" element={<Signin_up setUser={setUser} />} />
             <Route path="/Recruiter_signin_up" element={<Recruiter_signin_up setUser={setUser} />} />
             <Route path="/signin" element={<Signin_up setUser={setUser} />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile/>} />
             <Route path="/create-profile" element={<CreateProfile />} />
             <Route path="/post-a-job" element={<StepperForm />} />
             <Route path="/Page2" element={<Page2 />} />

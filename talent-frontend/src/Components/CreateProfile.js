@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './CreateProfile.module.css';
+import { UserContext } from './UserContext'; 
 
 const CreateProfile = () => {
+  const { userData } = useContext(UserContext); // Get the user data from context
+  const navigate = useNavigate();
   const [profilePhoto, setProfilePhoto] = useState("https://via.placeholder.com/150");
   const [skillInput, setSkillInput] = useState('');
   const [requiredSkills, setRequiredSkills] = useState([]);
@@ -10,6 +14,7 @@ const CreateProfile = () => {
   const [projects, setProjects] = useState([]);
   const [newExperience, setNewExperience] = useState({ company: '', role: '', duration: '', salary: '' });
   const [newProject, setNewProject] = useState({ title: '', description: '' });
+  const [resumeFile, setResumeFile] = useState(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -26,8 +31,34 @@ const CreateProfile = () => {
     },
     industry: '',
     role: '',
-    resume: null
   });
+
+  useEffect(() => {
+    if (userData) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        name: userData.username || prevFormData.name,
+        email: userData.email || prevFormData.email,
+        phone: userData.mobile || prevFormData.phone,
+      }));
+    }
+
+    const storedData = localStorage.getItem('userRegistrationData');
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          name: parsedData.name || prevFormData.name,
+          email: parsedData.email || prevFormData.email,
+          phone: parsedData.phone || prevFormData.phone,
+        }));
+        localStorage.removeItem('userRegistrationData');
+      } catch (error) {
+        console.error("Error parsing stored data:", error);
+      }
+    }
+  }, [userData]);
 
   const handleProfilePhotoChange = (e) => {
     const file = e.target.files[0];
@@ -74,27 +105,17 @@ const CreateProfile = () => {
     }
   };
 
-  // Resume change handler
   const handleResumeChange = (e) => {
     if (e.target.files.length > 0) {
-      setFormData({ ...formData, resume: e.target.files[0] });
+      setResumeFile(e.target.files[0]);
       alert(`Uploaded: ${e.target.files[0].name}`);
     }
   };
-  
-  <input
-    type="file"
-    id="resumeUpload"
-    accept=".pdf, .doc, .docx, .rtf"
-    className={styles.fileInput}
-    onChange={handleResumeChange}
-    required
-  />
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append('profilePhoto', profilePhoto);
+    data.append('profilePhoto', profilePhoto === "https://via.placeholder.com/150" ? "" : profilePhoto);
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('phone', formData.phone);
@@ -107,22 +128,33 @@ const CreateProfile = () => {
     data.append('education', JSON.stringify(formData.education));
     data.append('industry', formData.industry);
     data.append('role', formData.role);
-    if (formData.resume) {
-      data.append('resume', formData.resume);
+    if (resumeFile) {
+      data.append('resume', resumeFile);
     }
-
     try {
-    await axios.post('http://localhost:3001/profiles', data, {
+      const response = await axios.post('http://localhost:3001/profiles', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-       alert('Profile created successfully!');
+      alert('Profile created successfully!');
+      navigate('/career');
+      setFormData({
+        name: '', email: '', phone: '', gender: '', dob: '', languages: '',
+        education: { ug: { institution: '', year: '', cgpa: '' }, college: { institution: '', year: '', cgpa: '' }, school: { institution: '', year: '', cgpa: '' }, pg: { institution: '', year: '', cgpa: '' } },
+        industry: '', role: '',
+      });
+      setRequiredSkills([]);
+      setExperience([]);
+      setProjects([]);
+      setProfilePhoto("https://via.placeholder.com/150");
+      setResumeFile(null);
     } catch (error) {
       console.error('Error creating profile:', error);
-      alert('Failed to create profile.');
+      alert(`Failed to create profile: ${error.message || 'Unknown error'}`);
     }
   };
+
 
   return (
     <div className={styles.bigbox}>
@@ -137,12 +169,12 @@ const CreateProfile = () => {
               <h2>Profile Photo</h2>
               <div className={styles.profilePhotoSection}>
                 <img src={profilePhoto} alt="Profile" className={styles.profilePhoto} />
-                <input 
-                  type="file" 
-                  onChange={handleProfilePhotoChange} 
-                  className={styles.fileInput} 
-                  accept="image/*" 
-                  required 
+                <input
+                  type="file"
+                  onChange={handleProfilePhotoChange}
+                  className={styles.fileInput}
+                  accept="image/*"
+                  required
                 />
               </div>
             </div>
@@ -158,7 +190,7 @@ const CreateProfile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleInputChange} required /> 
+                <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               <div className={styles.formGroup}>
                 <label>Phone:</label>
@@ -255,44 +287,87 @@ const CreateProfile = () => {
               <div className={styles.formGroup}>
 
                 <label>Institution UG:</label>
-                <input type="text" name="ugInstitution" value={formData.education.ug.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, institution: e.target.value},},})}required />
-                <label>UG College Name:</label>
                 <input type="text" required />
+                <label>UG College Name:</label>
+                <input type="text" name="ugCollegeName"
+                  value={formData.education.ug.collegeName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      education: {
+                        ...formData.education,
+                        ug: { ...formData.education.ug, collegeName: e.target.value },
+                      },
+                    })
+                  }
+                  required />
                 <label>Passout Year:</label>
-                <input type="number" name="ugpassoutyear" value={formData.education.ug.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, passoutyear: e.target.value},},})} required />
+                <input type="number" name="passoutyear" value={formData.education.ug.passoutyear} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, ug: { ...formData.education.ug, passoutyear: e.target.value }, }, })} required />
                 <label>CGPA:</label>
-                <input type="number" step="0.01" name="ugCgpa" value={formData.education.ug.ugCgpa} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, cgpa: e.target.value},},})} required />
+                <input type="number" step="0.01" name="ugCgpa" value={formData.education.ug.ugCgpa} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, ug: { ...formData.education.ug, cgpa: e.target.value }, }, })} required />
               </div>
 
               <div className={styles.formGroup}>
                 <label>Institution College:</label>
-                <input type="text" name="collegeInstitution" value={formData.education.college.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, institution: e.target.value},},})}required />
-                <label>College Name:</label>
                 <input type="text" required />
+                <label>College Name:</label>
+                <input type="text" name="collegeCollegeName"
+                  value={formData.education.college.collegeName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      education: {
+                        ...formData.education,
+                        college: { ...formData.education.college, collegeName: e.target.value },
+                      },
+                    })
+                  }
+                  required />
                 <label>Passout Year:</label>
-                <input type="number" name="collegepassoutyear" value={formData.education.college.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, passoutyear: e.target.value},},})} required />
+                <input type="number" name="collegepassoutyear" value={formData.education.college.passoutyear} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, college: { ...formData.education.college, passoutyear: e.target.value }, }, })} required />
                 <label>CGPA:</label>
-                <input type="number" step="0.01" name="collegeCgpa" value={formData.education.college.collegeCgpa} onChange={(e)=> setFormData({...formData,education:{...formData.education,college: {...formData.education.college, cgpa: e.target.value},},})} required />
+                <input type="number" step="0.01" name="collegeCgpa" value={formData.education.college.collegeCgpa} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, college: { ...formData.education.college, cgpa: e.target.value }, }, })} required />
               </div>
 
               <div className={styles.formGroup}>
                 <label>Institution School:</label>
-                <input type="text" name="schoolInstitution" value={formData.education.school.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, institution: e.target.value},},})}required />
-                <label> School Name:</label>
                 <input type="text" required />
+                <label> School Name:</label>
+                <input type="text" name="schoolSchoolName"
+                  value={formData.education.school.schoolName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      education: {
+                        ...formData.education,
+                        school: { ...formData.education.school, schoolName: e.target.value },
+                      },
+                    })
+                  }
+                  required />
                 <label>Passout Year:</label>
-                <input type="number" name="schoolpassoutyear" value={formData.education.school.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, passoutyear: e.target.value},},})} required />
+                <input type="number" name="schoolpassoutyear" value={formData.education.school.passoutyear} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, school: { ...formData.education.school, passoutyear: e.target.value }, }, })} required />
                 <label>CGPA:</label>
-                <input type="number" step="0.01" name="schoolCgpa" value={formData.education.school.schoolCgpa} onChange={(e)=> setFormData({...formData,education:{...formData.education,school: {...formData.education.school, cgpa: e.target.value},},})} required />
+                <input type="number" step="0.01" name="schoolCgpa" value={formData.education.school.schoolCgpa} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, school: { ...formData.education.school, cgpa: e.target.value }, }, })} required />
               </div>
 
               <div className={styles.formGroup}>
                 <label>Institution PG(optional):</label>
-                <input type="text" name="pgInstitution" value={formData.education.pg.institution} onChange={(e)=> setFormData({...formData,education:{...formData.education,pg: {...formData.education.pg, institution: e.target.value},},})}required />
+                <input type="text" name="pgCollegeName"
+                  value={formData.education.pg.collegeName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      education: {
+                        ...formData.education,
+                        pg: { ...formData.education.pg, collegeName: e.target.value },
+                      },
+                    })
+                  } required />
                 <label>Passout Year:</label>
-                <input type="number" name="pgpassoutyear" value={formData.education.pg.passoutyear} onChange={(e)=> setFormData({...formData,education:{...formData.education,pg: {...formData.education.pg, passoutyear: e.target.value},},})} required />
+                <input type="number" name="pgpassoutyear" value={formData.education.pg.passoutyear} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, pg: { ...formData.education.pg, passoutyear: e.target.value }, }, })} required />
                 <label>CGPA:</label>
-                <input type="number" step="0.01" name="ugCgpa" value={formData.education.ug.ugCgpa} onChange={(e)=> setFormData({...formData,education:{...formData.education,ug: {...formData.education.ug, cgpa: e.target.value},},})} required />
+                <input type="number" step="0.01" name="ugCgpa" value={formData.education.ug.ugCgpa} onChange={(e) => setFormData({ ...formData, education: { ...formData.education, ug: { ...formData.education.ug, cgpa: e.target.value }, }, })} required />
               </div>
             </div>
           </div>
@@ -303,8 +378,8 @@ const CreateProfile = () => {
               <h2>Career Profile</h2>
               <div className={styles.formGroup}>
                 <label>Industry:</label>
-                <select name="Industry" value={formData.industry} onChange={handleInputChange} required>
-                <option value='select'>Select your Industry....</option>
+                <select name="industry" value={formData.industry} onChange={handleInputChange} required>
+                  <option value='select'>Select your Industry....</option>
                   <option value="IT">IT</option>
                   <option value="Healthcare">Healthcare</option>
                   <option value="Finance">Finance</option>
@@ -406,12 +481,12 @@ const CreateProfile = () => {
                 <textarea className={styles.description_to}
                   value={newProject.description}
                   onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-                  required
+                  maxLength={10000} required
                 />
                 <button type="button" className={styles.project_button} onClick={handleAddProject}>
                   Add Project
                 </button>
-              </div> 
+              </div>
               <ul className={styles.projectList}>
                 {projects.map((project, index) => (
                   <li key={index} className={styles.projectItem}>
