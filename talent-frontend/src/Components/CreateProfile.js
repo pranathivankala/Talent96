@@ -1,8 +1,8 @@
-import React, { useState,useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './CreateProfile.module.css';
-import { UserContext } from './UserContext'; 
+import { UserContext } from './UserContext';
 
 const CreateProfile = () => {
   const { userData } = useContext(UserContext); // Get the user data from context
@@ -108,7 +108,7 @@ const CreateProfile = () => {
   const handleResumeChange = (e) => {
     if (e.target.files.length > 0) {
       setResumeFile(e.target.files[0]);
-      alert(`Uploaded: ${e.target.files[0].name}`);
+      alert(`Uploaded: ${ e.target.files[0].name }`);
     }
   };
 

@@ -26,7 +26,11 @@ const Profile = () => {
                     setError("Profile not found. Please create a profile.");
                 }
             } catch (err) {
-                setError("Failed to fetch profile. Please try again later.");
+                if (err.response) {
+                    setError(`Error: ${err.response.status} - ${err.response.data.message || "An error occurred"}`);
+                } else {
+                    setError("Failed to fetch profile. Please try again later.");
+                }
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -75,9 +79,9 @@ const Profile = () => {
                                 profile.education[level] && (
                                     <div key={level}>
                                         <h3>{level.toUpperCase()}</h3>
-                                        <p><strong>College/School:</strong> {profile.education[level].collegeName || profile.education[level].schoolName}</p>
-                                        <p><strong>Passout Year:</strong> {profile.education[level].passoutyear}</p>
-                                        <p><strong>CGPA:</strong> {profile.education[level].cgpa}</p>
+                                        <p><strong>College/School:</strong> {profile.education[level]?.collegeName || profile.education[level]?.schoolName || 'N/A'}</p>
+                                        <p><strong>Passout Year:</strong> {profile.education[level]?.passoutyear || 'N/A'}</p>
+                                        <p><strong>CGPA:</strong> {profile.education[level]?.cgpa || 'N/A'}</p>
                                     </div>
                                 )
                             ))}
@@ -88,11 +92,15 @@ const Profile = () => {
                     {profile.skills && (
                         <div className={styles.section}>
                             <h2>Skills</h2>
-                            <ul>
-                                {profile.skills.map((skill, index) => (
-                                    <li key={index}>{skill}</li>
-                                ))}
-                            </ul>
+                            {profile.skills.length > 0 ? (
+                                <ul>
+                                    {profile.skills.map((skill, index) => (
+                                        <li key={index}>{skill}</li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p>No skills listed.</p>
+                            )}
                         </div>
                     )}
 

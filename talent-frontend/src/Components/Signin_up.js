@@ -66,9 +66,6 @@ function Signin_up() {
                 setUserData(userData);
                 setIsSignUpMode(false);
                 setIsSignUpMode2(false);
-                setTimeout(() => {
-                    navigate('/career');
-                }, 1000);
             } else if (response.status === 409) {
                 alert('User already exists! Redirecting to your profile.');
 
