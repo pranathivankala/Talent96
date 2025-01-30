@@ -19,7 +19,7 @@ const Profile = () => {
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:3001/api/profiles?email=${userData.email}`);
+                const response = await axios.get(`http://13.235.73.240:3001/api/profiles?email=${userData.email}`);
                 if (response.data) {
                     setProfile(response.data);
                 } else {

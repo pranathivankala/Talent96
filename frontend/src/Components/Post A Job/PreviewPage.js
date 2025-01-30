@@ -40,7 +40,7 @@ const PreviewPage = ({ formData , prevStep}) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/api/job_posts', combinedData);
+      const response = await axios.post('http://13.235.73.240:3001/api/job_posts', combinedData);
       console.log('Data saved:', response.data);
       alert('Job posting submitted successfully!');
       navigate('/Home'); 
