@@ -11,6 +11,13 @@ const userRoutes = require("./Routes/userRoutes");
 
 const app = express();
 
+if (!process.env.MONGO_URL) {
+  console.error("ERROR: MONGO_URL environment variable is not set. Check your .env file.");
+  process.exit(1); 
+}
+
+console.log("MONGO_URL from .env:", process.env.MONGO_URL);  /
+console.log("PORT from .env:", process.env.PORT);  
 
 app.use(express.json()); 
 app.use(cors()); 
