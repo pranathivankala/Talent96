@@ -16,7 +16,7 @@ if (!process.env.MONGO_URL) {
   process.exit(1); 
 }
 
-console.log("MONGO_URL from .env:", process.env.MONGO_URL);  /
+console.log("MONGO_URL from .env:", process.env.MONGO_URL); 
 console.log("PORT from .env:", process.env.PORT);  
 
 app.use(express.json()); 
