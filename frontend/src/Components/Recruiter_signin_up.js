@@ -19,7 +19,7 @@ function Recruiter_signin_up() {
             password: loginPassword,
         };
 
-        axios.post('http://13.235.73.240:3001/api/Recruiters_Login', loginData)
+        axios.post('http://52.66.245.100:3001/api/Recruiters_Login', loginData)
             .then((result) => {
                 console.log("Login successful:", result);
                 setUser(result.data.recruiter);
@@ -44,7 +44,7 @@ function Recruiter_signin_up() {
 
         console.log("Form data being sent:", { fullname, companyemail, companyname, password });
 
-        axios.post('http://13.235.73.240:3001/api/Recruiters_Register', {
+        axios.post('http://52.66.245.100:3001/api/Recruiters_Register', {
             fullname,
             companyemail,
             companyname,
@@ -53,7 +53,7 @@ function Recruiter_signin_up() {
             .then((result) => {
                 console.log(result);
                 alert('Registration successful! Please login.');
-                setIsSignUpMode(false); // Switch to Sign In mode after registration
+                setIsSignUpMode(false); 
             })
             .catch((err) => {
                 if (err.response && err.response.status === 400) {

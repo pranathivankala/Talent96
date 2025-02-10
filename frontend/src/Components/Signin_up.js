@@ -17,7 +17,7 @@ function Signin_up() {
         e.preventDefault();
         try {
             const loginData = { email: loginEmail, password: loginPassword };
-            const response = await axios.post('https://13.235.73.240:3001/api/Users_Login', loginData);
+            const response = await axios.post('http://52.66.245.100:3001/api/Users_Login', loginData);
             const userData = response.data;
 
             setUser({
@@ -48,7 +48,7 @@ function Signin_up() {
             formData.append('mobile', Mobile);
             formData.append('resume', resume);
 
-            const response = await axios.post('https://13.235.73.240:3001/api/Users_Register', formData, {
+            const response = await axios.post('http://52.66.245.100:3001/api/Users_Register', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 

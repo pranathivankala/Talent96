@@ -132,7 +132,7 @@ const CreateProfile = () => {
       data.append('resume', resumeFile);
     }
     try {
-      const response = await axios.post('http://13.235.73.240:3001/api/profiles', data, {
+      const response = await axios.post('http://52.66.245.100:3001/api/profiles', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
