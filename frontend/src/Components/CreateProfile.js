@@ -4,6 +4,8 @@ import axios from 'axios';
 import styles from './CreateProfile.module.css';
 import { UserContext } from './UserContext';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const CreateProfile = () => {
   const { userData } = useContext(UserContext); // Get the user data from context
   const navigate = useNavigate();
@@ -132,7 +134,7 @@ const CreateProfile = () => {
       data.append('resume', resumeFile);
     }
     try {
-      const response = await axios.post('http://52.66.245.100:3001/api/profiles', data, {
+      const response = await axios.post(`${API_URL}/api/profiles`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

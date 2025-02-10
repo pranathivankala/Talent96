@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './PreviewPage.module.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const PreviewPage = ({ formData , prevStep}) => {
   const [combinedData, setCombinedData] = useState({});
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ const PreviewPage = ({ formData , prevStep}) => {
     }
 
     try {
-      const response = await axios.post('http://52.66.245.100:3001/api/job_posts', combinedData);
+      const response = await axios.post(`${API_URL}/api/job_posts`, combinedData);
       console.log('Data saved:', response.data);
       alert('Job posting submitted successfully!');
       navigate('/Home'); 

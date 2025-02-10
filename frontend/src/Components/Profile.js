@@ -4,8 +4,10 @@ import axios from 'axios';
 import styles from './Profile.module.css';
 import { UserContext } from './UserContext';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Profile = () => {
-    const { userData } = useContext(UserContext); // Access user data from context
+    const { userData } = useContext(UserContext);
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,7 +21,7 @@ const Profile = () => {
                 return;
             }
             try {
-                const response = await axios.get(`http://52.66.245.100:3001/api/profiles?email=${userData.email}`);
+                const response = await axios.get(`${API_URL}/api/profiles?email=${userData.email}`);
                 if (response.data) {
                     setProfile(response.data);
                 } else {

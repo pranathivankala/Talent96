@@ -20,6 +20,9 @@ app.use(cors({
 
 connectDB();
 
+app.get("/", (req, res) => {
+  res.send("API is working!");
+});
 app.use("/api", jobRoutes);
 app.use("/api", profileRoutes);
 app.use("/api", recruiterRoutes);

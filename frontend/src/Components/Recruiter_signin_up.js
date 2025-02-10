@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import UserContext from './UserContext';
 import './Signin_up.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Recruiter_signin_up() {
     const { setUser } = useContext(UserContext);
     const [isSignUpMode, setIsSignUpMode] = useState(false); // Track form mode
@@ -19,7 +21,7 @@ function Recruiter_signin_up() {
             password: loginPassword,
         };
 
-        axios.post('http://52.66.245.100:3001/api/Recruiters_Login', loginData)
+        axios.post(`${API_URL}/api/Recruiters_Login`, loginData)
             .then((result) => {
                 console.log("Login successful:", result);
                 setUser(result.data.recruiter);
@@ -44,7 +46,7 @@ function Recruiter_signin_up() {
 
         console.log("Form data being sent:", { fullname, companyemail, companyname, password });
 
-        axios.post('http://52.66.245.100:3001/api/Recruiters_Register', {
+        axios.post(`${API_URL}/api/Recruiters_Register`, {
             fullname,
             companyemail,
             companyname,
