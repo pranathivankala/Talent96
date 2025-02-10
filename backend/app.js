@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.json()); 
 app.use(cors({
-  origin: ["https://talent96.com","http://localhost:3000"],
+  origin: ["https://www.talent96.com", "https://talent96.com", "http://localhost:3000"],
   methods: "GET,POST,PUT,DELETE",
   credentials: true
 })); 
@@ -23,6 +23,8 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("API is working!");
 });
+app.options("*", cors()); 
+
 app.use("/api", jobRoutes);
 app.use("/api", profileRoutes);
 app.use("/api", recruiterRoutes);
