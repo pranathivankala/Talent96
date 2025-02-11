@@ -1,29 +1,29 @@
 require("dotenv").config();
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const connectDB = require("./config/db"); 
-const jobRoutes = require("./Routes/jobRoutes"); 
+const connectDB = require("./config/db");
+const jobRoutes = require("./Routes/jobRoutes");
 const profileRoutes = require("./Routes/profileRoutes");
-const recruiterRoutes = require("./Routes/recruiterRoutes"); 
-const userRoutes = require("./Routes/userRoutes"); 
+const recruiterRoutes = require("./Routes/recruiterRoutes");
+const userRoutes = require("./Routes/userRoutes");
 
 const app = express();
 
-app.use(express.json()); 
 app.use(cors({
   origin: ["https://www.talent96.com", "https://talent96.com", "http://localhost:3000"],
-  methods: "GET,POST,PUT,DELETE",
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
-})); 
+}));
+
+app.use(express.json());
 
 connectDB();
 
 app.get("/", (req, res) => {
   res.send("API is working!");
 });
-app.options("*", cors()); 
 
 app.use("/api", jobRoutes);
 app.use("/api", profileRoutes);

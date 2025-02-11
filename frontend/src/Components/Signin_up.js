@@ -7,8 +7,7 @@ import UserContext from './UserContext';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function Signin_up() {
-    const { setUser } = useContext(UserContext);
-    const { setUserData } = useContext(UserContext); 
+    const { setUser, setUserData } = useContext(UserContext);
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [isSignUpMode, setIsSignUpMode] = useState(false);
