@@ -28,8 +28,9 @@ router.post("/Users_Login", async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     if (user.password !== password) return res.status(400).json({ message: "Invalid password" });
+    const profile = await Profile.findOne({ email });
 
-    res.status(200).json({ message: "Login successful", user });
+    res.status(200).json({ message: "Login successful", user,profileCompleted: profile ? true : false  });
   } catch (err) {
     res.status(500).json({ message: "Login failed", error: err.message });
   }

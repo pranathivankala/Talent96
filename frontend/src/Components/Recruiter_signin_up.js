@@ -8,7 +8,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function Recruiter_signin_up() {
     const { setUser } = useContext(UserContext);
-    const [isSignUpMode, setIsSignUpMode] = useState(false); // Track form mode
+    const [isSignUpMode, setIsSignUpMode] = useState(false); 
+    const [isSignUpMode2, setIsSignUpMode2] = useState(false);
     const [logincompanyemail, setLogincompanyemail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const navigate = useNavigate();
@@ -67,15 +68,14 @@ function Recruiter_signin_up() {
     };
 
     useEffect(() => {
-        const container = document.querySelector(".main-container");
-
-        if (isSignUpMode) {
-            container.classList.add("sign-up-mode");
-        } else {
-            container.classList.remove("sign-up-mode");
-        }
-    }, [isSignUpMode]);
-
+           const container = document.querySelector('.main-container');
+           if (isSignUpMode) container.classList.add('sign-up-mode');
+           else container.classList.remove('sign-up-mode');
+   
+           if (isSignUpMode2) container.classList.add('sign-up-mode2');
+           else container.classList.remove('sign-up-mode2');
+       }, [isSignUpMode, isSignUpMode2]);
+   
     return (
         <div className="big_box">
             <div className="main-container">
@@ -109,9 +109,7 @@ function Recruiter_signin_up() {
                         <div className="social-media">
                             <a href="#" className="social-icon"><i className="fab fa-google"></i></a>
                         </div>
-                        <p className='account-text'>
-                            Don't have an account? <a href='#' onClick={() => setIsSignUpMode(true)}>Sign up</a>
-                        </p>
+                        <p className="account-text">Don't have an account? <a href="#" onClick={() => setIsSignUpMode2(true)}>Sign up</a></p>
                     </form>
                     <form className="signup_form" onSubmit={handleSubmit}>
                         <h2 className="heading">Recruiter Sign Up</h2>
@@ -160,9 +158,7 @@ function Recruiter_signin_up() {
                         <div className="social-media">
                             <a href="#" className="social-icon"><i className="fab fa-google"></i></a>
                         </div>
-                        <p className='account-text'>
-                            Already have an account? <a href='#' onClick={() => setIsSignUpMode(false)}>Sign in</a>
-                        </p>
+                        <p className="account-text">Already have an account? <a href="#" onClick={() => setIsSignUpMode2(false)}>Sign in</a></p>
                     </form>
                 </div>
                 <div className="panels-container">

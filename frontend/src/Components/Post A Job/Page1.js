@@ -32,12 +32,12 @@ const Page1 = ({ formData, handleChange, nextStep }) => {
   };
 
   const handleNextClick = () => {
-    const { jobTitle, jobDescription, jobType, location, workMode, numberOfPositions } = formData;
+    // const { jobTitle, jobDescription, jobType, location, workMode, numberOfPositions } = formData;
 
-    // if (!jobTitle || !jobDescription || !jobType || !location || !workMode || !numberOfPositions) {
-    //   alert("Please fill in all required fields before proceeding.");
-    //   return; 
-    // }
+    // // if (!jobTitle || !jobDescription || !jobType || !location || !workMode || !numberOfPositions) {
+    // //   alert("Please fill in all required fields before proceeding.");
+    // //   return; 
+    // // }
 
     console.log('Page 1 Data:', formData);
     localStorage.setItem('page1Data', JSON.stringify(formData));    
@@ -103,7 +103,7 @@ const Page1 = ({ formData, handleChange, nextStep }) => {
               <label>Work Mode <span className={styles.star}>*</span></label>
               <div className={styles.radioGroup}>
                 <label><input type="radio" name="workMode" value="Remote" checked={formData.workMode === "Remote"} onChange={handleChange}/> Remote</label>
-                <label><input type="radio" name="workMode" value="On-site" checked={formData.workMode === "On-site"} onChange={handleChange}/> On-site</label>
+                <label><input type="radio" name="workMode" value="Onsite" checked={formData.workMode === "Onsite"} onChange={handleChange}/> On-site</label>
                 <label><input type="radio" name="workMode" value="Hybrid"  checked={formData.workMode === "Hybrid"}  onChange={handleChange} /> Hybrid</label>
               </div>
             </div>

@@ -20,17 +20,23 @@ function Signin_up() {
             const loginData = { email: loginEmail, password: loginPassword };
             const response = await axios.post(`${API_URL}/api/Users_Login`, loginData);
             const userData = response.data;
-
+    
+            // Save user data in state or localStorage
             setUser({
-                name: userData.username || 'User',
-                profilePhoto: userData.profilePicture || 'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
+                name: userData.user.username || 'User',
+                profilePhoto: userData.user.profilePicture || 'https://www.pikpng.com/pngl/m/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png',
             });
-
-            navigate('/create-profile');
+    
+            if (userData.profileCompleted) {
+                navigate('/profile'); 
+            } else {
+                navigate('/create-profile'); 
+            }
         } catch (err) {
             console.error('Login error:', err);
         }
     };
+    
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

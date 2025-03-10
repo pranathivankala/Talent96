@@ -20,36 +20,42 @@ const Profile = () => {
                 setLoading(false);
                 return;
             }
+
             try {
+                console.log("Fetching profile for:", userData.email);
                 const response = await axios.get(`${API_URL}/api/profiles?email=${userData.email}`);
+                
                 if (response.data) {
+                    console.log("Profile data:", response.data);
                     setProfile(response.data);
                 } else {
                     setError("Profile not found. Please create a profile.");
                 }
             } catch (err) {
+                console.error("Error fetching profile:", err);
                 if (err.response) {
                     setError(`Error: ${err.response.status} - ${err.response.data.message || "An error occurred"}`);
                 } else {
                     setError("Failed to fetch profile. Please try again later.");
                 }
-                console.error(err);
             } finally {
                 setLoading(false);
             }
         };
+        
         fetchProfile();
     }, [userData]);
 
     if (loading) {
-        return <div>Loading profile...</div>;
+        return <div className={styles.loading}>Loading profile...</div>;
     }
 
     if (error) {
         return (
             <div className={styles.errorContainer}>
                 <p>{error}</p>
-                <button onClick={() => navigate('/profiles')}>Create Profile</button>
+                <button className={styles.retryButton} onClick={() => window.location.reload()}>Retry</button>
+                <button className={styles.createButton} onClick={() => navigate('/profiles/create')}>Create Profile</button>
             </div>
         );
     }
@@ -62,7 +68,9 @@ const Profile = () => {
         <div className={styles.profileContainer}>
             {profile && (
                 <>
-                    {/* Personal Information Section */}
+                    <h1 className={styles.heading}>My Profile</h1>
+
+                    {/* Personal Information */}
                     <div className={styles.section}>
                         <h2>Personal Information</h2>
                         <p><strong>Name:</strong> {profile.name}</p>
@@ -73,7 +81,7 @@ const Profile = () => {
                         <p><strong>Languages:</strong> {profile.languages}</p>
                     </div>
 
-                    {/* Education Section */}
+                    {/* Education */}
                     {profile.education && (
                         <div className={styles.section}>
                             <h2>Education</h2>
@@ -90,7 +98,7 @@ const Profile = () => {
                         </div>
                     )}
 
-                    {/* Skills Section */}
+                    {/* Skills */}
                     {profile.skills && (
                         <div className={styles.section}>
                             <h2>Skills</h2>
@@ -106,7 +114,7 @@ const Profile = () => {
                         </div>
                     )}
 
-                    {/* Experience Section */}
+                    {/* Experience */}
                     {profile.experience && (
                         <div className={styles.section}>
                             <h2>Experience</h2>
@@ -124,7 +132,7 @@ const Profile = () => {
                         </div>
                     )}
 
-                    {/* Projects Section */}
+                    {/* Projects */}
                     {profile.projects && (
                         <div className={styles.section}>
                             <h2>Projects</h2>
@@ -140,8 +148,6 @@ const Profile = () => {
                             )}
                         </div>
                     )}
-
-                    {/* Edit Profile Button */}
                     <button className={styles.editButton} onClick={handleEdit}>Edit Profile</button>
                 </>
             )}

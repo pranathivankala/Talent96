@@ -21,12 +21,13 @@
 }
 .main-container{
     position: relative;
-    margin-top: 80px;
-    width: 80vw;
-    height: 95vh;
+    margin-top: 65px;
+    width: 100vw;
+    height: 110vh;
     background:#fff ;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3),0 6px 20px 0 rgba(0, 0, 0, 0.3) ;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    /* box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3),0 6px 20px 0 rgba(0, 0, 0, 0.3) ; */
     overflow: hidden;
 }
 .main-container::before{
@@ -74,7 +75,7 @@ form.signup_form{
 .heading {
     font-size: 35px;
     color: #df4adf;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
 }
 .enter_field{
@@ -236,11 +237,14 @@ form.signup_form{
 @media (max-width:779px){
     .main-container{
         width: 100vw;
-        height: 100vh;
+        height: 110vh;
+        margin-top: 50px;
+        margin-bottom: 0;
 
     }
 }
 @media (max-width:635px){
+    
 
     .main-container::before{
         display: none;

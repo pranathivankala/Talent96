@@ -24,20 +24,41 @@ const Page3 = ({ formData, handleChange, prevStep, nextStep }) => {
   const handleAddSkill = () => {
     const { skillInput } = localData;
     if (skillInput && !localData.requiredSkills.includes(skillInput)) {
+      const updatedSkills = [...localData.requiredSkills, skillInput.trim()];
+
       setLocalData((prevData) => ({
         ...prevData,
-        requiredSkills: [...prevData.requiredSkills, skillInput.trim()],
-        skillInput: '', 
+        requiredSkills: updatedSkills,
+        skillInput: '',
       }));
+
+      handleChange({
+        target: {
+          name: "requiredSkills",
+          value: updatedSkills
+        }
+      });
     }
   };
 
+
   const handleRemoveSkill = (skill) => {
+    const updatedSkills = localData.requiredSkills.filter((s) => s !== skill);
+  
     setLocalData((prevData) => ({
       ...prevData,
-      requiredSkills: prevData.requiredSkills.filter((s) => s !== skill),
+      requiredSkills: updatedSkills,
     }));
+  
+    // Update formData to ensure changes are passed correctly
+    handleChange({
+      target: {
+        name: "requiredSkills",
+        value: updatedSkills
+      }
+    });
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,17 +66,21 @@ const Page3 = ({ formData, handleChange, prevStep, nextStep }) => {
       ...prevData,
       [name]: value,
     }));
-    handleChange(e); 
+    handleChange(e);
   };
 
   const handleNext = () => {
     const combinedData = { ...formData, ...localData };
+  
     console.log('Combined Data for Preview:', JSON.stringify(combinedData, null, 2));
+  
     localStorage.setItem('combinedData', JSON.stringify(combinedData));
+  
     nextStep(); 
   };
+  
   const handlePrevious = () => {
-    prevStep(); 
+    prevStep();
   };
 
   return (
@@ -70,13 +95,13 @@ const Page3 = ({ formData, handleChange, prevStep, nextStep }) => {
             <div className={styles.formGroup}>
               <label htmlFor="skillInput">Required Skills</label>
               <div>
-                <input type="text" id="skillInput" className={styles['job-input']} value={localData.skillInput || ''} onChange={(e) => setLocalData({ ...localData, skillInput: e.target.value })} placeholder="Enter a skill"/>
+                <input type="text" id="skillInput" className={styles['job-input']} value={localData.skillInput || ''} onChange={(e) => setLocalData({ ...localData, skillInput: e.target.value })} placeholder="Enter a skill" />
                 <button type="button" className={styles.button} onClick={handleAddSkill}> Add </button>
               </div>
               <div className={styles.requiredSkills}>
                 {localData.requiredSkills.map((skill, index) => (
                   <span key={index}>{skill}
-                    <button type="button" className={styles.removeButton}onClick={() => handleRemoveSkill(skill)}>X</button>
+                    <button type="button" className={styles.removeButton} onClick={() => handleRemoveSkill(skill)}>X</button>
                   </span>
                 ))}
               </div>
@@ -98,11 +123,11 @@ const Page3 = ({ formData, handleChange, prevStep, nextStep }) => {
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="salaryRange">Salary Range</label>
-              <input type="text" id="salaryRange" value={localData.salaryRange} onChange={handleInputChange}name="salaryRange"placeholder="Enter salary range"/>
+              <input type="text" id="salaryRange" value={localData.salaryRange} onChange={handleInputChange} name="salaryRange" placeholder="Enter salary range" />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="applicationLink">Application Link</label>
-              <input type="url"  id="applicationLink" value={localData.applicationLink} onChange={handleInputChange} name="applicationLink" placeholder="Enter application link"/>
+              <input type="url" id="applicationLink" value={localData.applicationLink} onChange={handleInputChange} name="applicationLink" placeholder="Enter application link" />
             </div>
             <div className={styles.btns}>
               <button type="button" className={styles.previousButton} onClick={handlePrevious}>Previous</button>

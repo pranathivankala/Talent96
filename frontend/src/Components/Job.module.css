@@ -1,157 +1,183 @@
-/* Job.module.css */
+.container { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px 20px;
+  margin-top: 30px;
+  background-color: #f3f2ef;
+  min-height: 100vh;
+}
 
-.container {
-    display: flex;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    margin-top: 4rem;
-  }
-  
-  .leftPanel {
-    width: 40%;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-right: 1px solid #ddd;
-    overflow-y: auto;
-  }
-  
-  .heading {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .jobList {
-    display: flex;
+/* Left panel */
+.leftPanel {
+  flex: 1;
+  max-width: 40%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Right panel */
+.rightPanel {
+  flex: 2;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Job cards */
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.jobCard {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: 1px solid #ddd;
+}
+
+.jobCard:hover {
+  background: #f8f8f8;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Job details */
+.jobDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.companyLogo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.companyLogoLarge {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Apply button */
+.applyButton,
+.applyLink {
+  width: 100%;
+  background-color: #0073b1;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.applyButton:hover,
+.applyLink:hover {
+  background-color: #005582;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .container {
     flex-direction: column;
   }
-  
-  .jobCard {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .jobCard:hover {
-    transform: translateY(-5px);
-  }
-  
-  .jobTitle {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .company, .location, .salary {
-    font-size: 1rem;
-    color: #777;
-  }
-  
-  .description {
-    margin-top: 10px;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  .applyButton {
-    background-color: #ff00f7;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-    font-size: 1rem;
-  }
-  
-  .applyButton:hover {
-    background-color: #b3008c;
-  }
-  
+
+  .leftPanel, 
   .rightPanel {
-    width: 60%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
     padding: 20px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
   }
-  
-  .jobDetails {
-    max-width: 800px;
-    margin: 0 auto;
+
+  .leftPanel, 
+  .rightPanel {
+    padding: 15px;
   }
-  
-  .closeButton {
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: #888;
-    cursor: pointer;
-    padding: 5px;
-    margin-left: auto;
+
+  .heading {
+    font-size: 18px;
   }
-  
-  .closeButton:hover {
-    color: #333;
+
+  .jobTitle {
+    font-size: 16px;
   }
-  
-  .modalTitle {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
+
+  .company {
+    font-size: 13px;
   }
-  
-  p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 15px;
+
+  .location,
+  .salary {
+    font-size: 12px;
   }
-  
-  a {
-    color: #ff00dd;
-    text-decoration: none;
+
+  .companyLogo {
+    width: 40px;
+    height: 40px;
   }
-  
-  strong {
-    font-weight: bold;
+
+  .applyButton,
+  .applyLink {
+    font-size: 14px;
   }
-  
-  /* Optional: Add some icons next to the text */
-  .jobCard .location:before {
-    content: "\f041"; /* Map pin icon */
-    font-family: "Font Awesome 5 Free";
-    margin-right: 8px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+    gap: 10px;
   }
-  
-  .jobCard .salary:before {
-    content: "\f155"; /* Dollar sign icon */
-    font-family: "Font Awesome 5 Free";
-    margin-right: 8px;
+
+  .leftPanel,
+  .rightPanel {
+    padding: 10px;
   }
-  
-  .rightPanel .jobDetails p strong {
-    font-size: 1.1rem;
+
+  .heading {
+    font-size: 16px;
   }
-  
-  @media screen and (max-width: 768px) {
-    .container {
-      flex-direction: column;
-    }
-  
-    .leftPanel {
-      width: 100%;
-      border-right: none;
-    }
-  
-    .rightPanel {
-      width: 100%;
-      height: 100%;
-    }
+
+  .jobTitle {
+    font-size: 14px;
   }
-  
+
+  .company {
+    font-size: 12px;
+  }
+
+  .location,
+  .salary {
+    font-size: 11px;
+  }
+
+  .companyLogo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .applyButton,
+  .applyLink {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

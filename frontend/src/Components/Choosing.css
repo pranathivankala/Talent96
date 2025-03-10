@@ -9,7 +9,7 @@
   align-items: center;
   min-height: 100vh; 
   background-color: #f0f0f0; 
-  margin-top: 20px;
+  margin-top: 40px;
 
 
   }
@@ -83,6 +83,7 @@
   @media (max-width: 768px) {
     .bigcard{
       margin-bottom: 1rem;
+      margin-top: 0;
     }
     .card-container {
       flex-direction: column;
